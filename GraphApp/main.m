@@ -42,6 +42,7 @@ int main(int argc, const char * argv[])
         NSLog(@"Coord x du premier label : %d", ((Coord *)originVertex.coord).x);
 */
         // tests for the GraphML parser
+/*
         NSString* graphMLSample = @"<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
                                     "<graphml xmlns=\"http://graphml.graphdrawing.org/xmlns\""
                                             "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\""
@@ -64,7 +65,37 @@ int main(int argc, const char * argv[])
 
         NSLog(@"Nb de sommets: %lu", (unsigned long)[graph.vertices count]);
         NSLog(@"Nb d'arêtes: %lu", (unsigned long)[graph.edges count]);
+*/
+        // tests for the GraphML parser
+        NSString* graphMLSample = @"<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
+                                   "<gexf xmlns=\"http://www.gexf.net/1.2draft\" version=\"1.2\">"
+                                     "<meta lastmodifieddate=\"2009-03-20\">"
+                                       "<creator>Gexf.net</creator>"
+                                       "<description>A hello world! file</description>"
+                                     "</meta>"
+                                     "<graph mode=\"static\" defaultedgetype=\"directed\">"
+                                       "<nodes>"
+                                         "<node id=\"0\" label=\"Hello\" />"
+                                         "<node id=\"1\" label=\"Word\" />"
+                                       "</nodes>"
+                                       "<edges>"
+                                         "<edge id=\"0\" source=\"0\" target=\"1\" />"
+                                       "</edges>"
+                                     "</graph>"
+                                    "</gexf>";
+        NSData* graphMLSampleData = [graphMLSample dataUsingEncoding:NSUTF8StringEncoding];
+        GraphMLParser *parser = [[GraphMLParser alloc] initWithData:graphMLSampleData];
+        Graph* graph = [parser parse];
+
+        if (graph.oriented) {
+            NSLog(@"Oriented!");
+        } else {
+            NSLog(@"Not oriented!");
+        }
+
+        NSLog(@"Nb de sommets: %lu", (unsigned long)[graph.vertices count]);
+        NSLog(@"Nb d'arêtes: %lu", (unsigned long)[graph.edges count]);
     }
-    
+
     return 0;
 }

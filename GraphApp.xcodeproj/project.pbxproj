@@ -15,6 +15,7 @@
 		0A29AF1318A041C200DA70A3 /* Graph.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A29AF0E18A041C200DA70A3 /* Graph.m */; };
 		0A29AF1418A041C200DA70A3 /* Vertex.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A29AF1018A041C200DA70A3 /* Vertex.m */; };
 		0A29AF1718A0479700DA70A3 /* GraphMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A29AF1618A0479700DA70A3 /* GraphMLParser.m */; };
+		0AFDD94718A3AD4B00CD6E3A /* GEXFParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AFDD94618A3AD4B00CD6E3A /* GEXFParser.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -46,6 +47,8 @@
 		0A29AF1018A041C200DA70A3 /* Vertex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Vertex.m; sourceTree = "<group>"; };
 		0A29AF1518A0479700DA70A3 /* GraphMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphMLParser.h; sourceTree = "<group>"; };
 		0A29AF1618A0479700DA70A3 /* GraphMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphMLParser.m; sourceTree = "<group>"; };
+		0AFDD94518A3AD4B00CD6E3A /* GEXFParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEXFParser.h; sourceTree = "<group>"; };
+		0AFDD94618A3AD4B00CD6E3A /* GEXFParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GEXFParser.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +104,8 @@
 				0A29AF0018A0411900DA70A3 /* Supporting Files */,
 				0A29AF1518A0479700DA70A3 /* GraphMLParser.h */,
 				0A29AF1618A0479700DA70A3 /* GraphMLParser.m */,
+				0AFDD94518A3AD4B00CD6E3A /* GEXFParser.h */,
+				0AFDD94618A3AD4B00CD6E3A /* GEXFParser.m */,
 			);
 			path = GraphApp;
 			sourceTree = "<group>";
@@ -170,6 +175,7 @@
 				0A29AF1318A041C200DA70A3 /* Graph.m in Sources */,
 				0A29AF1418A041C200DA70A3 /* Vertex.m in Sources */,
 				0A29AF1718A0479700DA70A3 /* GraphMLParser.m in Sources */,
+				0AFDD94718A3AD4B00CD6E3A /* GEXFParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,6 +280,7 @@
 				0A29AF0818A0411900DA70A3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
