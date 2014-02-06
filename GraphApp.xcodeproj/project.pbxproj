@@ -16,6 +16,7 @@
 		0A29AF1418A041C200DA70A3 /* Vertex.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A29AF1018A041C200DA70A3 /* Vertex.m */; };
 		0A29AF1718A0479700DA70A3 /* GraphMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A29AF1618A0479700DA70A3 /* GraphMLParser.m */; };
 		0AFDD94718A3AD4B00CD6E3A /* GEXFParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AFDD94618A3AD4B00CD6E3A /* GEXFParser.m */; };
+		0AFDD95118A3B33C00CD6E3A /* XGMMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AFDD95018A3B33C00CD6E3A /* XGMMLParser.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -49,6 +50,8 @@
 		0A29AF1618A0479700DA70A3 /* GraphMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphMLParser.m; sourceTree = "<group>"; };
 		0AFDD94518A3AD4B00CD6E3A /* GEXFParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEXFParser.h; sourceTree = "<group>"; };
 		0AFDD94618A3AD4B00CD6E3A /* GEXFParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GEXFParser.m; sourceTree = "<group>"; };
+		0AFDD94F18A3B33C00CD6E3A /* XGMMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XGMMLParser.h; sourceTree = "<group>"; };
+		0AFDD95018A3B33C00CD6E3A /* XGMMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XGMMLParser.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +118,8 @@
 				0A29AF1618A0479700DA70A3 /* GraphMLParser.m */,
 				0AFDD94518A3AD4B00CD6E3A /* GEXFParser.h */,
 				0AFDD94618A3AD4B00CD6E3A /* GEXFParser.m */,
+				0AFDD94F18A3B33C00CD6E3A /* XGMMLParser.h */,
+				0AFDD95018A3B33C00CD6E3A /* XGMMLParser.m */,
 			);
 			name = Parser;
 			sourceTree = "<group>";
@@ -192,6 +197,7 @@
 				0A29AF1418A041C200DA70A3 /* Vertex.m in Sources */,
 				0A29AF1718A0479700DA70A3 /* GraphMLParser.m in Sources */,
 				0AFDD94718A3AD4B00CD6E3A /* GEXFParser.m in Sources */,
+				0AFDD95118A3B33C00CD6E3A /* XGMMLParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
