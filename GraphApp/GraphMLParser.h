@@ -7,9 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ParserProtocol.h"
 #import "Graph.h"
 
-@interface GraphMLParser : NSObject<NSXMLParserDelegate>
+@interface GraphMLParser : NSObject<NSXMLParserDelegate, ParserProtocol>
 
 @property NSXMLParser *parser;
 @property NSMutableString *element;

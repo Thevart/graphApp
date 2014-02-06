@@ -7,9 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ParserProtocol.h"
 #import "Graph.h"
 
-@interface GEXFParser : NSObject<NSXMLParserDelegate>
+@interface GEXFParser : NSObject<NSXMLParserDelegate, ParserProtocol>
 
 @property NSXMLParser *parser;
 @property NSMutableString *element;

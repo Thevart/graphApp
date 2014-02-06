@@ -52,6 +52,7 @@
 		0AFDD94618A3AD4B00CD6E3A /* GEXFParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GEXFParser.m; sourceTree = "<group>"; };
 		0AFDD94F18A3B33C00CD6E3A /* XGMMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XGMMLParser.h; sourceTree = "<group>"; };
 		0AFDD95018A3B33C00CD6E3A /* XGMMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XGMMLParser.m; sourceTree = "<group>"; };
+		0AFDD95218A3C59C00CD6E3A /* ParserProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserProtocol.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +121,7 @@
 				0AFDD94618A3AD4B00CD6E3A /* GEXFParser.m */,
 				0AFDD94F18A3B33C00CD6E3A /* XGMMLParser.h */,
 				0AFDD95018A3B33C00CD6E3A /* XGMMLParser.m */,
+				0AFDD95218A3C59C00CD6E3A /* ParserProtocol.h */,
 			);
 			name = Parser;
 			sourceTree = "<group>";
