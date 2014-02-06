@@ -37,12 +37,12 @@
     [self.vertices setValue:vertex forKey:vertex.label];
 }
 
-- (Vertex*) getVertexOrCreate : (NSString*) label
+- (Vertex*) getVertexOrCreate : (NSString*) id
 {
-    Vertex* vertex = [self.vertices objectForKey:label];
+    Vertex* vertex = [self.vertices objectForKey:id];
 
     if (vertex == nil) {
-        vertex = [[Vertex alloc] initWithLabel:label];
+        vertex = [[Vertex alloc] initWithId:id];
         [self addVertex:vertex];
     }
     
@@ -61,6 +61,6 @@
 
 - (void) removeVertex : (Vertex*) vertex
 {
-    [self.vertices removeObjectForKey:vertex.label];
+    [self.vertices removeObjectForKey:vertex.id];
 }
 @end

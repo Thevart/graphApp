@@ -11,9 +11,10 @@
 
 @interface Vertex : NSObject
 
+@property NSString* id;
 @property NSString* label;
 @property Coord* coord;
 
-- (id)initWithLabel:(NSString *) label;
+- (id)initWithId:(NSString *) id;
 
 @end

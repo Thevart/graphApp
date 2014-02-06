@@ -24,10 +24,11 @@
     return self;
 }
 
-- (id)initWithLabel:(NSString *) label
+- (id)initWithId:(NSString *) id
 {
     if ( self = [super init] ) {
-        self.label = label;
+        self.id = id;
+        self.label = id;
         return self;
     }
     
