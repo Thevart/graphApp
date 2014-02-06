@@ -91,21 +91,11 @@
 		0A29AEFD18A0411900DA70A3 /* GraphApp */ = {
 			isa = PBXGroup;
 			children = (
-				0A29AF0918A041C200DA70A3 /* Coord.h */,
-				0A29AF0A18A041C200DA70A3 /* Coord.m */,
-				0A29AF0B18A041C200DA70A3 /* Edge.h */,
-				0A29AF0C18A041C200DA70A3 /* Edge.m */,
-				0A29AF0D18A041C200DA70A3 /* Graph.h */,
-				0A29AF0E18A041C200DA70A3 /* Graph.m */,
-				0A29AF0F18A041C200DA70A3 /* Vertex.h */,
-				0A29AF1018A041C200DA70A3 /* Vertex.m */,
+				0AFDD94E18A3B2E400CD6E3A /* Model */,
 				0A29AEFE18A0411900DA70A3 /* main.m */,
 				0A29AF0218A0411900DA70A3 /* GraphApp.1 */,
 				0A29AF0018A0411900DA70A3 /* Supporting Files */,
-				0A29AF1518A0479700DA70A3 /* GraphMLParser.h */,
-				0A29AF1618A0479700DA70A3 /* GraphMLParser.m */,
-				0AFDD94518A3AD4B00CD6E3A /* GEXFParser.h */,
-				0AFDD94618A3AD4B00CD6E3A /* GEXFParser.m */,
+				0AFDD94D18A3B2BC00CD6E3A /* Parser */,
 			);
 			path = GraphApp;
 			sourceTree = "<group>";
@@ -116,6 +106,32 @@
 				0A29AF0118A0411900DA70A3 /* GraphApp-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0AFDD94D18A3B2BC00CD6E3A /* Parser */ = {
+			isa = PBXGroup;
+			children = (
+				0A29AF1518A0479700DA70A3 /* GraphMLParser.h */,
+				0A29AF1618A0479700DA70A3 /* GraphMLParser.m */,
+				0AFDD94518A3AD4B00CD6E3A /* GEXFParser.h */,
+				0AFDD94618A3AD4B00CD6E3A /* GEXFParser.m */,
+			);
+			name = Parser;
+			sourceTree = "<group>";
+		};
+		0AFDD94E18A3B2E400CD6E3A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0A29AF0918A041C200DA70A3 /* Coord.h */,
+				0A29AF0A18A041C200DA70A3 /* Coord.m */,
+				0A29AF0B18A041C200DA70A3 /* Edge.h */,
+				0A29AF0C18A041C200DA70A3 /* Edge.m */,
+				0A29AF0D18A041C200DA70A3 /* Graph.h */,
+				0A29AF0E18A041C200DA70A3 /* Graph.m */,
+				0A29AF0F18A041C200DA70A3 /* Vertex.h */,
+				0A29AF1018A041C200DA70A3 /* Vertex.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
