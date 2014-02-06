@@ -4,7 +4,7 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>GraphApp.xcscheme</key>
+		<key>ver.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
@@ -12,7 +12,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0A29AEF718A0411900DA70A3</key>
+		<key>06320C3D14509DBB00C37973</key>
 		<dict>
 			<key>primary</key>
 			<true/>
