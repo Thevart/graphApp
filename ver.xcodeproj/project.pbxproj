@@ -17,11 +17,6 @@
 		06320C691450A1AF00C37973 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06320C681450A1AF00C37973 /* AVFoundation.framework */; };
 		0648C5761471559E00CEB38F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06320C4414509DBB00C37973 /* Foundation.framework */; };
 		0648C577147155A500CEB38F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06320C4614509DBB00C37973 /* CoreGraphics.framework */; };
-		06B3F10E1451D497000F8822 /* morceau.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 06B3F10D1451D497000F8822 /* morceau.mp3 */; };
-		06B3F1111451D4CF000F8822 /* pong.caf in Resources */ = {isa = PBXBuildFile; fileRef = 06B3F1101451D4CF000F8822 /* pong.caf */; };
-		06B3F1131451D4EA000F8822 /* rire.caf in Resources */ = {isa = PBXBuildFile; fileRef = 06B3F1121451D4EA000F8822 /* rire.caf */; };
-		06CB2EF914C6C14F00AD4196 /* ver.png in Resources */ = {isa = PBXBuildFile; fileRef = 06CB2EF814C6C14F00AD4196 /* ver.png */; };
-		06CB2EFB14C6C16900AD4196 /* fondver.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 06CB2EFA14C6C16900AD4196 /* fondver.jpg */; };
 		0A7DFEE718A7F7F60033D747 /* DrawableVertex.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7DFEE618A7F7F60033D747 /* DrawableVertex.m */; };
 		0AC277CE18A429AC004863C8 /* GEXFParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC277C818A429AC004863C8 /* GEXFParser.m */; };
 		0AC277CF18A429AC004863C8 /* GraphMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC277CA18A429AC004863C8 /* GraphMLParser.m */; };
@@ -49,11 +44,6 @@
 		06320C5814509DBB00C37973 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		06320C661450A1AB00C37973 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		06320C681450A1AF00C37973 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		06B3F10D1451D497000F8822 /* morceau.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = morceau.mp3; sourceTree = "<group>"; };
-		06B3F1101451D4CF000F8822 /* pong.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = pong.caf; sourceTree = "<group>"; };
-		06B3F1121451D4EA000F8822 /* rire.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = rire.caf; sourceTree = "<group>"; };
-		06CB2EF814C6C14F00AD4196 /* ver.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ver.png; sourceTree = "<group>"; };
-		06CB2EFA14C6C16900AD4196 /* fondver.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = fondver.jpg; sourceTree = "<group>"; };
 		0A7DFEE518A7F7F60033D747 /* DrawableVertex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawableVertex.h; sourceTree = "<group>"; };
 		0A7DFEE618A7F7F60033D747 /* DrawableVertex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawableVertex.m; sourceTree = "<group>"; };
 		0AC277C718A429AC004863C8 /* GEXFParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEXFParser.h; sourceTree = "<group>"; };
@@ -150,12 +140,7 @@
 		06320C5F14509DC000C37973 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				06CB2EF814C6C14F00AD4196 /* ver.png */,
-				06B3F10D1451D497000F8822 /* morceau.mp3 */,
-				06CB2EFA14C6C16900AD4196 /* fondver.jpg */,
 				F9E49B7218A3D3C700FAB88D /* cercle.png */,
-				06B3F1101451D4CF000F8822 /* pong.caf */,
-				06B3F1121451D4EA000F8822 /* rire.caf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -259,11 +244,6 @@
 			files = (
 				06320C4D14509DBB00C37973 /* InfoPlist.strings in Resources */,
 				06320C5614509DBB00C37973 /* MainStoryboard.storyboard in Resources */,
-				06B3F10E1451D497000F8822 /* morceau.mp3 in Resources */,
-				06B3F1111451D4CF000F8822 /* pong.caf in Resources */,
-				06B3F1131451D4EA000F8822 /* rire.caf in Resources */,
-				06CB2EF914C6C14F00AD4196 /* ver.png in Resources */,
-				06CB2EFB14C6C16900AD4196 /* fondver.jpg in Resources */,
 				F9E49B7318A3D3C700FAB88D /* cercle.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
