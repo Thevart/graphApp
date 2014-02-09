@@ -13,8 +13,6 @@
 		06320C5314509DBB00C37973 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 06320C5214509DBB00C37973 /* AppDelegate.m */; };
 		06320C5614509DBB00C37973 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06320C5414509DBB00C37973 /* MainStoryboard.storyboard */; };
 		06320C5914509DBB00C37973 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06320C5814509DBB00C37973 /* ViewController.m */; };
-		06320C671450A1AB00C37973 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06320C661450A1AB00C37973 /* AudioToolbox.framework */; };
-		06320C691450A1AF00C37973 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06320C681450A1AF00C37973 /* AVFoundation.framework */; };
 		0648C5761471559E00CEB38F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06320C4414509DBB00C37973 /* Foundation.framework */; };
 		0648C577147155A500CEB38F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06320C4614509DBB00C37973 /* CoreGraphics.framework */; };
 		0A7DFEE718A7F7F60033D747 /* DrawableVertex.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7DFEE618A7F7F60033D747 /* DrawableVertex.m */; };
@@ -42,8 +40,6 @@
 		06320C5514509DBB00C37973 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		06320C5714509DBB00C37973 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		06320C5814509DBB00C37973 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		06320C661450A1AB00C37973 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		06320C681450A1AF00C37973 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		0A7DFEE518A7F7F60033D747 /* DrawableVertex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawableVertex.h; sourceTree = "<group>"; };
 		0A7DFEE618A7F7F60033D747 /* DrawableVertex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawableVertex.m; sourceTree = "<group>"; };
 		0AC277C718A429AC004863C8 /* GEXFParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEXFParser.h; sourceTree = "<group>"; };
@@ -71,8 +67,6 @@
 			files = (
 				0648C577147155A500CEB38F /* CoreGraphics.framework in Frameworks */,
 				0648C5761471559E00CEB38F /* Foundation.framework in Frameworks */,
-				06320C691450A1AF00C37973 /* AVFoundation.framework in Frameworks */,
-				06320C671450A1AB00C37973 /* AudioToolbox.framework in Frameworks */,
 				06320C4314509DBB00C37973 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -86,8 +80,6 @@
 				0AC277C618A42991004863C8 /* parser */,
 				0AC277BD18A42924004863C8 /* model */,
 				06320C5F14509DC000C37973 /* Resources */,
-				06320C681450A1AF00C37973 /* AVFoundation.framework */,
-				06320C661450A1AB00C37973 /* AudioToolbox.framework */,
 				06320C4814509DBB00C37973 /* view */,
 				06320C4114509DBB00C37973 /* Frameworks */,
 				06320C3F14509DBB00C37973 /* Products */,
