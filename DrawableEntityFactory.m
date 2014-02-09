@@ -20,7 +20,6 @@
 
 - (Vertex*) createVertex:(NSString *) id
 {
-    NSLog(@"lala");
     return [[DrawableVertex alloc] initWithId:id];
 }
 

@@ -62,7 +62,6 @@ id<GraphEntityFactoryProtocol> entityFactory;
             }
             break;
         case SCOPE_VERTEX:
-            NSLog(@"in scope vertex, read %@", elementName);
             if ([elementName isEqualToString:@"layout"]) {
                 [self parseVertexLayoutElement:attributeDict];
             }
@@ -83,10 +82,14 @@ id<GraphEntityFactoryProtocol> entityFactory;
 {
     switch (scope) {
         case SCOPE_VERTEX:
-            scope = SCOPE_GRAPH;
+            if ([elementName isEqualToString:@"node"]) {
+                scope = SCOPE_GRAPH;
+            }
             break;
         case SCOPE_EDGE:
-            scope = SCOPE_GRAPH;
+            if ([elementName isEqualToString:@"edge"]) {
+                scope = SCOPE_GRAPH;
+            }
             break;
 
         default:
@@ -117,13 +120,11 @@ id<GraphEntityFactoryProtocol> entityFactory;
     Vertex* vertex = [self getVertexOrCreate:[attributes objectForKey:@"id"]];
     vertex.label = [attributes objectForKey:@"label"];
 
-    // handle other attributes like color, shape or position
+    // handle other attributes like color or shape
     
     // now that we read a node declaration, we can start reading its attributes
     scope = SCOPE_VERTEX;
     currentVertex = vertex;
-
-    NSLog(@"Read vertex id %@", vertex.id);
 }
 
 - (void) parseEdgeElement:(NSDictionary*) attributes
@@ -153,8 +154,6 @@ id<GraphEntityFactoryProtocol> entityFactory;
 
     x = [((NSString*) [attributes objectForKey:@"x"]) intValue];
     y = [((NSString*) [attributes objectForKey:@"y"]) intValue];
-
-    NSLog(@"read x %d & y %d", x, y);
 
     [currentVertex setPosition:x y:y];
 }

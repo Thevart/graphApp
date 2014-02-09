@@ -69,19 +69,19 @@
     "xmlns:cy=\"http://www.cytoscape.org\" xmlns=\"http://www.cs.rpi.edu/XGMML\""
     "directed=\"1\">"
     "<node label=\"A\" id=\"1\">"
-    //"<att name=\"size\" type=\"integer\" value=\"24\"/>"
-    //"<att name=\"confirmed\" type=\"boolean\" value=\"true\"/>"
-    //"<att name=\"weight\" type=\"integer\" value=\"42\"/>"
+    "<att name=\"size\" type=\"integer\" value=\"24\"/>"
+    "<att name=\"confirmed\" type=\"boolean\" value=\"true\"/>"
+    "<att name=\"weight\" type=\"integer\" value=\"42\"/>"
     "<layout x=\"208\" y=\"312\" />"
     "</node>"
     "<node label=\"B\" id=\"2\">"
-    //"<att name=\"size\" type=\"integer\" value=\"16\"/>"
-    //"<att name=\"confirmed\" type=\"boolean\" value=\"false\"/>"
+    "<att name=\"size\" type=\"integer\" value=\"16\"/>"
+    "<att name=\"confirmed\" type=\"boolean\" value=\"false\"/>"
     "<layout x=\"181\" y=\"217\" />"
     "</node>"
     "<node label=\"C\" id=\"3\">"
-    //"<att name=\"size\" type=\"integer\" value=\"13\"/>"
-    //"<att name=\"confirmed\" type=\"boolean\" value=\"true\"/>"
+    "<att name=\"size\" type=\"integer\" value=\"13\"/>"
+    "<att name=\"confirmed\" type=\"boolean\" value=\"true\"/>"
     "<layout x=\"84\" y=\"281\" />"
     "</node>"
     "<edge label=\"A-B\" source=\"1\" target=\"2\">"
@@ -99,10 +99,10 @@
     XGMMLParser *parser = [[XGMMLParser alloc] initWithData:xggmlSampleData factory:factory];
     
     graph = [parser parse];
-    NSLog(@"%d vertices", [graph.vertices count]);
+
+    // display the loaded vertices
     for(NSString* id in graph.vertices) {
         DrawableVertex* vertex = [graph.vertices objectForKey:id];
-
         [self.view addSubview:vertex.view];
     }
 }
