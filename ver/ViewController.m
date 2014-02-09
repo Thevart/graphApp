@@ -6,12 +6,12 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "ViewController.h"
 #include <stdlib.h>
+#import "ViewController.h"
+#import "DrawableVertex.h"
 
 @implementation ViewController
-@synthesize leVer;
-@synthesize leMessage;
+@synthesize vertexCountLabel;
 
 - (void)didReceiveMemoryWarning
 {
@@ -26,46 +26,47 @@
 
 -(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    UIImage *img = [UIImage imageWithContentsOfFile: [[NSBundle mainBundle] pathForResource:@"cercle" ofType:@"png"]];
-    CGRect cropRect = CGRectMake(0, 0, 30, 30);
-    CGImageRef imageRef = CGImageCreateWithImageInRect([img CGImage], cropRect);
-    UIImageView *Ver = [[UIImageView alloc] initWithFrame:CGRectMake(150, 10, 30, 30)];
-    Ver.image = [UIImage imageWithCGImage:imageRef];
-    [self.view addSubview:Ver];
-    CGImageRelease(imageRef);
-    aTouche = 1; 
     UITouch *touch = [[event allTouches] anyObject];
     CGPoint location = [touch locationInView:touch.view];
 
-    posX = location.x;
-    posY = location.y;    Ver.alpha = 1.0f;
-    Ver.center = CGPointMake(posX, posY);
-    [vertexes addObject: Ver];
-    leMessage.text = [NSString stringWithFormat: @"%i ...", vertexes.count];
-    
+    // always create a new vertex, even if there already is one "under the finger"
+    [self addVertex:location.x y:location.y];
 }
-- (void)viewDidLoad
+
+- (void) addVertex:(int) x y:(int) y
+{
+    DrawableVertex* vertex = [[DrawableVertex alloc] init];
+    [vertex setPosition: x y:y];
+
+    // add the vertex to the graph
+    [graph addVertex:vertex];
+
+    // draw it
+    [self.view addSubview:vertex.view];
+
+    // and update the vertex count text
+    vertexCountLabel.text = [NSString stringWithFormat: @"%i ...", [graph.vertices count]];
+}
+
+- (void) viewDidLoad
 {
     [super viewDidLoad];
-    
-    largeur = self.view.bounds.size.width;  // Largeur de l'écran
-    hauteur = self.view.bounds.size.height; // Hauteur de l'écran
-    vertexes = [[NSMutableArray alloc] init];
+
+    graph = [[Graph alloc] init];
 }
 
-- (void)viewDidUnload
+- (void) viewDidUnload
 {
-    [self setLeVer:nil];
-    [self setLeMessage:nil];
-    [self setLeVer:nil];
     [super viewDidUnload];
 
+    self.vertexCountLabel = nil;
+    graph = nil;
     
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
 }

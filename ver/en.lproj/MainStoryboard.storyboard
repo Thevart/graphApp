@@ -27,8 +27,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <outlet property="leMessage" destination="6yX-qN-NCf" id="UFN-z0-UyC"/>
-                        <outlet property="leVer" destination="dBT-Vy-Blb" id="ASV-4z-4CR"/>
+                        <outlet property="vertexCountLabel" destination="6yX-qN-NCf" id="UFN-z0-UyC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
@@ -38,6 +37,14 @@
     <resources>
         <image name="cercle.png" width="30" height="30"/>
     </resources>
+    <classes>
+        <class className="ViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="vertexCountLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

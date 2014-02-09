@@ -22,6 +22,7 @@
 		06B3F1131451D4EA000F8822 /* rire.caf in Resources */ = {isa = PBXBuildFile; fileRef = 06B3F1121451D4EA000F8822 /* rire.caf */; };
 		06CB2EF914C6C14F00AD4196 /* ver.png in Resources */ = {isa = PBXBuildFile; fileRef = 06CB2EF814C6C14F00AD4196 /* ver.png */; };
 		06CB2EFB14C6C16900AD4196 /* fondver.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 06CB2EFA14C6C16900AD4196 /* fondver.jpg */; };
+		0A7DFEE718A7F7F60033D747 /* DrawableVertex.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7DFEE618A7F7F60033D747 /* DrawableVertex.m */; };
 		0AC277CE18A429AC004863C8 /* GEXFParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC277C818A429AC004863C8 /* GEXFParser.m */; };
 		0AC277CF18A429AC004863C8 /* GraphMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC277CA18A429AC004863C8 /* GraphMLParser.m */; };
 		0AC277D018A429AD004863C8 /* XGMMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC277CD18A429AC004863C8 /* XGMMLParser.m */; };
@@ -53,6 +54,8 @@
 		06B3F1121451D4EA000F8822 /* rire.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = rire.caf; sourceTree = "<group>"; };
 		06CB2EF814C6C14F00AD4196 /* ver.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ver.png; sourceTree = "<group>"; };
 		06CB2EFA14C6C16900AD4196 /* fondver.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = fondver.jpg; sourceTree = "<group>"; };
+		0A7DFEE518A7F7F60033D747 /* DrawableVertex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawableVertex.h; sourceTree = "<group>"; };
+		0A7DFEE618A7F7F60033D747 /* DrawableVertex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawableVertex.m; sourceTree = "<group>"; };
 		0AC277C718A429AC004863C8 /* GEXFParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEXFParser.h; sourceTree = "<group>"; };
 		0AC277C818A429AC004863C8 /* GEXFParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GEXFParser.m; sourceTree = "<group>"; };
 		0AC277C918A429AC004863C8 /* GraphMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphMLParser.h; sourceTree = "<group>"; };
@@ -157,7 +160,7 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		0AC277BD18A42924004863C8 /* model */ = {
+		0A7DFEE318A7F7860033D747 /* domain */ = {
 			isa = PBXGroup;
 			children = (
 				0AC277D118A42A23004863C8 /* Coord.h */,
@@ -168,6 +171,24 @@
 				0AC277D618A42A24004863C8 /* Graph.m */,
 				0AC277D718A42A24004863C8 /* Vertex.h */,
 				0AC277D818A42A24004863C8 /* Vertex.m */,
+			);
+			name = domain;
+			sourceTree = "<group>";
+		};
+		0A7DFEE418A7F7900033D747 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				0A7DFEE518A7F7F60033D747 /* DrawableVertex.h */,
+				0A7DFEE618A7F7F60033D747 /* DrawableVertex.m */,
+			);
+			name = view;
+			sourceTree = "<group>";
+		};
+		0AC277BD18A42924004863C8 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				0A7DFEE418A7F7900033D747 /* view */,
+				0A7DFEE318A7F7860033D747 /* domain */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -264,6 +285,7 @@
 				0AC277DA18A42A24004863C8 /* Edge.m in Sources */,
 				0AC277DB18A42A24004863C8 /* Graph.m in Sources */,
 				0AC277DC18A42A24004863C8 /* Vertex.m in Sources */,
+				0A7DFEE718A7F7F60033D747 /* DrawableVertex.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

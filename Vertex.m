@@ -10,6 +10,8 @@
 
 #import "Coord.h"
 
+static int nextVertexId = 1;
+
 @implementation Vertex
 
 
@@ -18,7 +20,11 @@
     self = [super init];
     
     if (self) {
+        self.id = [NSString stringWithFormat:@"%d", nextVertexId];
+        self.label = [NSString stringWithFormat:@"%d", nextVertexId];
         self.coord = [[Coord alloc] init];
+
+        nextVertexId += 1;
     }
     
     return self;
@@ -26,13 +32,21 @@
 
 - (id)initWithId:(NSString *) id
 {
-    if ( self = [super init] ) {
+    if ( self = [self init] ) {
         self.id = id;
         self.label = id;
+        
         return self;
     }
     
     return nil;
+}
+
+
+- (void) setPosition: (int)x y:(int) y
+{
+    self.coord.x = x;
+    self.coord.y = y;
 }
 
 @end

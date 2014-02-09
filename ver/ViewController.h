@@ -7,28 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <AVFoundation/AVFoundation.h>
-#import <AudioToolbox/AudioToolbox.h>
+#import "Graph.h"
 
-@interface ViewController : UIViewController <AVAudioPlayerDelegate>
+@interface ViewController : UIViewController
 {
-    NSMutableArray* vertexes;
-    NSTimer *timer1;
-    int etat;       // Etat du jeu
-    int compteur;   // Compteur de départ de jeu
-    float leTemps;  // Durée de l'état actuel 
-    int largeur;    // Largeur de l'écran
-    int hauteur;    // Hauteur de l'écran
-    float posX;     // Position en X du ver
-    float posY;     // Position en Y du ver
-    int aTouche;    // 1 si le joueur a touché l'écran, 0 sinon
-    int reussi;     // Nombre de vers capturés
-    int rate;       // Nombre de vers râtés
-    AVAudioPlayer *audioPlayer;
-    SystemSoundID bruit;
-    SystemSoundID rire;
+    Graph* graph;
 }
 
-@property (weak, nonatomic) IBOutlet UIImageView *leVer;
-@property (weak, nonatomic) IBOutlet UILabel *leMessage;
+@property (weak, nonatomic) IBOutlet UILabel *vertexCountLabel;
+
+- (void) addVertex:(int)x y:(int)y;
 @end

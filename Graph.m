@@ -34,7 +34,7 @@
 
 - (void) addVertex : (Vertex*) vertex
 {
-    [self.vertices setValue:vertex forKey:vertex.label];
+    [self.vertices setValue:vertex forKey:vertex.id];
 }
 
 - (Vertex*) getVertexOrCreate : (NSString*) id
@@ -54,7 +54,7 @@
     [self.edges addObject:edge];
 }
 
-- (void)  removeEdge : (Edge*) edge
+- (void) removeEdge : (Edge*) edge
 {
     [self.edges removeObjectIdenticalTo:edge];
 }

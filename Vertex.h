@@ -16,5 +16,5 @@
 @property Coord* coord;
 
 - (id)initWithId:(NSString *) id;
-
+- (void) setPosition: (int)x y:(int) y;
 @end

@@ -10,7 +10,7 @@
 
 @implementation Coord
 
-- (id)init
+- (id) init
 {
     self = [super init];
     
@@ -20,6 +20,20 @@
 
     }
     
+    return self;
+}
+
+
+- (id) initWithValues:(int) x y:(int) y
+{
+    self = [super init];
+
+    if (self) {
+        self.x = x;
+        self.y = y;
+
+    }
+
     return self;
 }
 

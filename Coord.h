@@ -13,5 +13,6 @@
 @property int x;
 @property int y;
 
+- (id) initWithValues:(int) x y:(int) y;
 
 @end
