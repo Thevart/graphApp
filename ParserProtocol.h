@@ -7,9 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GraphEntityFactoryProtocol.h"
 #import "Graph.h"
 
 @protocol ParserProtocol
--(id) initWithData:(NSData*) data;
+-(id) initWithData:(NSData*) data factory:(id<GraphEntityFactoryProtocol>)factory;
 -(Graph*) parse;
 @end

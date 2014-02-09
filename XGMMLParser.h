@@ -8,14 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import "ParserProtocol.h"
-#import "Graph.h"
 
 @interface XGMMLParser : NSObject<NSXMLParserDelegate, ParserProtocol>
 
 @property NSXMLParser *parser;
 @property NSMutableString *element;
 
--(id) initWithData:(NSData*) data;
+-(id) initWithData:(NSData*) data factory:(id<GraphEntityFactoryProtocol>)factory;
 -(Graph*) parse;
 
 - (void) parser:(NSXMLParser*)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *) qualifiedName attributes:(NSDictionary*) attributeDict;

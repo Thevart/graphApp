@@ -11,11 +11,14 @@
 @implementation GraphMLParser
 
 Graph* graph;
+id<GraphEntityFactoryProtocol> entityFactory;
 
 
-- (id) initWithData:(NSData*) data
+- (id) initWithData:(NSData*) data factory:(id<GraphEntityFactoryProtocol>)factory
 {
     if (self == [super init]) {
+        entityFactory = factory;
+        
         self.parser = [[NSXMLParser alloc] initWithData:data];
         [self.parser setDelegate:self];
     }      
@@ -71,18 +74,32 @@ Graph* graph;
 
 - (void) parseNodeElement:(NSDictionary*) attributes
 {
-    Vertex* vertex = [graph getVertexOrCreate:[attributes objectForKey:@"id"]];
+    NSString* id = [attributes objectForKey:@"id"];
+    Vertex* vertex = [self getVertexOrCreate:id];
+    
     // handle other attributes like color, shape or position
 }
 
 - (void) parseEdgeElement:(NSDictionary*) attributes
 {
-    Vertex *origin = [graph getVertexOrCreate:[attributes objectForKey:@"source"]];
-    Vertex *target = [graph getVertexOrCreate:[attributes objectForKey:@"target"]];
-    Edge* edge = [[Edge alloc] initWithVertices:origin destination:target];
+    Vertex *origin = [self getVertexOrCreate:[attributes objectForKey:@"source"]];
+    Vertex *target = [self getVertexOrCreate:[attributes objectForKey:@"target"]];
+    Edge* edge = [entityFactory createEdge:origin destination:target];
 
     [edge setLabel:[attributes objectForKey:@"id"]];
     [graph addEdge:edge];
+}
+
+- (Vertex*) getVertexOrCreate: (NSString*) id
+{
+    if ([graph hasVertex:id]) {
+        return [graph getVertex:id];
+    } else {
+        Vertex* vertex = [entityFactory createVertex:id];
+        [graph addVertex:vertex];
+
+        return vertex;
+    }
 }
 
 @end

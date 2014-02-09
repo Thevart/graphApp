@@ -37,6 +37,17 @@
     [self.vertices setValue:vertex forKey:vertex.id];
 }
 
+
+- (BOOL) hasVertex: (NSString *) id
+{
+    return [self.vertices objectForKey:id] != nil;
+}
+
+- (Vertex*) getVertex: (NSString *) id
+{
+    return [self.vertices objectForKey:id];
+}
+
 - (Vertex*) getVertexOrCreate : (NSString*) id
 {
     Vertex* vertex = [self.vertices objectForKey:id];

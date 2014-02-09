@@ -18,6 +18,8 @@
 @property (readonly) NSMutableArray* edges;
 
 - (void) addVertex : (Vertex*) vertex;
+- (BOOL) hasVertex: (NSString *) id;
+- (Vertex*) getVertex: (NSString *) id;
 - (Vertex*) getVertexOrCreate : (NSString*) label;
 - (void) removeVertex : (Vertex*) vertex;
 

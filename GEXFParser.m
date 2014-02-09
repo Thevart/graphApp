@@ -11,11 +11,14 @@
 @implementation GEXFParser
 
 Graph* graph;
+id<GraphEntityFactoryProtocol> entityFactory;
 
 
-- (id) initWithData:(NSData*) data
+- (id) initWithData:(NSData*) data factory:(id<GraphEntityFactoryProtocol>)factory
 {
     if (self == [super init]) {
+        entityFactory = factory;
+        
         self.parser = [[NSXMLParser alloc] initWithData:data];
         [self.parser setDelegate:self];
     }
