@@ -60,7 +60,7 @@
 
     graph = [[Graph alloc] init];
 
-    [self readDummyGraphmlGraph];
+    [self readDummyGexfGraph];
 }
 
 - (void) readDummyGraphmlGraph

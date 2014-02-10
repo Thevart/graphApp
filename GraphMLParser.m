@@ -10,17 +10,6 @@
 
 @implementation GraphMLParser
 
-- (id) initWithData:(NSData*) data factory:(id<GraphEntityFactoryProtocol>)factory
-{
-    if (self == [super init]) {
-        self.entityFactory = factory;
-        
-        self.parser = [[NSXMLParser alloc] initWithData:data];
-        [self.parser setDelegate:self];
-    }      
-    return self;
-}
-
 - (void) parser:(NSXMLParser*)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *) qualifiedName attributes:(NSDictionary*) attributeDict
 {
     self.element = [NSMutableString string];

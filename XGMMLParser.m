@@ -10,18 +10,6 @@
 
 @implementation XGMMLParser
 
-- (id) initWithData:(NSData*) data factory:(id<GraphEntityFactoryProtocol>)factory
-{
-    if (self == [super init]) {
-        super.entityFactory = factory;
-        
-        self.parser = [[NSXMLParser alloc] initWithData:data];
-        [self.parser setDelegate:self];
-    }
-    return self;
-}
-
-
 - (void) parser:(NSXMLParser*)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *) qualifiedName attributes:(NSDictionary*) attributeDict
 {
     self.element = [NSMutableString string];
@@ -87,7 +75,7 @@
     Vertex* vertex = [self getVertexOrCreate:[attributes objectForKey:@"id"]];
     vertex.label = [attributes objectForKey:@"label"];
 
-    // handle other attributes like color or shape
+    // @todo: handle other attributes like color or shape
     
     // now that we read a node declaration, we can start reading its attributes
     self.scope = SCOPE_VERTEX;
