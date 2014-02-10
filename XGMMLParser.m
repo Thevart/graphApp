@@ -8,25 +8,12 @@
 
 #import "XGMMLParser.h"
 
-typedef enum {
-    SCOPE_TOP,
-    SCOPE_GRAPH,
-    SCOPE_VERTEX,
-    SCOPE_EDGE
-} ParseScope;
-
 @implementation XGMMLParser
-Graph* graph;
-Edge* currentEdge;
-Vertex* currentVertex;
-ParseScope scope;
-id<GraphEntityFactoryProtocol> entityFactory;
-
 
 - (id) initWithData:(NSData*) data factory:(id<GraphEntityFactoryProtocol>)factory
 {
     if (self == [super init]) {
-        entityFactory = factory;
+        super.entityFactory = factory;
         
         self.parser = [[NSXMLParser alloc] initWithData:data];
         [self.parser setDelegate:self];
@@ -35,22 +22,11 @@ id<GraphEntityFactoryProtocol> entityFactory;
 }
 
 
-- (Graph*) parse
-{
-    graph = [[Graph alloc] init];
-    scope = SCOPE_TOP;
-
-    [self.parser parse];
-
-    return graph;
-}
-
-
 - (void) parser:(NSXMLParser*)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *) qualifiedName attributes:(NSDictionary*) attributeDict
 {
     self.element = [NSMutableString string];
 
-    switch (scope) {
+    switch (self.scope) {
         case SCOPE_TOP:
             if ([elementName isEqualToString:@"graph"]) {
                 [self parseGraphElement:attributeDict];
@@ -80,15 +56,15 @@ id<GraphEntityFactoryProtocol> entityFactory;
 
 - (void) parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
 {
-    switch (scope) {
+    switch (self.scope) {
         case SCOPE_VERTEX:
             if ([elementName isEqualToString:@"node"]) {
-                scope = SCOPE_GRAPH;
+                self.scope = SCOPE_GRAPH;
             }
             break;
         case SCOPE_EDGE:
             if ([elementName isEqualToString:@"edge"]) {
-                scope = SCOPE_GRAPH;
+                self.scope = SCOPE_GRAPH;
             }
             break;
 
@@ -109,10 +85,10 @@ id<GraphEntityFactoryProtocol> entityFactory;
 - (void) parseGraphElement:(NSDictionary*) attributes
 {
     // is the graph oriented?
-    graph.oriented = [[attributes objectForKey:@"directed"] isEqualToString:@"1"];
+    self.graph.oriented = [[attributes objectForKey:@"directed"] isEqualToString:@"1"];
 
     // now that we read a graph declaration, we can start reading nodes and edges
-    scope = SCOPE_GRAPH;
+    self.scope = SCOPE_GRAPH;
 }
 
 - (void) parseNodeElement:(NSDictionary*) attributes
@@ -123,28 +99,28 @@ id<GraphEntityFactoryProtocol> entityFactory;
     // handle other attributes like color or shape
     
     // now that we read a node declaration, we can start reading its attributes
-    scope = SCOPE_VERTEX;
-    currentVertex = vertex;
+    self.scope = SCOPE_VERTEX;
+    self.currentVertex = vertex;
 }
 
 - (void) parseEdgeElement:(NSDictionary*) attributes
 {
     Vertex *origin = [self getVertexOrCreate:[attributes objectForKey:@"source"]];
     Vertex *target = [self getVertexOrCreate:[attributes objectForKey:@"target"]];
-    Edge* edge = [entityFactory createEdge:origin destination:target];
+    Edge* edge = [self.entityFactory createEdge:origin destination:target];
 
     [edge setLabel:[attributes objectForKey:@"label"]];
-    [graph addEdge:edge];
+    [self.graph addEdge:edge];
 
     // now that we read an edge declaration, we can start reading its attributes
-    currentEdge = edge;
-    scope = SCOPE_EDGE;
+    self.currentEdge = edge;
+    self.scope = SCOPE_EDGE;
 }
 
 - (void) parseEdgeAttributeElement:(NSDictionary*) attributes
 {
     if ([[attributes objectForKey:@"name"] isEqualToString:@"weight"]) {
-        currentEdge.weight = [((NSString*) [attributes objectForKey:@"value"]) intValue];
+        self.currentEdge.weight = [((NSString*) [attributes objectForKey:@"value"]) intValue];
     }
 }
 
@@ -155,20 +131,7 @@ id<GraphEntityFactoryProtocol> entityFactory;
     x = [((NSString*) [attributes objectForKey:@"x"]) intValue];
     y = [((NSString*) [attributes objectForKey:@"y"]) intValue];
 
-    [currentVertex setPosition:x y:y];
+    [self.currentVertex setPosition:x y:y];
 }
-
-- (Vertex*) getVertexOrCreate: (NSString*) id
-{
-    if ([graph hasVertex:id]) {
-        return [graph getVertex:id];
-    } else {
-        Vertex* vertex = [entityFactory createVertex:id];
-        [graph addVertex:vertex];
-
-        return vertex;
-    }
-}
-
 
 @end

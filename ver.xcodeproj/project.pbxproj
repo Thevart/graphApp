@@ -18,6 +18,7 @@
 		0A7DFEE718A7F7F60033D747 /* DrawableVertex.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7DFEE618A7F7F60033D747 /* DrawableVertex.m */; };
 		0A816EC918A8278800BDF675 /* DrawableEntityFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A816EC818A8278800BDF675 /* DrawableEntityFactory.m */; };
 		0A816ECD18A833D700BDF675 /* EntityFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A816ECC18A833D700BDF675 /* EntityFactory.m */; };
+		0A83D0FF18A9141A00767551 /* AbstractSaxParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A83D0FE18A9141A00767551 /* AbstractSaxParser.m */; };
 		0AC277CE18A429AC004863C8 /* GEXFParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC277C818A429AC004863C8 /* GEXFParser.m */; };
 		0AC277CF18A429AC004863C8 /* GraphMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC277CA18A429AC004863C8 /* GraphMLParser.m */; };
 		0AC277D018A429AD004863C8 /* XGMMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC277CD18A429AC004863C8 /* XGMMLParser.m */; };
@@ -49,6 +50,8 @@
 		0A816EC818A8278800BDF675 /* DrawableEntityFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawableEntityFactory.m; sourceTree = "<group>"; };
 		0A816ECB18A833D700BDF675 /* EntityFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntityFactory.h; sourceTree = "<group>"; };
 		0A816ECC18A833D700BDF675 /* EntityFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntityFactory.m; sourceTree = "<group>"; };
+		0A83D0FD18A9141A00767551 /* AbstractSaxParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractSaxParser.h; sourceTree = "<group>"; };
+		0A83D0FE18A9141A00767551 /* AbstractSaxParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractSaxParser.m; sourceTree = "<group>"; };
 		0AC277C718A429AC004863C8 /* GEXFParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEXFParser.h; sourceTree = "<group>"; };
 		0AC277C818A429AC004863C8 /* GEXFParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GEXFParser.m; sourceTree = "<group>"; };
 		0AC277C918A429AC004863C8 /* GraphMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphMLParser.h; sourceTree = "<group>"; };
@@ -200,6 +203,8 @@
 				0AC277CB18A429AC004863C8 /* ParserProtocol.h */,
 				0AC277CC18A429AC004863C8 /* XGMMLParser.h */,
 				0AC277CD18A429AC004863C8 /* XGMMLParser.m */,
+				0A83D0FD18A9141A00767551 /* AbstractSaxParser.h */,
+				0A83D0FE18A9141A00767551 /* AbstractSaxParser.m */,
 			);
 			name = parser;
 			sourceTree = "<group>";
@@ -280,6 +285,7 @@
 				0A7DFEE718A7F7F60033D747 /* DrawableVertex.m in Sources */,
 				0A816EC918A8278800BDF675 /* DrawableEntityFactory.m in Sources */,
 				0A816ECD18A833D700BDF675 /* EntityFactory.m in Sources */,
+				0A83D0FF18A9141A00767551 /* AbstractSaxParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
