@@ -13,10 +13,12 @@
 - (id) initWithData:(NSData*) data factory:(id<GraphEntityFactoryProtocol>)factory
 {
     if (self == [super init]) {
-        @throw [NSException exceptionWithName:NSInternalInconsistencyException
-                                       reason:[NSString stringWithFormat:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)]
-                                     userInfo:nil];
+        self.entityFactory = factory;
+
+        self.parser = [[NSXMLParser alloc] initWithData:data];
+        [self.parser setDelegate:self];
     }
+
     return self;
 }
 
