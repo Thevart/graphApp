@@ -10,14 +10,11 @@
 
 @implementation GEXFParser
 
-Graph* graph;
-id<GraphEntityFactoryProtocol> entityFactory;
-
 
 - (id) initWithData:(NSData*) data factory:(id<GraphEntityFactoryProtocol>)factory
 {
     if (self == [super init]) {
-        entityFactory = factory;
+        self.entityFactory = factory;
         
         self.parser = [[NSXMLParser alloc] initWithData:data];
         [self.parser setDelegate:self];
@@ -26,21 +23,8 @@ id<GraphEntityFactoryProtocol> entityFactory;
 }
 
 
-- (Graph*) parse
-{
-    graph = [[Graph alloc] init];
-
-    [self.parser parse];
-
-    return graph;
-}
-
-
 - (void) parser:(NSXMLParser*)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *) qualifiedName attributes:(NSDictionary*) attributeDict
 {
-    //NSLog(@"Started Element \"%@\"", elementName);
-    //NSLog(@"    attributes %@", attributeDict);
-
     self.element = [NSMutableString string];
 
     if ([elementName isEqualToString:@"graph"]) {
@@ -57,24 +41,15 @@ id<GraphEntityFactoryProtocol> entityFactory;
     //NSLog(@"Found an element named: %@ with a value of: %@", elementName, self.element);
 }
 
-- (void) parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
-{
-    if (self.element == nil) {
-        self.element = [[NSMutableString alloc] init];
-    }
-
-    [self.element appendString:string];
-}
-
 - (void) parseGraphElement:(NSDictionary*) attributes
 {
     // is the graph oriented?
-    graph.oriented = [[attributes objectForKey:@"defaultedgetype"] isEqualToString:@"directed"];
+    self.graph.oriented = [[attributes objectForKey:@"defaultedgetype"] isEqualToString:@"directed"];
 }
 
 - (void) parseNodeElement:(NSDictionary*) attributes
 {
-    Vertex* vertex = [graph getVertexOrCreate:[attributes objectForKey:@"id"]];
+    Vertex* vertex = [self.graph getVertexOrCreate:[attributes objectForKey:@"id"]];
     vertex.label = [attributes objectForKey:@"label"];
     
     // handle other attributes like color, shape or position
@@ -82,12 +57,12 @@ id<GraphEntityFactoryProtocol> entityFactory;
 
 - (void) parseEdgeElement:(NSDictionary*) attributes
 {
-    Vertex *origin = [graph getVertexOrCreate:[attributes objectForKey:@"source"]];
-    Vertex *target = [graph getVertexOrCreate:[attributes objectForKey:@"target"]];
+    Vertex *origin = [self.graph getVertexOrCreate:[attributes objectForKey:@"source"]];
+    Vertex *target = [self.graph getVertexOrCreate:[attributes objectForKey:@"target"]];
     Edge* edge = [[Edge alloc] initWithVertices:origin destination:target];
 
     [edge setLabel:[attributes objectForKey:@"id"]];
-    [graph addEdge:edge];
+    [self.graph addEdge:edge];
 }
 
 @end

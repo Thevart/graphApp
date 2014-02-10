@@ -10,14 +10,10 @@
 
 @implementation GraphMLParser
 
-Graph* graph;
-id<GraphEntityFactoryProtocol> entityFactory;
-
-
 - (id) initWithData:(NSData*) data factory:(id<GraphEntityFactoryProtocol>)factory
 {
     if (self == [super init]) {
-        entityFactory = factory;
+        self.entityFactory = factory;
         
         self.parser = [[NSXMLParser alloc] initWithData:data];
         [self.parser setDelegate:self];
@@ -26,21 +22,8 @@ id<GraphEntityFactoryProtocol> entityFactory;
 }
 
 
-- (Graph*) parse
-{
-    graph = [[Graph alloc] init];
-
-    [self.parser parse];
-    
-    return graph;
-}
-
-
 - (void) parser:(NSXMLParser*)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *) qualifiedName attributes:(NSDictionary*) attributeDict
 {
-    //NSLog(@"Started Element \"%@\"", elementName);
-    //NSLog(@"    attributes %@", attributeDict);
-
     self.element = [NSMutableString string];
 
     if ([elementName isEqualToString:@"graph"]) {
@@ -57,19 +40,10 @@ id<GraphEntityFactoryProtocol> entityFactory;
     //NSLog(@"Found an element named: %@ with a value of: %@", elementName, self.element);
 }
 
-- (void) parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
-{
-    if (self.element == nil) {
-        self.element = [[NSMutableString alloc] init];
-    }
-
-    [self.element appendString:string];
-}
-
 - (void) parseGraphElement:(NSDictionary*) attributes
 {
     // is the graph oriented?
-    graph.oriented = [[attributes objectForKey:@"edgedefault"] isEqualToString:@"directed"];
+    self.graph.oriented = [[attributes objectForKey:@"edgedefault"] isEqualToString:@"directed"];
 }
 
 - (void) parseNodeElement:(NSDictionary*) attributes
@@ -84,22 +58,10 @@ id<GraphEntityFactoryProtocol> entityFactory;
 {
     Vertex *origin = [self getVertexOrCreate:[attributes objectForKey:@"source"]];
     Vertex *target = [self getVertexOrCreate:[attributes objectForKey:@"target"]];
-    Edge* edge = [entityFactory createEdge:origin destination:target];
+    Edge* edge = [self.entityFactory createEdge:origin destination:target];
 
     [edge setLabel:[attributes objectForKey:@"id"]];
-    [graph addEdge:edge];
-}
-
-- (Vertex*) getVertexOrCreate: (NSString*) id
-{
-    if ([graph hasVertex:id]) {
-        return [graph getVertex:id];
-    } else {
-        Vertex* vertex = [entityFactory createVertex:id];
-        [graph addVertex:vertex];
-
-        return vertex;
-    }
+    [self.graph addEdge:edge];
 }
 
 @end

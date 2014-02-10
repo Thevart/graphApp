@@ -71,16 +71,7 @@
         default:
             break;
     }
-}
-
-- (void) parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
-{
-    if (self.element == nil) {
-        self.element = [[NSMutableString alloc] init];
-    }
-
-    [self.element appendString:string];
-}
+}	
 
 - (void) parseGraphElement:(NSDictionary*) attributes
 {
