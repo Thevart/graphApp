@@ -21,14 +21,12 @@
 - (id) init
 {
     if (self = [super init]) {
-        UIImage *img = [UIImage imageWithContentsOfFile: [[NSBundle mainBundle] pathForResource:@"cercle"ofType:@"png"]];
-        CGRect cropRect = CGRectMake(0, 0, 30, 30);
-        CGImageRef imageRef = CGImageCreateWithImageInRect([img CGImage], cropRect);
-        self.view = [[UIImageView alloc] initWithFrame:CGRectMake(150, 10, 30, 30)];
-        ((UIImageView *)self.view).image = [UIImage imageWithCGImage:imageRef];
-        self.view.alpha = 1.0f;
-
-        CGImageRelease(imageRef);
+        CGRect rectangle = CGRectMake(100, 100, 30, 30);
+        
+        self.view = [[UIView alloc] initWithFrame:CGRectInset(rectangle, 10, 10)];
+        self.view.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleRightMargin;
+        UIColor *color = [UIColor colorWithRed:197.0/255.0 green: 169.0/255.0 blue: 140.0/255.0 alpha: 1.0];
+        self.view.backgroundColor = color;
     }
 
     return self;

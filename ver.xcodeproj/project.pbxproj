@@ -26,6 +26,7 @@
 		0AC277DA18A42A24004863C8 /* Edge.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC277D418A42A24004863C8 /* Edge.m */; };
 		0AC277DB18A42A24004863C8 /* Graph.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC277D618A42A24004863C8 /* Graph.m */; };
 		0AC277DC18A42A24004863C8 /* Vertex.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC277D818A42A24004863C8 /* Vertex.m */; };
+		248570FD18A97190000DAABD /* DrawableEdge.m in Sources */ = {isa = PBXBuildFile; fileRef = 248570FC18A97190000DAABD /* DrawableEdge.m */; };
 		F9E49B7318A3D3C700FAB88D /* cercle.png in Resources */ = {isa = PBXBuildFile; fileRef = F9E49B7218A3D3C700FAB88D /* cercle.png */; };
 /* End PBXBuildFile section */
 
@@ -67,6 +68,8 @@
 		0AC277D618A42A24004863C8 /* Graph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Graph.m; sourceTree = "<group>"; };
 		0AC277D718A42A24004863C8 /* Vertex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vertex.h; sourceTree = "<group>"; };
 		0AC277D818A42A24004863C8 /* Vertex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Vertex.m; sourceTree = "<group>"; };
+		248570FB18A97190000DAABD /* DrawableEdge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawableEdge.h; sourceTree = "<group>"; };
+		248570FC18A97190000DAABD /* DrawableEdge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawableEdge.m; sourceTree = "<group>"; };
 		F9E49B7218A3D3C700FAB88D /* cercle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cercle.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -167,6 +170,8 @@
 			children = (
 				0A7DFEE518A7F7F60033D747 /* DrawableVertex.h */,
 				0A7DFEE618A7F7F60033D747 /* DrawableVertex.m */,
+				248570FB18A97190000DAABD /* DrawableEdge.h */,
+				248570FC18A97190000DAABD /* DrawableEdge.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -286,6 +291,7 @@
 				0A816EC918A8278800BDF675 /* DrawableEntityFactory.m in Sources */,
 				0A816ECD18A833D700BDF675 /* EntityFactory.m in Sources */,
 				0A83D0FF18A9141A00767551 /* AbstractSaxParser.m in Sources */,
+				248570FD18A97190000DAABD /* DrawableEdge.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,6 +368,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ver/ver-Prefix.pch";
 				INFOPLIST_FILE = "ver/ver-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -373,6 +380,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ver/ver-Prefix.pch";
 				INFOPLIST_FILE = "ver/ver-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

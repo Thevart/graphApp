@@ -12,9 +12,12 @@
 @interface ViewController : UIViewController
 {
     Graph* graph;
+    Vertex* origin;
+    Vertex* destination;
 }
 
 @property (weak, nonatomic) IBOutlet UILabel *vertexCountLabel;
 
 - (void) addVertex:(int)x y:(int)y;
+- (void) addEdge;
 @end

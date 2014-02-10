@@ -9,6 +9,8 @@
 #include <stdlib.h>
 #import "ViewController.h"
 #import "DrawableVertex.h"
+#import "DrawableEdge.h"
+#import "Vertex.h"
 #import "XGMMLParser.h"
 #import "GraphMLParser.h"
 #import "GEXFParser.h"
@@ -33,10 +35,63 @@
     UITouch *touch = [[event allTouches] anyObject];
     CGPoint location = [touch locationInView:touch.view];
 
-    // always create a new vertex, even if there already is one "under the finger"
-    [self addVertex:location.x y:location.y];
+    Vertex *touchedVertex=[self hasCollisioned:location];
+    
+    if(touchedVertex!=nil){
+        if(origin!=nil){
+            if(origin.coord==touchedVertex.coord){
+                NSLog(@"You touche the same vertex twice");
+            }
+            destination=touchedVertex;
+            [self addEdge];
+            NSLog(@"you add a destination");
+        }else{
+            origin=touchedVertex;
+        }
+
+    }
+    else{
+        [self addVertex:location.x y:location.y];
+    }
+    
 }
 
+-(Vertex*)hasCollisioned:(CGPoint )location{
+    for(NSString *id in graph.vertices){
+        DrawableVertex* vertex = [graph.vertices objectForKey:id];
+        if([vertex.view pointInside:location withEvent:nil]){
+            vertexCountLabel.text = [NSString stringWithFormat: @"You touch my trala"];
+            Vertex *realVertex = [graph.vertices objectForKey:(id)];
+            //still have to color the vertex
+            UIColor *color = [UIColor colorWithRed:300.0/255.0 green: 350.0/255.0 blue: 140.0/255.0 alpha: 1.0];
+            
+            vertex.view.backgroundColor=color;
+            [vertex.view setNeedsDisplay];
+            NSLog(@"You touch a vertex");
+            return realVertex;
+            
+        }else{
+             UIColor *color = [UIColor colorWithRed:197.0/255.0 green: 169.0/255.0 blue: 140.0/255.0 alpha: 1.0];
+            
+            vertex.view.backgroundColor=color;
+        }
+    }
+    return nil;
+}
+
+-(void) addEdge
+{
+    NSLog(@"you add a destination");
+    DrawableEdge* edge = [[DrawableEdge alloc] initWithFrame:self.view.bounds];
+    [graph addEdge:edge];
+    
+    [self.view addSubview:edge.view];
+    [edge.view setNeedsDisplay];
+    vertexCountLabel.text = [NSString stringWithFormat: @"You add a fucking edge"];
+    origin=nil;		
+    destination=nil;
+    
+}
 - (void) addVertex:(int) x y:(int) y
 {
     DrawableVertex* vertex = [[DrawableVertex alloc] init];
@@ -86,6 +141,7 @@
         DrawableVertex* vertex = [graph.vertices objectForKey:id];
         [self.view addSubview:vertex.view];
     }
+    
 }
 
 - (void) readDummyGexfGraph
@@ -171,6 +227,8 @@
 
     self.vertexCountLabel = nil;
     graph = nil;
+    origin=nil;
+    destination=nil;
 
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
