@@ -48,18 +48,6 @@
     return [self.vertices objectForKey:id];
 }
 
-- (Vertex*) getVertexOrCreate : (NSString*) id
-{
-    Vertex* vertex = [self.vertices objectForKey:id];
-
-    if (vertex == nil) {
-        vertex = [[Vertex alloc] initWithId:id];
-        [self addVertex:vertex];
-    }
-    
-    return vertex;
-}
-
 - (void) addEdge : (Edge*) edge
 {
     [self.edges addObject:edge];

@@ -20,7 +20,6 @@
 - (void) addVertex : (Vertex*) vertex;
 - (BOOL) hasVertex: (NSString *) id;
 - (Vertex*) getVertex: (NSString *) id;
-- (Vertex*) getVertexOrCreate : (NSString*) label;
 - (void) removeVertex : (Vertex*) vertex;
 
 - (void) addEdge : (Edge*) edge;

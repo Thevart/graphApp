@@ -10,6 +10,8 @@
 #import "ViewController.h"
 #import "DrawableVertex.h"
 #import "XGMMLParser.h"
+#import "GraphMLParser.h"
+#import "GEXFParser.h"
 #import "DrawableEntityFactory.h"
 
 @implementation ViewController
@@ -58,10 +60,66 @@
 
     graph = [[Graph alloc] init];
 
-    [self readDummyGraph];
+    [self readDummyXgmmlGraph];
 }
 
-- (void) readDummyGraph
+- (void) readDummyGraphmlGraph
+{
+    NSString* graphMLSample = @"<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
+    "<graphml xmlns=\"http://graphml.graphdrawing.org/xmlns\""
+    "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\""
+    "xsi:schemaLocation=\"http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd\">"
+    "<graph id=\"G\" edgedefault=\"undirected\">"
+    "<node id=\"n0\"/>"
+    "<node id=\"n1\"/>"
+    "<edge id=\"e1\" source=\"n0\" target=\"n1\"/>"
+    "</graph>"
+    "</graphml>";
+    NSData* graphMLSampleData = [graphMLSample dataUsingEncoding:NSUTF8StringEncoding];
+    DrawableEntityFactory* factory = [[DrawableEntityFactory alloc] init];
+    GraphMLParser *parser = [[GraphMLParser alloc] initWithData:graphMLSampleData factory:factory];
+
+    graph = [parser parse];
+
+    // display the loaded vertices
+    for(NSString* id in graph.vertices) {
+        DrawableVertex* vertex = [graph.vertices objectForKey:id];
+        [self.view addSubview:vertex.view];
+    }
+}
+
+- (void) readDummyGexfGraph
+{
+    NSString* gexfSample = @"<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
+    "<gexf xmlns=\"http://www.gexf.net/1.2draft\" version=\"1.2\">"
+    "<meta lastmodifieddate=\"2009-03-20\">"
+    "<creator>Gexf.net</creator>"
+    "<description>A hello world! file</description>"
+    "</meta>"
+    "<graph mode=\"static\" defaultedgetype=\"directed\">"
+    "<nodes>"
+    "<node id=\"0\" label=\"Hello\" />"
+    "<node id=\"1\" label=\"Word\" />"
+    "</nodes>"
+    "<edges>"
+    "<edge id=\"0\" source=\"0\" target=\"1\" />"
+    "</edges>"
+    "</graph>"
+    "</gexf>";
+    NSData* gexfSampleData = [gexfSample dataUsingEncoding:NSUTF8StringEncoding];
+    DrawableEntityFactory* factory = [[DrawableEntityFactory alloc] init];
+    GEXFParser *parser = [[GEXFParser alloc] initWithData:gexfSampleData factory:factory];
+
+    graph = [parser parse];
+
+    // display the loaded vertices
+    for(NSString* id in graph.vertices) {
+        DrawableVertex* vertex = [graph.vertices objectForKey:id];
+        [self.view addSubview:vertex.view];
+    }
+}
+
+- (void) readDummyXgmmlGraph
 {
     NSString* xggmlSample = @"<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
     "<graph label=\"small example\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\""

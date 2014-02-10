@@ -49,7 +49,7 @@
 
 - (void) parseNodeElement:(NSDictionary*) attributes
 {
-    Vertex* vertex = [self.graph getVertexOrCreate:[attributes objectForKey:@"id"]];
+    Vertex* vertex = [self getVertexOrCreate:[attributes objectForKey:@"id"]];
     vertex.label = [attributes objectForKey:@"label"];
     
     // handle other attributes like color, shape or position
@@ -57,8 +57,8 @@
 
 - (void) parseEdgeElement:(NSDictionary*) attributes
 {
-    Vertex *origin = [self.graph getVertexOrCreate:[attributes objectForKey:@"source"]];
-    Vertex *target = [self.graph getVertexOrCreate:[attributes objectForKey:@"target"]];
+    Vertex *origin = [self getVertexOrCreate:[attributes objectForKey:@"source"]];
+    Vertex *target = [self getVertexOrCreate:[attributes objectForKey:@"target"]];
     Edge* edge = [[Edge alloc] initWithVertices:origin destination:target];
 
     [edge setLabel:[attributes objectForKey:@"id"]];
