@@ -10,6 +10,21 @@
 
 @implementation GraphMLParser
 
+NSMutableDictionary* edgeAttributesMap;
+NSMutableDictionary* nodeAttributesMap;
+NSString* currentEdgeAttribute;
+NSString* currentNodeAttribute;
+
+- (id) init
+{
+    if (self == [super init]) {
+        edgeAttributesMap = [[NSMutableDictionary alloc] init];
+        nodeAttributesMap = [[NSMutableDictionary alloc] init];
+    }
+
+    return self;
+}
+
 - (void) parser:(NSXMLParser*)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *) qualifiedName attributes:(NSDictionary*) attributeDict
 {
     self.element = [NSMutableString string];
@@ -19,8 +34,14 @@
             if ([elementName isEqualToString:@"graph"]) {
                 [self parseGraphElement:attributeDict];
             }
+            if ([elementName isEqualToString:@"key"]) {
+                [self parseKeyDefinitionElement:attributeDict];
+            }
             break;
         case SCOPE_EDGE:
+            if ([elementName isEqualToString:@"data"]) {
+                [self parseEdgeDataElement:attributeDict];
+            }
             break;
         case SCOPE_VERTEX:
             break;
@@ -45,6 +66,9 @@
             }
             break;
         case SCOPE_EDGE:
+            if ([elementName isEqualToString:@"data"]) {
+                [self handleEdgeDataElementValue];
+            }
             if ([elementName isEqualToString:@"edge"]) {
                 self.scope = SCOPE_GRAPH;
             }
@@ -87,6 +111,36 @@
     // now that we read an edge declaration, we can start reading its attributes
     self.currentEdge = edge;
     self.scope = SCOPE_EDGE;
+}
+
+- (void) parseKeyDefinitionElement:(NSDictionary*) attributes
+{
+    NSString* key = [attributes objectForKey:@"id"];
+    NSString* value = [attributes objectForKey:@"attr.name"];
+
+    if ([[attributes objectForKey:@"for"] isEqualToString:@"edge"]) {
+        [edgeAttributesMap setValue:value forKey:key];
+    }
+    if ([[attributes objectForKey:@"for"] isEqualToString:@"node"]) {
+        [nodeAttributesMap setValue:value forKey:key];
+    }
+}
+
+- (void) parseEdgeDataElement:(NSDictionary*) attributes
+{
+    NSString* attributeName = [edgeAttributesMap objectForKey:[attributes objectForKey:@"key"]];
+
+    if (attributeName != nil) {
+        currentEdgeAttribute = attributeName;
+    }
+}
+
+- (void) handleEdgeDataElementValue
+{
+    if ([currentEdgeAttribute isEqualToString:@"weight"]) {
+        int weight = [self.element intValue];
+        [self.currentEdge setWeight:weight];
+    }
 }
 
 @end
