@@ -145,7 +145,7 @@
     DrawableEntityFactory* factory = [[DrawableEntityFactory alloc] init];
     GraphParser *parser = [GraphParser create:factory];
     NSString* path = [[NSBundle mainBundle] pathForResource:@"graph"
-                                                     ofType:@"xgmml"];
+                                                     ofType:@"graphml"];
 
     graph = [parser parse:path];
 

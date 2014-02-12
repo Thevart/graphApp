@@ -12,7 +12,7 @@
 
 - (id) initWithFactory: (id<GraphEntityFactoryProtocol>)factory
 {
-    if (self == [super init]) {
+    if (self == [self init]) {
         self.entityFactory = factory;
     }
 
