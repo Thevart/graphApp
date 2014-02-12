@@ -11,6 +11,6 @@
 #import "Graph.h"
 
 @protocol ParserProtocol
--(id) initWithFactory: (id<GraphEntityFactoryProtocol>)factory;
--(Graph*) parse: (NSData*) data;
+-(id) initWithData:(NSData*) data factory:(id<GraphEntityFactoryProtocol>)factory;
+-(Graph*) parse;
 @end
