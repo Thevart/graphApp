@@ -33,50 +33,76 @@
 -(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     UITouch *touch = [[event allTouches] anyObject];
-    CGPoint location = [touch locationInView:touch.view];
+    CGPoint location = [touch locationInView:self.view];
 
     Vertex *touchedVertex=[self hasCollisioned:location];
     
+    //if we touched a Vertex
     if(touchedVertex!=nil){
         if(origin!=nil){
-            if(origin.coord==touchedVertex.coord){
-                NSLog(@"You touche the same vertex twice");
+            if([origin.id isEqual:touchedVertex.id]){
+                origin=nil;
+                [self changeColor];
             }
-            destination=touchedVertex;
-            [self addEdge];
-            NSLog(@"you add a destination");
-        }else{
+            else{
+                destination=touchedVertex;
+                [self changeColor];
+                //[self addEdge];
+            }
+        }
+        else{
             origin=touchedVertex;
         }
 
     }
     else{
         [self addVertex:location.x y:location.y];
+        origin=nil;
+        destination=nil;
+        [self changeColor];
     }
     
 }
 
 -(Vertex*)hasCollisioned:(CGPoint )location{
+    Vertex* realVertex=nil;
     for(NSString *id in graph.vertices){
         DrawableVertex* vertex = [graph.vertices objectForKey:id];
-        if([vertex.view pointInside:location withEvent:nil]){
+        if(CGRectContainsPoint(vertex.view.frame,location))
+        {
             vertexCountLabel.text = [NSString stringWithFormat: @"You touch my trala"];
-            Vertex *realVertex = [graph.vertices objectForKey:(id)];
-            //still have to color the vertex
-            UIColor *color = [UIColor colorWithRed:300.0/255.0 green: 350.0/255.0 blue: 140.0/255.0 alpha: 1.0];
-            
-            vertex.view.backgroundColor=color;
-            [vertex.view setNeedsDisplay];
-            NSLog(@"You touch a vertex");
-            return realVertex;
-            
-        }else{
-             UIColor *color = [UIColor colorWithRed:197.0/255.0 green: 169.0/255.0 blue: 140.0/255.0 alpha: 1.0];
-            
-            vertex.view.backgroundColor=color;
+            realVertex=[graph.vertices objectForKey:id];
         }
     }
-    return nil;
+    
+    return realVertex;
+}
+
+//must be called each time you touche the screen
+-(void)changeColor
+{
+    UIColor *color;
+    DrawableVertex* vertex;
+    for(NSString *id in graph.vertices){
+        vertex=[graph.vertices objectForKey:id];
+        if([vertex.id isEqual:origin.id])
+        {
+            
+            color = [UIColor colorWithRed:300.0/255.0 green: 350.0/255.0 blue: 140.0/255.0 alpha: 1.0];
+            vertex.view.backgroundColor=color;
+        } 
+        else if([vertex.id isEqual:destination.id])
+        {
+            color = [UIColor colorWithRed:197.0/255.0 green: 259.0/255.0 blue: 40.0/255.0 alpha: 1.0];
+            vertex.view.backgroundColor=color;
+            
+        }
+        else{
+            color = [UIColor colorWithRed:197.0/255.0 green: 169.0/255.0 blue: 140.0/255.0 alpha: 1.0];
+            vertex.view.backgroundColor=color;
+
+        }
+    }
 }
 
 -(void) addEdge
@@ -115,7 +141,7 @@
 
     graph = [[Graph alloc] init];
 
-    [self readDummyGexfGraph];
+    //[self readDummyGexfGraph];
 }
 
 - (void) readDummyGraphmlGraph
