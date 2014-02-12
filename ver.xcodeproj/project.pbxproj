@@ -15,6 +15,11 @@
 		06320C5914509DBB00C37973 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06320C5814509DBB00C37973 /* ViewController.m */; };
 		0648C5761471559E00CEB38F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06320C4414509DBB00C37973 /* Foundation.framework */; };
 		0648C577147155A500CEB38F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06320C4614509DBB00C37973 /* CoreGraphics.framework */; };
+		0A76A8B118ABA99D008EB9A2 /* GraphParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A76A8B018ABA99D008EB9A2 /* GraphParser.m */; };
+		0A76A8B418ABB67E008EB9A2 /* graph.xgmml in Resources */ = {isa = PBXBuildFile; fileRef = 0A76A8B318ABB67E008EB9A2 /* graph.xgmml */; };
+		0A76A8B618ABBAB2008EB9A2 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A76A8B518ABBAB2008EB9A2 /* Default-568h@2x.png */; };
+		0A76A8B818ABBF6C008EB9A2 /* graph.gexf in Resources */ = {isa = PBXBuildFile; fileRef = 0A76A8B718ABBF6C008EB9A2 /* graph.gexf */; };
+		0A76A8BA18ABC078008EB9A2 /* graph.graphml in Resources */ = {isa = PBXBuildFile; fileRef = 0A76A8B918ABC078008EB9A2 /* graph.graphml */; };
 		0A7DFEE718A7F7F60033D747 /* DrawableVertex.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7DFEE618A7F7F60033D747 /* DrawableVertex.m */; };
 		0A816EC918A8278800BDF675 /* DrawableEntityFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A816EC818A8278800BDF675 /* DrawableEntityFactory.m */; };
 		0A816ECD18A833D700BDF675 /* EntityFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A816ECC18A833D700BDF675 /* EntityFactory.m */; };
@@ -44,6 +49,12 @@
 		06320C5514509DBB00C37973 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		06320C5714509DBB00C37973 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		06320C5814509DBB00C37973 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		0A76A8AF18ABA99D008EB9A2 /* GraphParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphParser.h; sourceTree = "<group>"; };
+		0A76A8B018ABA99D008EB9A2 /* GraphParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphParser.m; sourceTree = "<group>"; };
+		0A76A8B318ABB67E008EB9A2 /* graph.xgmml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = graph.xgmml; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.xml; };
+		0A76A8B518ABBAB2008EB9A2 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		0A76A8B718ABBF6C008EB9A2 /* graph.gexf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = graph.gexf; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.xml; };
+		0A76A8B918ABC078008EB9A2 /* graph.graphml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = graph.graphml; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.xml; };
 		0A7DFEE518A7F7F60033D747 /* DrawableVertex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawableVertex.h; sourceTree = "<group>"; };
 		0A7DFEE618A7F7F60033D747 /* DrawableVertex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawableVertex.m; sourceTree = "<group>"; };
 		0A816EC418A825C100BDF675 /* GraphEntityFactoryProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphEntityFactoryProtocol.h; sourceTree = "<group>"; };
@@ -90,6 +101,7 @@
 		06320C3314509DBB00C37973 = {
 			isa = PBXGroup;
 			children = (
+				0A76A8B518ABBAB2008EB9A2 /* Default-568h@2x.png */,
 				0AC277C618A42991004863C8 /* parser */,
 				0AC277BD18A42924004863C8 /* model */,
 				06320C5F14509DC000C37973 /* Resources */,
@@ -145,9 +157,20 @@
 		06320C5F14509DC000C37973 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0A76A8B218ABB64F008EB9A2 /* samples */,
 				F9E49B7218A3D3C700FAB88D /* cercle.png */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		0A76A8B218ABB64F008EB9A2 /* samples */ = {
+			isa = PBXGroup;
+			children = (
+				0A76A8B318ABB67E008EB9A2 /* graph.xgmml */,
+				0A76A8B718ABBF6C008EB9A2 /* graph.gexf */,
+				0A76A8B918ABC078008EB9A2 /* graph.graphml */,
+			);
+			name = samples;
 			sourceTree = "<group>";
 		};
 		0A7DFEE318A7F7860033D747 /* domain */ = {
@@ -210,6 +233,8 @@
 				0AC277CD18A429AC004863C8 /* XGMMLParser.m */,
 				0A83D0FD18A9141A00767551 /* AbstractSaxParser.h */,
 				0A83D0FE18A9141A00767551 /* AbstractSaxParser.m */,
+				0A76A8AF18ABA99D008EB9A2 /* GraphParser.h */,
+				0A76A8B018ABA99D008EB9A2 /* GraphParser.m */,
 			);
 			name = parser;
 			sourceTree = "<group>";
@@ -267,6 +292,10 @@
 				06320C4D14509DBB00C37973 /* InfoPlist.strings in Resources */,
 				06320C5614509DBB00C37973 /* MainStoryboard.storyboard in Resources */,
 				F9E49B7318A3D3C700FAB88D /* cercle.png in Resources */,
+				0A76A8B418ABB67E008EB9A2 /* graph.xgmml in Resources */,
+				0A76A8B618ABBAB2008EB9A2 /* Default-568h@2x.png in Resources */,
+				0A76A8B818ABBF6C008EB9A2 /* graph.gexf in Resources */,
+				0A76A8BA18ABC078008EB9A2 /* graph.graphml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,6 +321,7 @@
 				0A816ECD18A833D700BDF675 /* EntityFactory.m in Sources */,
 				0A83D0FF18A9141A00767551 /* AbstractSaxParser.m in Sources */,
 				248570FD18A97190000DAABD /* DrawableEdge.m in Sources */,
+				0A76A8B118ABA99D008EB9A2 /* GraphParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,23 +10,23 @@
 
 @implementation AbstractSaxParser
 
-- (id) initWithData:(NSData*) data factory:(id<GraphEntityFactoryProtocol>)factory
+- (id) initWithFactory: (id<GraphEntityFactoryProtocol>)factory
 {
     if (self == [super init]) {
         self.entityFactory = factory;
-
-        self.parser = [[NSXMLParser alloc] initWithData:data];
-        [self.parser setDelegate:self];
     }
 
     return self;
 }
 
 
-- (Graph*) parse
+- (Graph*) parse: (NSData*) data
 {
     self.graph = [[Graph alloc] init];
     self.scope = SCOPE_TOP;
+
+    self.parser = [[NSXMLParser alloc] initWithData:data];
+    [self.parser setDelegate:self];
 
     [self.parser parse];
 
