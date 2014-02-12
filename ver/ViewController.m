@@ -42,18 +42,17 @@
         if(origin!=nil){
             if([origin.id isEqual:touchedVertex.id]){
                 origin=nil;
-                [self changeColor];
+  
             }
             else{
                 destination=touchedVertex;
-                [self changeColor];
-                //[self addEdge];
+                [self addEdge];
             }
         }
         else{
             origin=touchedVertex;
         }
-
+              [self changeColor];
     }
     else{
         [self addVertex:location.x y:location.y];
@@ -108,11 +107,12 @@
 -(void) addEdge
 {
     NSLog(@"you add a destination");
-    DrawableEdge* edge = [[DrawableEdge alloc] initWithFrame:self.view.bounds];
+    DrawableEdge* edge = [[DrawableEdge alloc] initWithCoord:self.view.frame.size.width y:self.view.frame.size.height];
     [graph addEdge:edge];
-    
-    [self.view addSubview:edge.view];
-    [edge.view setNeedsDisplay];
+        [self.view addSubview:edge.edgeView];
+        [edge.edgeView setNeedsDisplay];
+
+
     vertexCountLabel.text = [NSString stringWithFormat: @"You add a fucking edge"];
     origin=nil;		
     destination=nil;

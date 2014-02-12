@@ -27,6 +27,7 @@
 		0AC277DB18A42A24004863C8 /* Graph.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC277D618A42A24004863C8 /* Graph.m */; };
 		0AC277DC18A42A24004863C8 /* Vertex.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC277D818A42A24004863C8 /* Vertex.m */; };
 		248570FD18A97190000DAABD /* DrawableEdge.m in Sources */ = {isa = PBXBuildFile; fileRef = 248570FC18A97190000DAABD /* DrawableEdge.m */; };
+		24F49DE118ABCEAD00E28E8E /* EdgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F49DE018ABCEAD00E28E8E /* EdgeView.m */; };
 		F9E49B7318A3D3C700FAB88D /* cercle.png in Resources */ = {isa = PBXBuildFile; fileRef = F9E49B7218A3D3C700FAB88D /* cercle.png */; };
 /* End PBXBuildFile section */
 
@@ -70,6 +71,8 @@
 		0AC277D818A42A24004863C8 /* Vertex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Vertex.m; sourceTree = "<group>"; };
 		248570FB18A97190000DAABD /* DrawableEdge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawableEdge.h; sourceTree = "<group>"; };
 		248570FC18A97190000DAABD /* DrawableEdge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawableEdge.m; sourceTree = "<group>"; };
+		24F49DDF18ABCEAD00E28E8E /* EdgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EdgeView.h; sourceTree = "<group>"; };
+		24F49DE018ABCEAD00E28E8E /* EdgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EdgeView.m; sourceTree = "<group>"; };
 		F9E49B7218A3D3C700FAB88D /* cercle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cercle.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -171,6 +174,8 @@
 				0A7DFEE518A7F7F60033D747 /* DrawableVertex.h */,
 				0A7DFEE618A7F7F60033D747 /* DrawableVertex.m */,
 				248570FB18A97190000DAABD /* DrawableEdge.h */,
+				24F49DDF18ABCEAD00E28E8E /* EdgeView.h */,
+				24F49DE018ABCEAD00E28E8E /* EdgeView.m */,
 				248570FC18A97190000DAABD /* DrawableEdge.m */,
 			);
 			name = view;
@@ -292,6 +297,7 @@
 				0A816ECD18A833D700BDF675 /* EntityFactory.m in Sources */,
 				0A83D0FF18A9141A00767551 /* AbstractSaxParser.m in Sources */,
 				248570FD18A97190000DAABD /* DrawableEdge.m in Sources */,
+				24F49DE118ABCEAD00E28E8E /* EdgeView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

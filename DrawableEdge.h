@@ -9,8 +9,11 @@
 #import <Foundation/Foundation.h>
 
 #import "Edge.h"
+#import "EdgeView.h"
+
 
 @interface DrawableEdge: Edge
-@property (readonly) UIView* view;
-- (id) initWithFrame:(CGRect)frame;
+@property (readonly) EdgeView* edgeView;
+- (id)initWithCoord:(int)x y:(int) y;
 @end
+

@@ -7,46 +7,29 @@
 //
 
 #import "DrawableEdge.h"
+
+#import "EdgeView.h"
+
 @interface DrawableEdge ()
 
-@property (readwrite) UIView* view;
+@property (readwrite)EdgeView* edgeView;
 
 @end
 
 @implementation DrawableEdge
 
 
-- (id)initWithFrame:(CGRect)frame
+- (id)initWithCoord:(int)x y:(int) y
 {
-   if (self) {
-        // Initialization code
-    }
+    self = [super init];
+    self.edgeView=[[EdgeView alloc] initWithFrame:CGRectMake(0,0,x,y)];
     return self;
-}
-
-
-- (void)drawRect:(CGRect)rect
-{
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSetStrokeColorWithColor(context, [UIColor redColor].CGColor);
-    //Set the width of the pen mark
-    CGContextSetLineWidth(context, 1.0);
-    
-    // Draw a line
-    //Start at this point
-    CGContextMoveToPoint(context, 10.0, 30.0);
-    
-    //Give instructions to the CGContext
-    //(move "pen" around the screen)
-    CGContextAddLineToPoint(context, 310.0, 30.0);
-     CGContextStrokePath(context);
-    
 }
 - (void) setPosition: (int)x y:(int) y
 {
 
     
-    self.view.center = CGPointMake(x, y);
+    self.edgeView.center = CGPointMake(x, y);
 }
 
 @end
