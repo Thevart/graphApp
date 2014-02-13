@@ -30,6 +30,7 @@
 		0AC277DA18A42A24004863C8 /* Edge.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC277D418A42A24004863C8 /* Edge.m */; };
 		0AC277DB18A42A24004863C8 /* Graph.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC277D618A42A24004863C8 /* Graph.m */; };
 		0AC277DC18A42A24004863C8 /* Vertex.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC277D818A42A24004863C8 /* Vertex.m */; };
+		245FFA3E18AD1C2600796C14 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 245FFA3D18AD1C2600796C14 /* Storyboard.storyboard */; };
 		248570FD18A97190000DAABD /* DrawableEdge.m in Sources */ = {isa = PBXBuildFile; fileRef = 248570FC18A97190000DAABD /* DrawableEdge.m */; };
 		248CB68318ACF8BB00F11E43 /* VertexView.m in Sources */ = {isa = PBXBuildFile; fileRef = 248CB68218ACF8BB00F11E43 /* VertexView.m */; };
 		24F49DE118ABCEAD00E28E8E /* EdgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F49DE018ABCEAD00E28E8E /* EdgeView.m */; };
@@ -80,6 +81,7 @@
 		0AC277D618A42A24004863C8 /* Graph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Graph.m; sourceTree = "<group>"; };
 		0AC277D718A42A24004863C8 /* Vertex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vertex.h; sourceTree = "<group>"; };
 		0AC277D818A42A24004863C8 /* Vertex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Vertex.m; sourceTree = "<group>"; };
+		245FFA3D18AD1C2600796C14 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		248570FB18A97190000DAABD /* DrawableEdge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawableEdge.h; sourceTree = "<group>"; };
 		248570FC18A97190000DAABD /* DrawableEdge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawableEdge.m; sourceTree = "<group>"; };
 		248CB68118ACF8BB00F11E43 /* VertexView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VertexView.h; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 		06320C3314509DBB00C37973 = {
 			isa = PBXGroup;
 			children = (
+				245FFA3D18AD1C2600796C14 /* Storyboard.storyboard */,
 				0A76A8B518ABBAB2008EB9A2 /* Default-568h@2x.png */,
 				0AC277C618A42991004863C8 /* parser */,
 				0AC277BD18A42924004863C8 /* model */,
@@ -305,6 +308,7 @@
 				0A76A8B618ABBAB2008EB9A2 /* Default-568h@2x.png in Resources */,
 				0A76A8B818ABBF6C008EB9A2 /* graph.gexf in Resources */,
 				0A76A8BA18ABC078008EB9A2 /* graph.graphml in Resources */,
+				245FFA3E18AD1C2600796C14 /* Storyboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,6 +414,7 @@
 				INFOPLIST_FILE = "ver/ver-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = graphApp;
+				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -422,6 +427,7 @@
 				INFOPLIST_FILE = "ver/ver-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = graphApp;
+				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

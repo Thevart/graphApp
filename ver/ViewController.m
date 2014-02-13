@@ -71,11 +71,11 @@ BOOL dragging;
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch *touch = [[event allTouches] anyObject];
     CGPoint touchLocation = [touch locationInView:touch.view];
-    NSLog(@"In the dragging mode");
-
+    //modify the coordinates of the vertex and the edges while your finger is moving
         if (dragging && touchedVertex!=nil) {
             DrawableVertex *vertex=[graph.vertices objectForKey:touchedVertex.id];
                 [vertex setPosition: (int)touchLocation.x y:(int)touchLocation.y];
+            [self setNeedsDisplay];
     }
     
 }
