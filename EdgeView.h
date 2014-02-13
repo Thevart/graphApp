@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "Coord.h"
 @interface EdgeView : UIView
-
+@property Coord* origin;
+@property Coord* destination;
+- (void) setPosition: (Coord*)origin destination:(Coord*) desti;
 @end

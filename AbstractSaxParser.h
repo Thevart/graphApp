@@ -29,5 +29,5 @@ typedef enum {
 @property Vertex* currentVertex;
 
 - (Vertex*) getVertexOrCreate: (NSString*) id;
-
+- (void) parser:(NSXMLParser *)parser foundCharacters:(NSString *)string;
 @end

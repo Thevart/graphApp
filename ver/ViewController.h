@@ -14,6 +14,7 @@
     Graph* graph;
     Vertex* origin;
     Vertex* destination;
+    Vertex *touchedVertex;
 }
 
 @property (weak, nonatomic) IBOutlet UILabel *vertexCountLabel;

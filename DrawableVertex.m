@@ -25,7 +25,7 @@
         
         self.view = [[UIView alloc] initWithFrame:CGRectInset(rectangle, 10, 10)];
         NSLog(@"taille de la view %f", self.view.frame.size.height);
-        UIColor *color = [UIColor colorWithRed:197.0/255.0 green: 169.0/255.0 blue: 140.0/255.0 alpha: 1.0];
+        UIColor *color = [UIColor colorWithRed:0.0/255.0 green: 136.0/255.0 blue: 255.0/255.0 alpha: 1.0];
         self.view.backgroundColor = color;
     }
 

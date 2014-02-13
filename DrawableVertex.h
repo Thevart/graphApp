@@ -10,4 +10,5 @@
 
 @interface DrawableVertex : Vertex
 @property (readonly) UIView* view;
+- (void) setPosition: (int)x y:(int) y;
 @end

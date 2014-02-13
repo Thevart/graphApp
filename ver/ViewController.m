@@ -26,14 +26,14 @@
 
 
 #pragma mark - View lifecycle
-
+BOOL dragging;
 
 -(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     UITouch *touch = [[event allTouches] anyObject];
     CGPoint location = [touch locationInView:self.view];
 
-    Vertex *touchedVertex=[self hasCollisioned:location];
+    touchedVertex=[self hasCollisioned:location];
     
     //if we touched a Vertex
     if(touchedVertex!=nil){
@@ -51,12 +51,31 @@
             origin=touchedVertex;
         }
               [self changeColor];
+        dragging = YES;
     }
     else{
         [self addVertex:location.x y:location.y];
         origin=nil;
         destination=nil;
         [self changeColor];
+        
+    }
+    
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    dragging = NO;
+    touchedVertex=nil;
+}
+
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    UITouch *touch = [[event allTouches] anyObject];
+    CGPoint touchLocation = [touch locationInView:touch.view];
+    NSLog(@"In the dragging mode");
+
+        if (dragging && touchedVertex!=nil) {
+            DrawableVertex *vertex=[graph.vertices objectForKey:touchedVertex.id];
+                [vertex setPosition: (int)touchLocation.x y:(int)touchLocation.y];
     }
     
 }
@@ -85,7 +104,7 @@
         if([vertex.id isEqual:origin.id])
         {
             
-            color = [UIColor colorWithRed:300.0/255.0 green: 350.0/255.0 blue: 140.0/255.0 alpha: 1.0];
+            color = [UIColor colorWithRed:255.0/255.0 green: 0.0/255.0 blue: 0.0/255.0 alpha: 1.0];
             vertex.view.backgroundColor=color;
         } 
         else if([vertex.id isEqual:destination.id])
@@ -95,7 +114,7 @@
             
         }
         else{
-            color = [UIColor colorWithRed:197.0/255.0 green: 169.0/255.0 blue: 140.0/255.0 alpha: 1.0];
+             UIColor *color = [UIColor colorWithRed:0.0/255.0 green: 136.0/255.0 blue: 255.0/255.0 alpha: 1.0];
             vertex.view.backgroundColor=color;
 
         }
@@ -104,9 +123,10 @@
 
 -(void) addEdge
 {
-    NSLog(@"you add a destination");
+    NSLog(@"you have added a destination");
     DrawableEdge* edge = [[DrawableEdge alloc] initWithCoord:self.view.frame.size.width y:self.view.frame.size.height];
     [graph addEdge:edge];
+    [edge.edgeView setPosition: origin.coord destination:destination.coord];
         [self.view addSubview:edge.edgeView];
         [edge.edgeView setNeedsDisplay];
 
@@ -121,31 +141,30 @@
     DrawableVertex* vertex = [[DrawableVertex alloc] init];
     [vertex setPosition: x y:y];
 
-    NSLog(@"x %d; y %d", x, y);
-
+    NSLog(@"Vertex added at x %d; y %d", x, y);
+  NSLog(@"Nb of vertex %d",graph.vertices.count);
     // add the vertex to the graph
     [graph addVertex:vertex];
 
     // draw it
     [self.view addSubview:vertex.view];
-
+    
     // and update the vertex count text
-    vertexCountLabel.text = [NSString stringWithFormat: @"%i ...", [graph.vertices count]];
+    vertexCountLabel.text = [NSString stringWithFormat: @" %i ...", [graph.vertices count]];
 }
 
 - (void) viewDidLoad
 {
     [super viewDidLoad];
-
-    [self readSampleGraph];
+    graph = [[Graph alloc] init];
+    //[self readSampleGraph];
 }
 
-- (void) readSampleGraph
+/*- (void) readSampleGraph
 {
     DrawableEntityFactory* factory = [[DrawableEntityFactory alloc] init];
     GraphParser *parser = [GraphParser create:factory];
-    NSString* path = [[NSBundle mainBundle] pathForResource:@"graph"
-                                                     ofType:@"graphml"];
+    NSString* path = [[NSBundle mainBundle] pathForResource:@"graph" ofType:@"graphml"];
 
     graph = [parser parse:path];
 
@@ -159,7 +178,7 @@
         DrawableVertex* vertex = [graph.vertices objectForKey:id];
         [self.view addSubview:vertex.view];
     }
-}
+}*/
 
 - (void) viewDidUnload
 {

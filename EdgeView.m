@@ -17,10 +17,17 @@
         // Initialization code
          NSLog(@"Dans le Init");
     }
-    self.backgroundColor=[UIColor whiteColor];
+   UIColor *color =[ UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.0];
+    
+    self.backgroundColor=color;
     return self;
 }
-
+- (void) setPosition: (Coord*)origin destination:(Coord*) desti
+{
+    
+    self.origin=origin;
+    self.destination=desti;
+}
 
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
@@ -38,8 +45,8 @@
     CGContextSetFillColorWithColor(context, color);
     CGContextSetStrokeColorWithColor(context, [UIColor blueColor].CGColor);
 
-    CGContextMoveToPoint(context, 0, 0);
-    CGContextAddLineToPoint(context, 300, 400);
+    CGContextMoveToPoint(context, self.origin.x, self.origin.y);
+    CGContextAddLineToPoint(context, self.destination.x, self.destination.y);
     
     CGContextStrokePath(context);
     CGColorSpaceRelease(colorspace);
