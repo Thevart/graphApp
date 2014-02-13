@@ -20,6 +20,8 @@
 		0A76A8B818ABBF6C008EB9A2 /* graph.gexf in Resources */ = {isa = PBXBuildFile; fileRef = 0A76A8B718ABBF6C008EB9A2 /* graph.gexf */; };
 		0A76A8BA18ABC078008EB9A2 /* graph.graphml in Resources */ = {isa = PBXBuildFile; fileRef = 0A76A8B918ABC078008EB9A2 /* graph.graphml */; };
 		0A7DFEE718A7F7F60033D747 /* DrawableVertex.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7DFEE618A7F7F60033D747 /* DrawableVertex.m */; };
+		0A7F1E1618ACF8E000FDE5AC /* GraphParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A76A8B018ABA99D008EB9A2 /* GraphParser.m */; };
+		0A7F1E1B18ACFCCA00FDE5AC /* DotDumper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7F1E1A18ACFCCA00FDE5AC /* DotDumper.m */; };
 		0A816EC918A8278800BDF675 /* DrawableEntityFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A816EC818A8278800BDF675 /* DrawableEntityFactory.m */; };
 		0A816ECD18A833D700BDF675 /* EntityFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A816ECC18A833D700BDF675 /* EntityFactory.m */; };
 		0A83D0FF18A9141A00767551 /* AbstractSaxParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A83D0FE18A9141A00767551 /* AbstractSaxParser.m */; };
@@ -59,6 +61,9 @@
 		0A76A8B918ABC078008EB9A2 /* graph.graphml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = graph.graphml; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.xml; };
 		0A7DFEE518A7F7F60033D747 /* DrawableVertex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawableVertex.h; sourceTree = "<group>"; };
 		0A7DFEE618A7F7F60033D747 /* DrawableVertex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawableVertex.m; sourceTree = "<group>"; };
+		0A7F1E1818ACFBB500FDE5AC /* DumperProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DumperProtocol.h; sourceTree = "<group>"; };
+		0A7F1E1918ACFCCA00FDE5AC /* DotDumper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DotDumper.h; sourceTree = "<group>"; };
+		0A7F1E1A18ACFCCA00FDE5AC /* DotDumper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DotDumper.m; sourceTree = "<group>"; };
 		0A816EC418A825C100BDF675 /* GraphEntityFactoryProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphEntityFactoryProtocol.h; sourceTree = "<group>"; };
 		0A816EC718A8278800BDF675 /* DrawableEntityFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawableEntityFactory.h; sourceTree = "<group>"; };
 		0A816EC818A8278800BDF675 /* DrawableEntityFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawableEntityFactory.m; sourceTree = "<group>"; };
@@ -110,6 +115,7 @@
 			children = (
 				245FFA3D18AD1C2600796C14 /* Storyboard.storyboard */,
 				0A76A8B518ABBAB2008EB9A2 /* Default-568h@2x.png */,
+				0A7F1E1718ACFB7F00FDE5AC /* dumper */,
 				0AC277C618A42991004863C8 /* parser */,
 				0AC277BD18A42924004863C8 /* model */,
 				06320C5F14509DC000C37973 /* Resources */,
@@ -209,6 +215,16 @@
 				248570FC18A97190000DAABD /* DrawableEdge.m */,
 			);
 			name = view;
+			sourceTree = "<group>";
+		};
+		0A7F1E1718ACFB7F00FDE5AC /* dumper */ = {
+			isa = PBXGroup;
+			children = (
+				0A7F1E1818ACFBB500FDE5AC /* DumperProtocol.h */,
+				0A7F1E1918ACFCCA00FDE5AC /* DotDumper.h */,
+				0A7F1E1A18ACFCCA00FDE5AC /* DotDumper.m */,
+			);
+			name = dumper;
 			sourceTree = "<group>";
 		};
 		0A816EC318A8259900BDF675 /* factory */ = {
@@ -319,6 +335,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A7F1E1618ACF8E000FDE5AC /* GraphParser.m in Sources */,
 				06320C4F14509DBB00C37973 /* main.m in Sources */,
 				06320C5314509DBB00C37973 /* AppDelegate.m in Sources */,
 				06320C5914509DBB00C37973 /* ViewController.m in Sources */,
@@ -336,6 +353,7 @@
 				248570FD18A97190000DAABD /* DrawableEdge.m in Sources */,
 				24F49DE118ABCEAD00E28E8E /* EdgeView.m in Sources */,
 				248CB68318ACF8BB00F11E43 /* VertexView.m in Sources */,
+				0A7F1E1B18ACFCCA00FDE5AC /* DotDumper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

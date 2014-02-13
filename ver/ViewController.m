@@ -13,6 +13,8 @@
 #import "Vertex.h"
 #import "DrawableEntityFactory.h"
 #import "GraphParser.h"
+#import "DumperProtocol.h"
+#import "DotDumper.h"
 
 @implementation ViewController
 
@@ -154,14 +156,14 @@ BOOL dragging;
 {
     [super viewDidLoad];
     graph = [[Graph alloc] init];
-    //[self readSampleGraph];
+    [self readSampleGraph];
 }
 
-/*- (void) readSampleGraph
+- (void) readSampleGraph
 {
     DrawableEntityFactory* factory = [[DrawableEntityFactory alloc] init];
     GraphParser *parser = [GraphParser create:factory];
-    NSString* path = [[NSBundle mainBundle] pathForResource:@"graph" ofType:@"graphml"];
+    NSString* path = [[NSBundle mainBundle] pathForResource:@"graph" ofType:@"xgmml"];
 
     graph = [parser parse:path];
 
@@ -175,7 +177,13 @@ BOOL dragging;
         DrawableVertex* vertex = [graph.vertices objectForKey:id];
         [self.view addSubview:vertex.view];
     }
-}*/
+
+    [graph removeVertex:[graph getVertex:@"1"]];
+
+    // test for graph dumpers
+    id<DumperProtocol> dumper = [[DotDumper alloc] init];
+    NSLog([dumper dump:graph]);
+}
 
 - (void) viewDidUnload
 {
