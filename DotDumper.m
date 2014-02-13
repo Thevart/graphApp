@@ -55,7 +55,7 @@ NSMutableString *buffer;
     NSString* edgeType = (oriented) ? @"->" : @"--";
     
     for (Edge* edge in edges) {
-        [self write:[NSString stringWithFormat:@"\t%@ %@ %@\n", edge.origin.id, edgeType, edge.target.id]];
+        [self write:[NSString stringWithFormat:@"\t%@ %@ %@ [label=\"%@\"]\n", edge.origin.id, edgeType, edge.target.id, edge.label]];
     }
 }
 
