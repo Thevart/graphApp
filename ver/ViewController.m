@@ -13,6 +13,8 @@
 #import "Vertex.h"
 #import "DrawableEntityFactory.h"
 #import "GraphParser.h"
+#import "DumperProtocol.h"
+#import "DotDumper.h"
 
 @implementation ViewController
 
@@ -178,6 +180,10 @@ BOOL dragging;
         DrawableVertex* vertex = [graph.vertices objectForKey:id];
         [self.view addSubview:vertex.view];
     }
+
+    // test for graph dumpers
+    id<DumperProtocol> dumper = [[DotDumper alloc] init];
+    NSLog([dumper dump:graph]);
 }
 
 - (void) viewDidUnload
