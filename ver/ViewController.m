@@ -84,7 +84,7 @@ BOOL dragging;
     Vertex* realVertex=nil;
     for(NSString *id in graph.vertices){
         DrawableVertex* vertex = [graph.vertices objectForKey:id];
-        if(CGRectContainsPoint(vertex.view.frame,location))
+        if(CGRectContainsPoint(vertex.vertexView.frame,location))
         {
             vertexCountLabel.text = [NSString stringWithFormat: @"You touch my trala"];
             realVertex=[graph.vertices objectForKey:id];
@@ -105,19 +105,20 @@ BOOL dragging;
         {
             
             color = [UIColor colorWithRed:255.0/255.0 green: 0.0/255.0 blue: 0.0/255.0 alpha: 1.0];
-            vertex.view.backgroundColor=color;
+            vertex.vertexView.color=color;
         } 
         else if([vertex.id isEqual:destination.id])
         {
             color = [UIColor colorWithRed:197.0/255.0 green: 259.0/255.0 blue: 40.0/255.0 alpha: 1.0];
-            vertex.view.backgroundColor=color;
+            vertex.vertexView.color=color;
             
         }
         else{
              UIColor *color = [UIColor colorWithRed:0.0/255.0 green: 136.0/255.0 blue: 255.0/255.0 alpha: 1.0];
-            vertex.view.backgroundColor=color;
+            vertex.vertexView.color=color;
 
         }
+        [self setNeedsDisplay];
     }
 }
 
@@ -127,10 +128,8 @@ BOOL dragging;
     DrawableEdge* edge = [[DrawableEdge alloc] initWithCoord:self.view.frame.size.width y:self.view.frame.size.height];
     [graph addEdge:edge];
     [edge.edgeView setPosition: origin.coord destination:destination.coord];
-        [self.view addSubview:edge.edgeView];
-        [edge.edgeView setNeedsDisplay];
-
-
+    [self.view addSubview:edge.edgeView];
+    [edge.edgeView setNeedsDisplay];
     vertexCountLabel.text = [NSString stringWithFormat: @"You add a fucking edge"];
     origin=nil;		
     destination=nil;
@@ -138,19 +137,17 @@ BOOL dragging;
 }
 - (void) addVertex:(int) x y:(int) y
 {
-    DrawableVertex* vertex = [[DrawableVertex alloc] init];
-    [vertex setPosition: x y:y];
-
-    NSLog(@"Vertex added at x %d; y %d", x, y);
-  NSLog(@"Nb of vertex %d",graph.vertices.count);
-    // add the vertex to the graph
+    DrawableVertex* vertex = [[DrawableVertex alloc] initWithCoord:x y:y];
     [graph addVertex:vertex];
 
-    // draw it
-    [self.view addSubview:vertex.view];
-    
+
+    [self.view addSubview:vertex.vertexView];
     // and update the vertex count text
+    [self setNeedsDisplay];
+    NSLog(@"%f", vertex.vertexView.center.y);
     vertexCountLabel.text = [NSString stringWithFormat: @" %i ...", [graph.vertices count]];
+    NSLog(@"Nb of subView %d", self.view.subviews.count);
+        [vertex.vertexView setNeedsDisplay];
 }
 
 - (void) viewDidLoad
@@ -219,4 +216,9 @@ BOOL dragging;
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
+-(void) setNeedsDisplay {
+
+    [self.view.subviews makeObjectsPerformSelector:@selector(setNeedsDisplay)];
+    [super.view setNeedsDisplay];
+}
 @end

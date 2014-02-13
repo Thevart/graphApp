@@ -37,7 +37,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		06320C3E14509DBB00C37973 /* ver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ver.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		06320C3E14509DBB00C37973 /* graphApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = graphApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06320C4214509DBB00C37973 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		06320C4414509DBB00C37973 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		06320C4614509DBB00C37973 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -119,7 +119,7 @@
 		06320C3F14509DBB00C37973 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				06320C3E14509DBB00C37973 /* ver.app */,
+				06320C3E14509DBB00C37973 /* graphApp.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -200,9 +200,9 @@
 				0A7DFEE618A7F7F60033D747 /* DrawableVertex.m */,
 				248CB68118ACF8BB00F11E43 /* VertexView.h */,
 				248CB68218ACF8BB00F11E43 /* VertexView.m */,
-				248570FB18A97190000DAABD /* DrawableEdge.h */,
 				24F49DDF18ABCEAD00E28E8E /* EdgeView.h */,
 				24F49DE018ABCEAD00E28E8E /* EdgeView.m */,
+				248570FB18A97190000DAABD /* DrawableEdge.h */,
 				248570FC18A97190000DAABD /* DrawableEdge.m */,
 			);
 			name = view;
@@ -265,7 +265,7 @@
 			);
 			name = ver;
 			productName = ver;
-			productReference = 06320C3E14509DBB00C37973 /* ver.app */;
+			productReference = 06320C3E14509DBB00C37973 /* graphApp.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -409,7 +409,7 @@
 				GCC_PREFIX_HEADER = "ver/ver-Prefix.pch";
 				INFOPLIST_FILE = "ver/ver-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = graphApp;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -421,7 +421,7 @@
 				GCC_PREFIX_HEADER = "ver/ver-Prefix.pch";
 				INFOPLIST_FILE = "ver/ver-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = graphApp;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

@@ -21,10 +21,13 @@
 
 - (id)initWithCoord:(int)x y:(int) y
 {
-    self = [super init];
-    self.edgeView=[[EdgeView alloc] initWithFrame:CGRectMake(0,0,x,y)];
+    if(self = [super init]){
+        self.edgeView=[[EdgeView alloc] initWithFrame:CGRectMake(0,0,x,y)];
+    }
     return self;
 }
+
+
 - (void) setPosition: (int)x y:(int) y
 {
 

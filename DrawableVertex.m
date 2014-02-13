@@ -7,10 +7,11 @@
 //
 
 #import "DrawableVertex.h"
-
+#import "VertexView.h"
 @interface DrawableVertex ()
 
-@property (readwrite) UIView* view;
+@property (readwrite)VertexView* vertexView;
+
 
 @end
 
@@ -18,15 +19,13 @@
 @implementation DrawableVertex
 
 
-- (id) init
+- (id) initWithCoord:(int)x y:(int)y
 {
+    
     if (self = [super init]) {
-        CGRect rectangle = CGRectMake(30, 30, 30, 30);
+        [self setPosition:x y:y];
+        self.vertexView=[[VertexView alloc] initWithFrame:CGRectMake(x,y,30,30)];
         
-        self.view = [[UIView alloc] initWithFrame:CGRectInset(rectangle, 10, 10)];
-        NSLog(@"taille de la view %f", self.view.frame.size.height);
-        UIColor *color = [UIColor colorWithRed:0.0/255.0 green: 136.0/255.0 blue: 255.0/255.0 alpha: 1.0];
-        self.view.backgroundColor = color;
     }
 
     return self;
@@ -36,7 +35,7 @@
 {
     [super setPosition:x y:y];
     
-    self.view.center = CGPointMake(x, y);
+    self.vertexView.center = CGPointMake(x, y);
 }
 
 @end

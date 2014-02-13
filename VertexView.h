@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface VertexView : UIView
-
+@property UIColor *color;
+-(void)setPostion:(int)x y:(int)y;
 @end

@@ -17,8 +17,7 @@
         // Initialization code
          NSLog(@"Dans le Init");
     }
-   UIColor *color =[ UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.0];
-    
+    UIColor *color =[ UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.0];
     self.backgroundColor=color;
     return self;
 }
@@ -32,7 +31,7 @@
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect {
-    
+        NSLog(@"Dans le dt");
     CGContextRef context = UIGraphicsGetCurrentContext();
     
     CGContextSetLineWidth(context, 2.0);
@@ -52,7 +51,7 @@
     CGColorSpaceRelease(colorspace);
     CGColorRelease(color);
    
-    NSLog(@"Dans le dt");
+
 }
 
 
