@@ -157,14 +157,14 @@ BOOL dragging;
 {
     [super viewDidLoad];
     graph = [[Graph alloc] init];
-    //[self readSampleGraph];
+    [self readSampleGraph];
 }
 
-/*- (void) readSampleGraph
+- (void) readSampleGraph
 {
     DrawableEntityFactory* factory = [[DrawableEntityFactory alloc] init];
     GraphParser *parser = [GraphParser create:factory];
-    NSString* path = [[NSBundle mainBundle] pathForResource:@"graph" ofType:@"graphml"];
+    NSString* path = [[NSBundle mainBundle] pathForResource:@"graph" ofType:@"xgmml"];
 
     graph = [parser parse:path];
 
@@ -178,7 +178,7 @@ BOOL dragging;
         DrawableVertex* vertex = [graph.vertices objectForKey:id];
         [self.view addSubview:vertex.view];
     }
-}*/
+}
 
 - (void) viewDidUnload
 {

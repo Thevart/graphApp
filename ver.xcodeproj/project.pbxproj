@@ -20,6 +20,7 @@
 		0A76A8B818ABBF6C008EB9A2 /* graph.gexf in Resources */ = {isa = PBXBuildFile; fileRef = 0A76A8B718ABBF6C008EB9A2 /* graph.gexf */; };
 		0A76A8BA18ABC078008EB9A2 /* graph.graphml in Resources */ = {isa = PBXBuildFile; fileRef = 0A76A8B918ABC078008EB9A2 /* graph.graphml */; };
 		0A7DFEE718A7F7F60033D747 /* DrawableVertex.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7DFEE618A7F7F60033D747 /* DrawableVertex.m */; };
+		0A7F1E1618ACF8E000FDE5AC /* GraphParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A76A8B018ABA99D008EB9A2 /* GraphParser.m */; };
 		0A816EC918A8278800BDF675 /* DrawableEntityFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A816EC818A8278800BDF675 /* DrawableEntityFactory.m */; };
 		0A816ECD18A833D700BDF675 /* EntityFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A816ECC18A833D700BDF675 /* EntityFactory.m */; };
 		0A83D0FF18A9141A00767551 /* AbstractSaxParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A83D0FE18A9141A00767551 /* AbstractSaxParser.m */; };
@@ -315,6 +316,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A7F1E1618ACF8E000FDE5AC /* GraphParser.m in Sources */,
 				06320C4F14509DBB00C37973 /* main.m in Sources */,
 				06320C5314509DBB00C37973 /* AppDelegate.m in Sources */,
 				06320C5914509DBB00C37973 /* ViewController.m in Sources */,
