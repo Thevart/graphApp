@@ -71,12 +71,13 @@ BOOL dragging;
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    DrawableVertex *vertex;
     UITouch *touch = [[event allTouches] anyObject];
     CGPoint touchLocation = [touch locationInView:touch.view];
     //modify the coordinates of the vertex and the edges while your finger is moving
         if (dragging && touchedVertex!=nil) {
-            DrawableVertex *vertex=[graph.vertices objectForKey:touchedVertex.id];
-                [vertex setPosition: (int)touchLocation.x y:(int)touchLocation.y];
+            vertex=[graph.vertices objectForKey:touchedVertex.id];
+            [vertex setPosition: (int)touchLocation.x-15 y:(int)touchLocation.y-15];
             [self setNeedsDisplay];
     }
     
@@ -175,7 +176,7 @@ BOOL dragging;
     // display the loaded vertices
     for (NSString* id in graph.vertices) {
         DrawableVertex* vertex = [graph.vertices objectForKey:id];
-        [self.view addSubview:vertex.view];
+        [self.view addSubview:vertex.vertexView];
     }
 
     [graph removeVertex:[graph getVertex:@"1"]];

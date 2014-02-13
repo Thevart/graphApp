@@ -35,7 +35,7 @@
 {
     [super setPosition:x y:y];
     
-    self.vertexView.center = CGPointMake(x-15, y-15);
+    self.vertexView.center = CGPointMake(x, y);
 }
 
 @end
