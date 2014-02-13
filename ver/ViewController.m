@@ -181,6 +181,8 @@ BOOL dragging;
         [self.view addSubview:vertex.view];
     }
 
+    [graph removeVertex:[graph getVertex:@"1"]];
+
     // test for graph dumpers
     id<DumperProtocol> dumper = [[DotDumper alloc] init];
     NSLog([dumper dump:graph]);

@@ -48,18 +48,25 @@
     return [self.vertices objectForKey:id];
 }
 
-- (void) addEdge : (Edge*) edge
+- (void) addEdge: (Edge*) edge
 {
     [self.edges addObject:edge];
 }
 
-- (void) removeEdge : (Edge*) edge
+- (void) removeEdge: (Edge*) edge
 {
-    [self.edges removeObjectIdenticalTo:edge];
+    [self.edges removeObject:edge];
 }
 
-- (void) removeVertex : (Vertex*) vertex
+- (void) removeVertex: (Vertex*) vertex
 {
+    NSArray *edgesToDelete = [[NSArray alloc] initWithArray:self.edges];
     [self.vertices removeObjectForKey:vertex.id];
+
+    for (Edge* edge in edgesToDelete) {
+        if ([edge.origin.id isEqualToString:vertex.id] || [edge.target.id isEqualToString:vertex.id]) {
+            [self.edges removeObject:edge];
+        }
+    }
 }
 @end
