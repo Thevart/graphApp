@@ -21,6 +21,7 @@
     self.backgroundColor=color;
     return self;
 }
+
 - (void) setPosition: (Coord*)origin destination:(Coord*) desti
 {
     
@@ -28,10 +29,8 @@
     self.destination=desti;
 }
 
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
+
 - (void)drawRect:(CGRect)rect {
-        NSLog(@"Dans le dt");
     CGContextRef context = UIGraphicsGetCurrentContext();
     
     CGContextSetLineWidth(context, 2.0);
@@ -51,7 +50,6 @@
     CGColorSpaceRelease(colorspace);
     CGColorRelease(color);
    
-
 }
 
 

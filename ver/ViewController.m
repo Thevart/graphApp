@@ -71,13 +71,17 @@ BOOL dragging;
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-    DrawableVertex *vertex;
     UITouch *touch = [[event allTouches] anyObject];
     CGPoint touchLocation = [touch locationInView:touch.view];
+    
     //modify the coordinates of the vertex and the edges while your finger is moving
-        if (dragging && touchedVertex!=nil) {
-            vertex=[graph.vertices objectForKey:touchedVertex.id];
-            [vertex setPosition: (int)touchLocation.x-15 y:(int)touchLocation.y-15];
+    if (dragging && touchedVertex!=nil && touchLocation.x>0) {
+        /*CGRect frame = window.frame;
+        frame.origin.x = window.frame.origin.x + touchLocation.x - oldX;
+        frame.origin.y =  window.frame.origin.y + touchLocation.y - oldY;
+        window.frame = frame;*/
+            [touchedVertex setPosition: (int)touchLocation.x-15 y:(int)touchLocation.y-15];
+            NSLog(@"vertex location x : %f , y : %f", touchLocation.x, touchLocation.y);
             [self setNeedsDisplay];
     }
     

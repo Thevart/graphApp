@@ -6,13 +6,14 @@
 
 #import <UIKit/UIKit.h>
 #import "Graph.h"
+#import "DrawableVertex.h"
 
 @interface ViewController : UIViewController
 {
     Graph* graph;
     Vertex* origin;
     Vertex* destination;
-    Vertex *touchedVertex;
+    DrawableVertex *touchedVertex;
 }
 
 @property (weak, nonatomic) IBOutlet UILabel *vertexCountLabel;
