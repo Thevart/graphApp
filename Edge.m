@@ -10,9 +10,9 @@
 
 @implementation Edge
 
-- (id)initWithLabel:(NSString *) label
+- (id) initWithLabel:(NSString *) label
 {
-    if ( self = [super init] ) {
+    if (self = [super init]) {
         self.label = label;
         return self;
     }
@@ -20,9 +20,9 @@
     return nil;
 }
 
--(id) initWithVertices:(Vertex *)originVertex destination:(Vertex *)destinationVertex
+-(id) initWithVertices:(Vertex *) originVertex destination:(Vertex *) destinationVertex
 {
-    if ( self = [super init] ) {
+    if (self = [super init]) {
         self.origin = originVertex;
         self.target = destinationVertex;
         return self;
