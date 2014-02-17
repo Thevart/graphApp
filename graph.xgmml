@@ -19,6 +19,8 @@
         <att name="confirmed" type="boolean" value="true"/>
         <layout x="84" y="281" />
     </node>
+    <node label="D" id="4">
+    </node>
     <edge label="A-B" source="1" target="2">
         <att name="weight" type="integer" value="7"/>
     </edge>

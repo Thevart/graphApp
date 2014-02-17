@@ -14,6 +14,8 @@
 #import "DrawableEntityFactory.h"
 #import "GraphParser.h"
 #import "DumperProtocol.h"
+#import "LayoutCreatorProtocol.h"
+#import "RandomLayoutCreator.h"
 #import "DotDumper.h"
 
 @implementation ViewController
@@ -86,7 +88,7 @@ BOOL dragging;
 {
     Vertex* realVertex = nil;
 
-    for (NSString* id in graph.vertices){
+    for (NSString* id in graph.vertices) {
         DrawableVertex* vertex = [graph.vertices objectForKey:id];
 
         if (CGRectContainsPoint(vertex.vertexView.frame,location)) {
@@ -174,17 +176,22 @@ BOOL dragging;
         graph = [[Graph alloc] init];
     }
 
+    // fix the layout
+    id<LayoutCreatorProtocol> layoutCreator = [[RandomLayoutCreator alloc] init];
+    [layoutCreator createLayout:graph x:self.view.frame.size.width y:self.view.frame.size.height];
+
     // display the loaded vertices
     for (NSString* id in graph.vertices) {
         DrawableVertex* vertex = [graph.vertices objectForKey:id];
+
         [self.view addSubview:vertex.vertexView];
     }
 
-    [graph removeVertex:[graph getVertex:@"1"]];
+    //[graph removeVertex:[graph getVertex:@"1"]];
 
     // test for graph dumpers
     id<DumperProtocol> dumper = [[DotDumper alloc] init];
-    NSLog([dumper dump:graph]);
+    //NSLog([dumper dump:graph]);
 }
 
 - (void) viewDidUnload

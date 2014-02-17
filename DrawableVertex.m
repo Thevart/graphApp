@@ -21,11 +21,8 @@
 
 - (id) initWithCoord:(int)x y:(int)y
 {
-    
     if (self = [super init]) {
         [self setPosition:x y:y];
-        self.vertexView=[[VertexView alloc] initWithFrame:CGRectMake(x-15,y-15,30,30)];
-        
     }
 
     return self;
@@ -34,7 +31,8 @@
 - (void) setPosition: (int)x y:(int) y
 {
     [super setPosition:x y:y];
-    
+
+    self.vertexView = [[VertexView alloc] initWithFrame:CGRectMake(x-15, y-15, 30, 30)];
     self.vertexView.center = CGPointMake(x, y);
 }
 
