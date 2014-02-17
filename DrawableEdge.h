@@ -14,6 +14,7 @@
 
 @interface DrawableEdge: Edge
 @property (readonly) EdgeView* edgeView;
-- (id)initWithCoord:(int)x y:(int) y;
+- (id) initWithCoord:(int)x y:(int) y;
+- (void) setPosition:(int)x y:(int) y;
 @end
 

@@ -133,7 +133,7 @@ BOOL dragging;
     edge.target = destination;
 
     [graph addEdge:edge];
-    [edge.edgeView setPosition: origin.coord destination:destination.coord];
+    [edge.edgeView setPosition: edge.origin.coord destination:edge.target.coord];
     [self.view addSubview:edge.edgeView];
     [edge.edgeView setNeedsDisplay];
 
@@ -187,11 +187,32 @@ BOOL dragging;
         [self.view addSubview:vertex.vertexView];
     }
 
+    // display the loaded edges
+    for (DrawableEdge* edge in graph.edges) {
+        [edge setPosition:self.view.frame.size.width y:self.view.frame.size.height];
+        [self.view addSubview:edge.edgeView];
+        [edge.edgeView setNeedsDisplay];
+    }
+
     //[graph removeVertex:[graph getVertex:@"1"]];
 
     // test for graph dumpers
     id<DumperProtocol> dumper = [[DotDumper alloc] init];
     //NSLog([dumper dump:graph]);
+
+    // and start a computation
+    NSThread* thread = [[NSThread alloc] initWithTarget:self
+                                                 selector:@selector(threadedComputation:)
+                                                   object:nil];
+    [thread start];
+}
+
+- (void) threadedComputation: (id) args	
+{
+    while (TRUE) {
+        NSLog(@"lala");
+        sleep(2);
+    }
 }
 
 - (void) viewDidUnload

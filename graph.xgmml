@@ -4,23 +4,19 @@
        xmlns:cy="http://www.cytoscape.org" xmlns="http://www.cs.rpi.edu/XGMML"
        directed="1">
     <node label="A" id="1">
-        <att name="size" type="integer" value="24"/>
-        <att name="confirmed" type="boolean" value="true"/>
-        <att name="weight" type="integer" value="42"/>
         <layout x="208" y="312" />
     </node>
     <node label="B" id="2">
-        <att name="size" type="integer" value="16"/>
-        <att name="confirmed" type="boolean" value="false"/>
         <layout x="181" y="217" />
     </node>
     <node label="C" id="3">
-        <att name="size" type="integer" value="13"/>
-        <att name="confirmed" type="boolean" value="true"/>
         <layout x="84" y="281" />
     </node>
-    <node label="D" id="4">
-    </node>
+    <node label="D" id="4"></node>
+    <node label="E" id="5"></node>
+    <node label="F" id="6"></node>
+    <node label="G" id="7"></node>
+
     <edge label="A-B" source="1" target="2">
         <att name="weight" type="integer" value="7"/>
     </edge>
@@ -29,5 +25,8 @@
     </edge>
     <edge label="C-A" source="3" target="1">
         <att name="weight" type="integer" value="4"/>
+    </edge>
+    <edge label="B-G" source="2" target="7">
+        <att name="weight" type="integer" value="9"/>
     </edge>
 </graph>

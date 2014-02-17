@@ -8,7 +8,7 @@
 
 #import "DrawableEntityFactory.h"
 #import "DrawableVertex.h"
-#import "Edge.h"
+#import "DrawableEdge.h"
 
 
 @implementation DrawableEntityFactory
@@ -25,6 +25,6 @@
 
 - (Edge*) createEdge:(Vertex *)originVertex destination:(Vertex *)destinationVertex
 {
-    return [[Edge alloc] initWithVertices:originVertex destination:destinationVertex];
+    return [[DrawableEdge alloc] initWithVertices:originVertex destination:destinationVertex];
 }
 @end

@@ -12,7 +12,7 @@
 
 - (id) initWithLabel:(NSString *) label
 {
-    if (self = [super init]) {
+    if (self = [self init]) {
         self.label = label;
         return self;
     }
@@ -22,7 +22,7 @@
 
 -(id) initWithVertices:(Vertex *) originVertex destination:(Vertex *) destinationVertex
 {
-    if (self = [super init]) {
+    if (self = [self init]) {
         self.origin = originVertex;
         self.target = destinationVertex;
         return self;

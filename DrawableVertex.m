@@ -19,9 +19,18 @@
 @implementation DrawableVertex
 
 
-- (id) initWithCoord:(int)x y:(int)y
+- (id) init
 {
     if (self = [super init]) {
+        self.vertexView = [[VertexView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+    }
+
+    return self;
+}
+
+- (id) initWithCoord:(int)x y:(int)y
+{
+    if (self = [self init]) {
         [self setPosition:x y:y];
     }
 
@@ -32,8 +41,9 @@
 {
     [super setPosition:x y:y];
 
-    self.vertexView = [[VertexView alloc] initWithFrame:CGRectMake(x-15, y-15, 30, 30)];
+    [self.vertexView setFrame:CGRectMake(x-15, y-15, 30, 30)];
     self.vertexView.center = CGPointMake(x, y);
+    [self.vertexView setNeedsDisplay];
 }
 
 @end
