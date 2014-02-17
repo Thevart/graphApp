@@ -21,7 +21,6 @@
 {
     if (self = [super init]) {
         self.edgeView = [[EdgeView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
-        NSLog(@"in edgeView init");
     }
 
     return self;

@@ -12,26 +12,23 @@
 
 - (id)initWithFrame:(CGRect)frame
 {
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-         NSLog(@"Dans le Init");
+    if (self = [super initWithFrame:frame]) {
+        UIColor *color =[ UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.0];
+        self.backgroundColor=color;
     }
-    UIColor *color =[ UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.0];
-    self.backgroundColor=color;
+
     return self;
 }
+
 - (void) setPosition: (Coord*)origin destination:(Coord*) desti
 {
-    
-    self.origin=origin;
-    self.destination=desti;
+    self.origin = origin;
+    self.destination = desti;
 }
 
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect {
-        NSLog(@"Dans le dt");
     CGContextRef context = UIGraphicsGetCurrentContext();
     
     CGContextSetLineWidth(context, 2.0);
@@ -50,9 +47,6 @@
     CGContextStrokePath(context);
     CGColorSpaceRelease(colorspace);
     CGColorRelease(color);
-   
-
 }
-
 
 @end

@@ -16,6 +16,8 @@
 #import "DumperProtocol.h"
 #import "LayoutCreatorProtocol.h"
 #import "RandomLayoutCreator.h"
+#import "AlgorithmProtocol.h"
+#import "DijkstraAlgorithm.h"
 #import "DotDumper.h"
 
 @implementation ViewController
@@ -203,10 +205,10 @@ BOOL dragging;
 
 - (void) threadedComputation: (id) args	
 {
-    while (TRUE) {
-        NSLog(@"lala");
-        sleep(2);
-    }
+    id<AlgorithmProtocol> algo = [[DijkstraAlgorithm alloc] init];
+    [algo execute:graph];
+
+    NSLog(@"End");
 }
 
 - (void) viewDidUnload
