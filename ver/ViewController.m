@@ -126,16 +126,12 @@ BOOL dragging;
 -(void) addEdge
 {
     NSLog(@"you have added a destination");
-    DrawableEdge* edge = [[DrawableEdge alloc] initWithCoord:self.view.frame.size.width y:self.view.frame.size.height];
+    DrawableEdge* edge = [[DrawableEdge alloc] initWithVertices:origin destination:destination];
 
-    // define the vertices composing the edge
-    edge.origin = origin;
-    edge.target = destination;
-
+    [edge setPosition:self.view.frame.size.width y:self.view.frame.size.height];
     [graph addEdge:edge];
-    [edge.edgeView setPosition: edge.origin.coord destination:edge.target.coord];
+
     [self.view addSubview:edge.edgeView];
-    [edge.edgeView setNeedsDisplay];
 
     vertexCountLabel.text = [NSString stringWithFormat: @"You add a fucking edge"];
     origin = nil;
@@ -153,7 +149,6 @@ BOOL dragging;
     NSLog(@"%f", vertex.vertexView.center.y);
     vertexCountLabel.text = [NSString stringWithFormat: @" %i ...", [graph.vertices count]];
     NSLog(@"Nb of subView %d", self.view.subviews.count);
-    [vertex.vertexView setNeedsDisplay];
 }
 
 - (void) viewDidLoad
@@ -191,7 +186,6 @@ BOOL dragging;
     for (DrawableEdge* edge in graph.edges) {
         [edge setPosition:self.view.frame.size.width y:self.view.frame.size.height];
         [self.view addSubview:edge.edgeView];
-        [edge.edgeView setNeedsDisplay];
     }
 
     //[graph removeVertex:[graph getVertex:@"1"]];
