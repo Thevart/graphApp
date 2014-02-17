@@ -126,6 +126,10 @@ BOOL dragging;
     NSLog(@"you have added a destination");
     DrawableEdge* edge = [[DrawableEdge alloc] initWithCoord:self.view.frame.size.width y:self.view.frame.size.height];
 
+    // define the vertices composing the edge
+    edge.origin = origin;
+    edge.target = destination;
+
     [graph addEdge:edge];
     [edge.edgeView setPosition: origin.coord destination:destination.coord];
     [self.view addSubview:edge.edgeView];
