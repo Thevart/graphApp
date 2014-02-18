@@ -16,6 +16,8 @@
     DrawableVertex *touchedVertex;
 }
 
+
+@property (weak, nonatomic) IBOutlet UIButton *vertexMenu;
 @property (weak, nonatomic) IBOutlet UILabel *vertexCountLabel;
 
 - (void) addVertex:(int)x y:(int)y;

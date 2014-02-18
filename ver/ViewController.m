@@ -19,6 +19,7 @@
 @implementation ViewController
 
 @synthesize vertexCountLabel;
+@synthesize vertexMenu;
 
 - (void)didReceiveMemoryWarning
 {
@@ -42,6 +43,7 @@ BOOL dragging;
         if(origin!=nil){
             if([origin.id isEqual:touchedVertex.id]){
                 origin=nil;
+                [self undisplayVertexMenu];
   
             }
             else{
@@ -51,6 +53,7 @@ BOOL dragging;
         }
         else{
             origin=touchedVertex;
+            [self displayVertexMenu];
         }
               [self changeColor];
         dragging = YES;
@@ -60,6 +63,8 @@ BOOL dragging;
         origin=nil;
         destination=nil;
         [self changeColor];
+        [self undisplayVertexMenu];
+        
         
     }
     
@@ -100,7 +105,19 @@ BOOL dragging;
     
     return realVertex;
 }
-
+-(void)displayVertexMenu
+{
+    CGRect frame = vertexMenu.frame;
+    frame.origin.x = origin.coord.x;
+    frame.origin.y = origin.coord.y;
+    vertexMenu.frame= frame;
+    NSLog(@"frame x : %f", vertexMenu.frame.origin.x);
+    vertexMenu.hidden=false;
+    [self setNeedsDisplay];
+}
+-(void)undisplayVertexMenu{
+    vertexMenu.hidden=true;
+}
 //must be called each time you touche the screen
 -(void)changeColor
 {
@@ -131,7 +148,6 @@ BOOL dragging;
 
 -(void) addEdge
 {
-    NSLog(@"you have added a destination");
     DrawableEdge* edge = [[DrawableEdge alloc] initWithCoord:self.view.frame.size.width y:self.view.frame.size.height];
     [graph addEdge:edge];
     [edge.edgeView setPosition: origin.coord destination:destination.coord];
@@ -234,4 +250,6 @@ BOOL dragging;
     [self.view.subviews makeObjectsPerformSelector:@selector(setNeedsDisplay)];
     [super.view setNeedsDisplay];
 }
+
+
 @end
