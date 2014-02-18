@@ -158,6 +158,10 @@ BOOL dragging;
     destination=nil;
     
 }
+- (IBAction)deleteVertexButton:(id)sender {
+        [origin delete:origin.id];
+}
+
 - (void) addVertex:(int) x y:(int) y
 {
     DrawableVertex* vertex = [[DrawableVertex alloc] initWithCoord:x y:y];
