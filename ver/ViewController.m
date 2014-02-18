@@ -14,6 +14,10 @@
 #import "DrawableEntityFactory.h"
 #import "GraphParser.h"
 #import "DumperProtocol.h"
+#import "LayoutCreatorProtocol.h"
+#import "RandomLayoutCreator.h"
+#import "AlgorithmProtocol.h"
+#import "DijkstraAlgorithm.h"
 #import "DotDumper.h"
 
 @implementation ViewController
@@ -36,7 +40,7 @@ BOOL dragging;
     UITouch *touch = [[event allTouches] anyObject];
     CGPoint location = [touch locationInView:self.view];
 
-    touchedVertex=[self hasCollisioned:location];
+    touchedVertex = [self hasCollisioned:location];
     
     //if we touched a Vertex
     if(touchedVertex!=nil){
@@ -50,6 +54,8 @@ BOOL dragging;
                 destination=touchedVertex;
                 [self addEdge];
             }
+        } else {
+            origin = touchedVertex;
         }
         else{
             origin=touchedVertex;
@@ -57,11 +63,10 @@ BOOL dragging;
         }
               [self changeColor];
         dragging = YES;
-    }
-    else{
+    } else {
         [self addVertex:location.x y:location.y];
-        origin=nil;
-        destination=nil;
+        origin = nil;
+        destination = nil;
         [self changeColor];
         [self undisplayVertexMenu];
         
@@ -70,9 +75,10 @@ BOOL dragging;
     
 }
 
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
     dragging = NO;
-    touchedVertex=nil;
+    touchedVertex = nil;
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -89,17 +95,18 @@ BOOL dragging;
             NSLog(@"vertex location x : %f , y : %f", touchLocation.x, touchLocation.y);
             [self setNeedsDisplay];
     }
-    
 }
 
--(Vertex*)hasCollisioned:(CGPoint )location{
-    Vertex* realVertex=nil;
-    for(NSString *id in graph.vertices){
+-(Vertex*) hasCollisioned:(CGPoint) location
+{
+    Vertex* realVertex = nil;
+
+    for (NSString* id in graph.vertices) {
         DrawableVertex* vertex = [graph.vertices objectForKey:id];
-        if(CGRectContainsPoint(vertex.vertexView.frame,location))
-        {
+
+        if (CGRectContainsPoint(vertex.vertexView.frame,location)) {
             vertexCountLabel.text = [NSString stringWithFormat: @"You touch my trala"];
-            realVertex=[graph.vertices objectForKey:id];
+            realVertex = [graph.vertices objectForKey:id];
         }
     }
     
@@ -123,25 +130,20 @@ BOOL dragging;
 {
     UIColor *color;
     DrawableVertex* vertex;
-    for(NSString *id in graph.vertices){
-        vertex=[graph.vertices objectForKey:id];
-        if([vertex.id isEqual:origin.id])
-        {
-            
-            color = [UIColor colorWithRed:255.0/255.0 green: 0.0/255.0 blue: 0.0/255.0 alpha: 1.0];
-            vertex.vertexView.color=color;
-        } 
-        else if([vertex.id isEqual:destination.id])
-        {
-            color = [UIColor colorWithRed:197.0/255.0 green: 259.0/255.0 blue: 40.0/255.0 alpha: 1.0];
-            vertex.vertexView.color=color;
-            
-        }
-        else{
-             UIColor *color = [UIColor colorWithRed:0.0/255.0 green: 136.0/255.0 blue: 255.0/255.0 alpha: 1.0];
-            vertex.vertexView.color=color;
 
+    for (NSString* id in graph.vertices) {
+        vertex = [graph.vertices objectForKey:id];
+
+        if ([vertex.id isEqual:origin.id]) {
+            color = [UIColor colorWithRed:255.0/255.0 green: 0.0/255.0 blue: 0.0/255.0 alpha: 1.0];
+        } else if ([vertex.id isEqual:destination.id]) {
+            color = [UIColor colorWithRed:197.0/255.0 green: 259.0/255.0 blue: 40.0/255.0 alpha: 1.0];
+        } else {
+            color = [UIColor colorWithRed:0.0/255.0 green: 136.0/255.0 blue: 255.0/255.0 alpha: 1.0];
         }
+
+        vertex.vertexView.color = color;
+
         [self setNeedsDisplay];
     }
 }
@@ -150,13 +152,12 @@ BOOL dragging;
 {
     DrawableEdge* edge = [[DrawableEdge alloc] initWithCoord:self.view.frame.size.width y:self.view.frame.size.height];
     [graph addEdge:edge];
-    [edge.edgeView setPosition: origin.coord destination:destination.coord];
+
     [self.view addSubview:edge.edgeView];
-    [edge.edgeView setNeedsDisplay];
+
     vertexCountLabel.text = [NSString stringWithFormat: @"You add a fucking edge"];
-    origin=nil;		
-    destination=nil;
-    
+    origin = nil;
+    destination = nil;
 }
 - (IBAction)deleteVertexButton:(id)sender {
         [origin delete:origin.id];
@@ -167,14 +168,12 @@ BOOL dragging;
     DrawableVertex* vertex = [[DrawableVertex alloc] initWithCoord:x y:y];
     [graph addVertex:vertex];
 
-
     [self.view addSubview:vertex.vertexView];
     // and update the vertex count text
     [self setNeedsDisplay];
     NSLog(@"%f", vertex.vertexView.center.y);
     vertexCountLabel.text = [NSString stringWithFormat: @" %i ...", [graph.vertices count]];
     NSLog(@"Nb of subView %d", self.view.subviews.count);
-        [vertex.vertexView setNeedsDisplay];
 }
 
 - (void) viewDidLoad
@@ -197,17 +196,42 @@ BOOL dragging;
         graph = [[Graph alloc] init];
     }
 
+    // fix the layout
+    id<LayoutCreatorProtocol> layoutCreator = [[RandomLayoutCreator alloc] init];
+    [layoutCreator createLayout:graph x:self.view.frame.size.width y:self.view.frame.size.height];
+
     // display the loaded vertices
     for (NSString* id in graph.vertices) {
         DrawableVertex* vertex = [graph.vertices objectForKey:id];
+
         [self.view addSubview:vertex.vertexView];
     }
 
-    [graph removeVertex:[graph getVertex:@"1"]];
+    // display the loaded edges
+    for (DrawableEdge* edge in graph.edges) {
+        [edge setPosition:self.view.frame.size.width y:self.view.frame.size.height];
+        [self.view addSubview:edge.edgeView];
+    }
+
+    //[graph removeVertex:[graph getVertex:@"1"]];
 
     // test for graph dumpers
     id<DumperProtocol> dumper = [[DotDumper alloc] init];
-    NSLog([dumper dump:graph]);
+    //NSLog([dumper dump:graph]);
+
+    // and start a computation
+    NSThread* thread = [[NSThread alloc] initWithTarget:self
+                                                 selector:@selector(threadedComputation:)
+                                                   object:nil];
+    [thread start];
+}
+
+- (void) threadedComputation: (id) args	
+{
+    id<AlgorithmProtocol> algo = [[DijkstraAlgorithm alloc] init];
+    [algo execute:graph];
+
+    NSLog(@"End");
 }
 
 - (void) viewDidUnload

@@ -12,21 +12,18 @@
 
 - (id)initWithFrame:(CGRect)frame
 {
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-         NSLog(@"Dans le Init");
+    if (self = [super initWithFrame:frame]) {
+        UIColor *color =[ UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.0];
+        self.backgroundColor=color;
     }
-    UIColor *color =[ UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.0];
-    self.backgroundColor=color;
+
     return self;
 }
 
 - (void) setPosition: (Coord*)origin destination:(Coord*) desti
 {
-    
-    self.origin=origin;
-    self.destination=desti;
+    self.origin = origin;
+    self.destination = desti;
 }
 
 
@@ -51,6 +48,5 @@
     CGColorRelease(color);
    
 }
-
 
 @end

@@ -16,8 +16,7 @@
     if (self) {
         // Initialization code
     }
-    UIColor *color =[ UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.0];
-    self.backgroundColor=color;
+
     return self;
 
 }
@@ -29,7 +28,8 @@
 
 - (void)drawRect:(CGRect)rect {
     [super drawRect:rect];
-    CGContextRef context= UIGraphicsGetCurrentContext();
+
+    CGContextRef context = UIGraphicsGetCurrentContext();
     
     CGContextSetFillColorWithColor(context, _color.CGColor);
     CGContextSetAlpha(context, 0.5);

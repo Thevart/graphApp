@@ -15,7 +15,7 @@ static int nextVertexId = 1;
 @implementation Vertex
 
 
-- (id)init
+- (id) init
 {
     self = [super init];
     
@@ -32,7 +32,7 @@ static int nextVertexId = 1;
 
 - (id)initWithId:(NSString *) id
 {
-    if ( self = [self init] ) {
+    if (self = [self init]) {
         self.id = id;
         self.label = id;
         
@@ -47,6 +47,12 @@ static int nextVertexId = 1;
 {
     self.coord.x = x;
     self.coord.y = y;
+}
+
+
+- (BOOL) hasPosition
+{
+    return self.coord.x != 0 && self.coord.y != 0;
 }
 
 @end

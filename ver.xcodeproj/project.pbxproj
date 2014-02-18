@@ -20,8 +20,10 @@
 		0A76A8B818ABBF6C008EB9A2 /* graph.gexf in Resources */ = {isa = PBXBuildFile; fileRef = 0A76A8B718ABBF6C008EB9A2 /* graph.gexf */; };
 		0A76A8BA18ABC078008EB9A2 /* graph.graphml in Resources */ = {isa = PBXBuildFile; fileRef = 0A76A8B918ABC078008EB9A2 /* graph.graphml */; };
 		0A7DFEE718A7F7F60033D747 /* DrawableVertex.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7DFEE618A7F7F60033D747 /* DrawableVertex.m */; };
+		0A7EC5C918B266C100092297 /* RandomLayoutCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7EC5C818B266C100092297 /* RandomLayoutCreator.m */; };
 		0A7F1E1618ACF8E000FDE5AC /* GraphParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A76A8B018ABA99D008EB9A2 /* GraphParser.m */; };
 		0A7F1E1B18ACFCCA00FDE5AC /* DotDumper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7F1E1A18ACFCCA00FDE5AC /* DotDumper.m */; };
+		0A7FE29A18B2C09B004BA9DD /* DijkstraAlgorithm.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7FE29918B2C09B004BA9DD /* DijkstraAlgorithm.m */; };
 		0A816EC918A8278800BDF675 /* DrawableEntityFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A816EC818A8278800BDF675 /* DrawableEntityFactory.m */; };
 		0A816ECD18A833D700BDF675 /* EntityFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A816ECC18A833D700BDF675 /* EntityFactory.m */; };
 		0A83D0FF18A9141A00767551 /* AbstractSaxParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A83D0FE18A9141A00767551 /* AbstractSaxParser.m */; };
@@ -61,9 +63,15 @@
 		0A76A8B918ABC078008EB9A2 /* graph.graphml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = graph.graphml; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.xml; };
 		0A7DFEE518A7F7F60033D747 /* DrawableVertex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawableVertex.h; sourceTree = "<group>"; };
 		0A7DFEE618A7F7F60033D747 /* DrawableVertex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawableVertex.m; sourceTree = "<group>"; };
+		0A7EC5C518B2663F00092297 /* LayoutCreatorProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LayoutCreatorProtocol.h; sourceTree = "<group>"; };
+		0A7EC5C718B266C100092297 /* RandomLayoutCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RandomLayoutCreator.h; sourceTree = "<group>"; };
+		0A7EC5C818B266C100092297 /* RandomLayoutCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RandomLayoutCreator.m; sourceTree = "<group>"; };
 		0A7F1E1818ACFBB500FDE5AC /* DumperProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DumperProtocol.h; sourceTree = "<group>"; };
 		0A7F1E1918ACFCCA00FDE5AC /* DotDumper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DotDumper.h; sourceTree = "<group>"; };
 		0A7F1E1A18ACFCCA00FDE5AC /* DotDumper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DotDumper.m; sourceTree = "<group>"; };
+		0A7FE23D18B2C024004BA9DD /* AlgorithmProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlgorithmProtocol.h; sourceTree = "<group>"; };
+		0A7FE29818B2C09B004BA9DD /* DijkstraAlgorithm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DijkstraAlgorithm.h; sourceTree = "<group>"; };
+		0A7FE29918B2C09B004BA9DD /* DijkstraAlgorithm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DijkstraAlgorithm.m; sourceTree = "<group>"; };
 		0A816EC418A825C100BDF675 /* GraphEntityFactoryProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphEntityFactoryProtocol.h; sourceTree = "<group>"; };
 		0A816EC718A8278800BDF675 /* DrawableEntityFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawableEntityFactory.h; sourceTree = "<group>"; };
 		0A816EC818A8278800BDF675 /* DrawableEntityFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawableEntityFactory.m; sourceTree = "<group>"; };
@@ -113,6 +121,8 @@
 		06320C3314509DBB00C37973 = {
 			isa = PBXGroup;
 			children = (
+				0A7FE23C18B2C00F004BA9DD /* algorithm */,
+				0A7EC5C418B2662100092297 /* layout */,
 				245FFA3D18AD1C2600796C14 /* Storyboard.storyboard */,
 				0A76A8B518ABBAB2008EB9A2 /* Default-568h@2x.png */,
 				0A7F1E1718ACFB7F00FDE5AC /* dumper */,
@@ -217,6 +227,16 @@
 			name = view;
 			sourceTree = "<group>";
 		};
+		0A7EC5C418B2662100092297 /* layout */ = {
+			isa = PBXGroup;
+			children = (
+				0A7EC5C518B2663F00092297 /* LayoutCreatorProtocol.h */,
+				0A7EC5C718B266C100092297 /* RandomLayoutCreator.h */,
+				0A7EC5C818B266C100092297 /* RandomLayoutCreator.m */,
+			);
+			name = layout;
+			sourceTree = "<group>";
+		};
 		0A7F1E1718ACFB7F00FDE5AC /* dumper */ = {
 			isa = PBXGroup;
 			children = (
@@ -225,6 +245,16 @@
 				0A7F1E1A18ACFCCA00FDE5AC /* DotDumper.m */,
 			);
 			name = dumper;
+			sourceTree = "<group>";
+		};
+		0A7FE23C18B2C00F004BA9DD /* algorithm */ = {
+			isa = PBXGroup;
+			children = (
+				0A7FE23D18B2C024004BA9DD /* AlgorithmProtocol.h */,
+				0A7FE29818B2C09B004BA9DD /* DijkstraAlgorithm.h */,
+				0A7FE29918B2C09B004BA9DD /* DijkstraAlgorithm.m */,
+			);
+			name = algorithm;
 			sourceTree = "<group>";
 		};
 		0A816EC318A8259900BDF675 /* factory */ = {
@@ -354,6 +384,8 @@
 				24F49DE118ABCEAD00E28E8E /* EdgeView.m in Sources */,
 				248CB68318ACF8BB00F11E43 /* VertexView.m in Sources */,
 				0A7F1E1B18ACFCCA00FDE5AC /* DotDumper.m in Sources */,
+				0A7EC5C918B266C100092297 /* RandomLayoutCreator.m in Sources */,
+				0A7FE29A18B2C09B004BA9DD /* DijkstraAlgorithm.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
