@@ -24,7 +24,8 @@
 
 @synthesize vertexCountLabel;
 @synthesize vertexMenu;
-
+BOOL dragging;
+float oldX, oldY;
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -33,44 +34,61 @@
 
 
 #pragma mark - View lifecycle
-BOOL dragging;
-
+//NEED TO BE FUCKING A REFACTO, but i'm tired...
 -(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     UITouch *touch = [[event allTouches] anyObject];
     CGPoint location = [touch locationInView:self.view];
+    if(CGRectContainsPoint(vertexMenu.frame,location)){
+        //appel du delete because we touched the VertexDeleteButton
+        //NEED TO BE FUCKING A REFACTO, but i'm tired...
+        DrawableVertex *removedVertex=[graph getVertex:origin.id];
+        [removedVertex.vertexView removeFromSuperview];
+        NSLog(@"i delete a vertex");
+        NSArray *edgesToDelete = [[NSArray alloc] initWithArray:graph.edges];
 
-    touchedVertex = [self hasCollisioned:location];
-    
-    //if we touched a Vertex
-    if(touchedVertex!=nil){
-        if(origin!=nil){
-            if([origin.id isEqual:touchedVertex.id]){
-                origin=nil;
-                [self undisplayVertexMenu];
-  
+        
+        for (Edge* edge in edgesToDelete) {
+            if ([edge.origin.id isEqualToString:origin.id] || [edge.target.id isEqualToString:origin.id]) {
+                DrawableEdge  *edgeToRemove=edge;
+                [edgeToRemove.edgeView removeFromSuperview];
+            }
+        }
+        [graph removeVertex:origin];
+        [self undisplayVertexMenu];
+        origin=nil;
+
+    } else{
+        touchedVertex = [self hasCollisioned:location];
+        //if we touched a Vertex
+        if(touchedVertex!=nil){
+            if(origin!=nil){
+                //we add a edge if origin=-destination
+                if([origin.id isEqual:touchedVertex.id]){
+                    origin=nil;
+                    [self undisplayVertexMenu];
+                }
+                else{
+                    destination=touchedVertex;
+                    [self undisplayVertexMenu];
+                    [self addEdge];
+                }
             }
             else{
-                destination=touchedVertex;
-                [self addEdge];
+                origin=touchedVertex;
+                [self displayVertexMenu];
             }
+            [self changeColor];
+            dragging = YES;
+            oldX=location.x;
+            oldY=location.y;
         } else {
-            origin = touchedVertex;
+            [self addVertex:location.x y:location.y];
+            origin = nil;
+            destination = nil;
+            [self changeColor];
+            [self undisplayVertexMenu];
         }
-        else{
-            origin=touchedVertex;
-            [self displayVertexMenu];
-        }
-              [self changeColor];
-        dragging = YES;
-    } else {
-        [self addVertex:location.x y:location.y];
-        origin = nil;
-        destination = nil;
-        [self changeColor];
-        [self undisplayVertexMenu];
-        
-        
     }
     
 }
@@ -81,32 +99,35 @@ BOOL dragging;
     touchedVertex = nil;
 }
 
+
+//to be redonne, THIS IS A SHITTY METHOD
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch *touch = [[event allTouches] anyObject];
     CGPoint touchLocation = [touch locationInView:touch.view];
     
     //modify the coordinates of the vertex and the edges while your finger is moving
     if (dragging && touchedVertex!=nil && touchLocation.x>0) {
-        /*CGRect frame = window.frame;
+       /* CGRect frame = self.view.frame;
         frame.origin.x = window.frame.origin.x + touchLocation.x - oldX;
         frame.origin.y =  window.frame.origin.y + touchLocation.y - oldY;
         window.frame = frame;*/
-            [touchedVertex setPosition: (int)touchLocation.x-15 y:(int)touchLocation.y-15];
+            [touchedVertex setPosition: (int)self.view.frame.origin.x+touchLocation.x-oldX y:(int)self.view.frame.origin.y+touchLocation.y-oldY];
             NSLog(@"vertex location x : %f , y : %f", touchLocation.x, touchLocation.y);
             [self setNeedsDisplay];
     }
 }
 
--(Vertex*) hasCollisioned:(CGPoint) location
+//this is a good one
+-(DrawableVertex*) hasCollisioned:(CGPoint) location
 {
-    Vertex* realVertex = nil;
+    DrawableVertex* realVertex = nil;
 
     for (NSString* id in graph.vertices) {
         DrawableVertex* vertex = [graph.vertices objectForKey:id];
 
         if (CGRectContainsPoint(vertex.vertexView.frame,location)) {
             vertexCountLabel.text = [NSString stringWithFormat: @"You touch my trala"];
-            realVertex = [graph.vertices objectForKey:id];
+            realVertex = vertex;
         }
     }
     
@@ -115,16 +136,16 @@ BOOL dragging;
 -(void)displayVertexMenu
 {
     CGRect frame = vertexMenu.frame;
-    frame.origin.x = origin.coord.x;
-    frame.origin.y = origin.coord.y;
+    frame.origin.x = origin.coord.x+15;
+    frame.origin.y = origin.coord.y+15;
     vertexMenu.frame= frame;
-    NSLog(@"frame x : %f", vertexMenu.frame.origin.x);
     vertexMenu.hidden=false;
     [self setNeedsDisplay];
 }
 -(void)undisplayVertexMenu{
     vertexMenu.hidden=true;
 }
+
 //must be called each time you touche the screen
 -(void)changeColor
 {
@@ -147,33 +168,26 @@ BOOL dragging;
         [self setNeedsDisplay];
     }
 }
-
+//need to be refactor
 -(void) addEdge
 {
     DrawableEdge* edge = [[DrawableEdge alloc] initWithCoord:self.view.frame.size.width y:self.view.frame.size.height];
     [graph addEdge:edge];
-
+    [edge.edgeView setPosition: origin.coord destination:destination.coord];
     [self.view addSubview:edge.edgeView];
-
+    [edge.edgeView setNeedsDisplay];
     vertexCountLabel.text = [NSString stringWithFormat: @"You add a fucking edge"];
-    origin = nil;
-    destination = nil;
-}
-- (IBAction)deleteVertexButton:(id)sender {
-        [origin delete:origin.id];
+    origin=nil;
+    destination=nil;
 }
 
 - (void) addVertex:(int) x y:(int) y
 {
     DrawableVertex* vertex = [[DrawableVertex alloc] initWithCoord:x y:y];
     [graph addVertex:vertex];
-
     [self.view addSubview:vertex.vertexView];
-    // and update the vertex count text
     [self setNeedsDisplay];
-    NSLog(@"%f", vertex.vertexView.center.y);
     vertexCountLabel.text = [NSString stringWithFormat: @" %i ...", [graph.vertices count]];
-    NSLog(@"Nb of subView %d", self.view.subviews.count);
 }
 
 - (void) viewDidLoad
