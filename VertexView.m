@@ -10,7 +10,7 @@
 
 @implementation VertexView
 
-- (id)initWithFrame:(CGRect)frame
+- (id) initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
@@ -23,7 +23,6 @@
     }
 
     return self;
-
 }
 -(void) drawLabel
 {
@@ -42,7 +41,7 @@
     [self addSubview:_uilabel];
 }
 
--(void)setPostion:(int)x y:(int)y;
+- (void) setPostion:(int)x y:(int) y;
 {
     self.center=CGPointMake(x,y);
 
@@ -65,6 +64,5 @@
     [self drawLabel];
 
 }
-
 
 @end

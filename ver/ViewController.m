@@ -85,23 +85,22 @@ float oldX, oldY;
     touchedVertex = nil;
 }
 
-
 //to be redonne, THIS IS A SHITTY METHOD
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch *touch = [[event allTouches] anyObject];
     CGPoint touchLocation = [touch locationInView:self.view];
-    
-    //modify the coordinates of the vertex and the edges while your finger is moving
+
+    // modify the coordinates of the vertex and the edges while your finger is moving
     if (dragging && touchedVertex!=nil) {
-            [self undisplayVertexMenu];
-            [touchedVertex setPosition:touchLocation.x y:touchLocation.y];
-            NSLog(@"vertex location x : %d , y : %d", touchedVertex.coord.x, touchedVertex.coord.y);
-            [self setNeedsDisplay];
+        [self undisplayVertexMenu];
+        [touchedVertex setPosition:touchLocation.x y:touchLocation.y];
+        NSLog(@"vertex location x : %d , y : %d", touchedVertex.coord.x, touchedVertex.coord.y);
+        [self setNeedsDisplay];
     }
 }
 
 //this is a good one
--(DrawableVertex*) vertexAtLocation:(CGPoint) location
+- (DrawableVertex*) vertexAtLocation:(CGPoint) location
 {
     DrawableVertex* realVertex = nil;
     DrawableVertex* vertex ;
@@ -114,11 +113,11 @@ float oldX, oldY;
             realVertex = vertex;
         }
     }
-
     
     return realVertex;
 }
--(DrawableEdge*) edgeAtLocation:(CGPoint) location{
+
+- (DrawableEdge*) edgeAtLocation:(CGPoint) location{
     DrawableEdge* realEdge=nil;
     NSArray *edgesToDelete = [[NSArray alloc] initWithArray:graph.edges];
     
@@ -133,7 +132,8 @@ float oldX, oldY;
 
     return realEdge;
 }
--(void)displayVertexMenu
+
+- (void) displayVertexMenu
 {
     CGRect frame = vertexMenu.frame;
     frame.origin.x = origin.coord.x+15;
@@ -144,14 +144,14 @@ float oldX, oldY;
     [self setNeedsDisplay];
 }
 
--(void)undisplayVertexMenu
+- (void) undisplayVertexMenu
 {
     vertexMenu.hidden = true;
     vertexMenu.enabled = false;
 }
 
 //must be called each time you touche the screen
--(void)changeColor
+- (void) changeColor
 {
     UIColor *color;
     DrawableVertex* vertex;
@@ -172,6 +172,7 @@ float oldX, oldY;
         [self setNeedsDisplay];
     }
 }
+
 //need to be refactor
 -(void) addEdge
 {
@@ -196,6 +197,7 @@ float oldX, oldY;
     [self setNeedsDisplay];
     vertexCountLabel.text = [NSString stringWithFormat: @" %i ...", [graph.vertices count]];
 }
+
 - (void) deleteVertex
 {
     //NEED TO BE FUCKING A REFACTO, but i'm tired...
@@ -203,7 +205,6 @@ float oldX, oldY;
     [removedVertex.vertexView removeFromSuperview];
     NSLog(@"i delete a vertex");
     NSArray *edgesToDelete = [[NSArray alloc] initWithArray:graph.edges];
-    
     
     for (Edge* edge in edgesToDelete) {
         if ([edge.origin.id isEqualToString:origin.id] || [edge.target.id isEqualToString:origin.id]) {
@@ -216,6 +217,7 @@ float oldX, oldY;
     [self undisplayVertexMenu];
     origin = nil;
 }
+
 - (void) viewDidLoad
 {
     [super viewDidLoad];
