@@ -10,23 +10,19 @@
 
 @implementation VertexView
 
-- (id)initWithFrame:(CGRect)frame
+- (id) initWithFrame:(CGRect)frame
 {
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-        UIColor *color =[ UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.0];
-        self.backgroundColor=color;
-
+    if (self = [super initWithFrame:frame]) {
+        UIColor *color = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.0];
+        self.backgroundColor = color;
     }
 
     return self;
-
 }
 
--(void)setPostion:(int)x y:(int)y;
+- (void) setPostion:(int)x y:(int) y;
 {
-    self.center=CGPointMake(x,y);
+    self.center = CGPointMake(x, y);
 }
 
 // Only override drawRect: if you perform custom drawing.
@@ -42,8 +38,6 @@
     
     CGContextSetStrokeColorWithColor(context, [UIColor redColor].CGColor);
     CGContextStrokeEllipseInRect(context, CGRectMake(0,0,self.frame.size.width,self.frame.size.height));
-    
 }
-
 
 @end
