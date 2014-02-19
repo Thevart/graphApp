@@ -201,7 +201,7 @@ return realEdge;
     
     for (Edge* edge in edgesToDelete) {
         if ([edge.origin.id isEqualToString:origin.id] || [edge.target.id isEqualToString:origin.id]) {
-            DrawableEdge  *edgeToRemove=(DrawableVertex*)edge;
+            DrawableEdge  *edgeToRemove=(DrawableEdge	*)edge;
             [edgeToRemove.edgeView removeFromSuperview];
         }
     }
