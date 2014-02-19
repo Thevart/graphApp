@@ -177,6 +177,7 @@ float oldX, oldY;
     [graph addEdge:edge];
     [edge setPosition: self.view.frame.size.width y:self.view.frame.size.height];
     [self.view addSubview:edge.edgeView];
+    [edge.edgeView setNeedsDisplay];
     vertexCountLabel.text = [NSString stringWithFormat: @"You add a fucking edge"];
     origin=nil;
     destination=nil;
