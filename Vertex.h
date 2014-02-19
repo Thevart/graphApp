@@ -18,6 +18,8 @@
 @property Coord* coord;
 @property NSMutableArray* neighbours;
 
+@property id userData;
+
 - (id) initWithId:(NSString *) id;
 - (void) setPosition: (int)x y:(int) y;
 - (BOOL) hasPosition;
