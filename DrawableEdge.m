@@ -20,6 +20,7 @@
 - (id) init
 {
     if (self = [super init]) {
+        NSLog(@"lala");
         self.edgeView = [[EdgeView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
     }
 
@@ -29,9 +30,10 @@
 -(id) initWithVertices:(Vertex *) originVertex destination:(Vertex *) destinationVertex
 {
     if (self = [super initWithVertices:originVertex destination:destinationVertex]) {
+        
+        NSLog(@"llolo");
         [self.edgeView setPosition: self.origin.coord destination:self.target.coord];
-        [self.edgeView setNeedsDisplay];
-
+        
         return self;
     }
 
@@ -51,6 +53,8 @@
 - (void) setPosition: (int)x y:(int) y
 {
     [self.edgeView setFrame:CGRectMake(0, 0, x, y)];
+    
+    NSLog(@"l alalal");
     [self.edgeView setNeedsDisplay];
 }
 
