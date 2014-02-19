@@ -43,8 +43,9 @@ float oldX, oldY;
     if(CGRectContainsPoint(vertexMenu.frame,location)){
         [self deleteVertex];
     } else{
-        touchedVertex = [self vertexAtLocation:location];
         touchedEdge = [self edgeAtLocation:location];
+        touchedVertex = [self vertexAtLocation:location];
+        
         //if we touched a Vertex
         if(touchedVertex!=nil){
             if(origin!=nil){
@@ -122,8 +123,8 @@ float oldX, oldY;
     NSArray *edgesToDelete = [[NSArray alloc] initWithArray:graph.edges];
     
     for (DrawableEdge* edge in edgesToDelete) {
-
-        if(CGRectContainsPoint(edge.edgeView.frame,location)){
+        
+        if([edge.edgeView hitTest:location withEvent:nil]){
             vertexCountLabel.text = [NSString stringWithFormat: @"You touch my Edgetrala"];
             NSLog(@"u touched a edge");
             realEdge=edge;
@@ -206,7 +207,7 @@ float oldX, oldY;
     
     for (Edge* edge in edgesToDelete) {
         if ([edge.origin.id isEqualToString:origin.id] || [edge.target.id isEqualToString:origin.id]) {
-            DrawableEdge  *edgeToRemove=(DrawableEdge	*)edge;
+            DrawableEdge *edgeToRemove = (DrawableEdge *) edge;
             [edgeToRemove.edgeView removeFromSuperview];
         }
     }

@@ -11,5 +11,7 @@
 @interface EdgeView : UIView
 @property Coord* origin;
 @property Coord* destination;
+@property CGContextRef context;
 - (void) setPosition: (Coord*)origin destination:(Coord*) desti;
+- (bool) containPoints: (CGPoint)location;
 @end
