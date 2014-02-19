@@ -9,5 +9,5 @@
 
 @protocol GraphEntityFactoryProtocol<NSObject>
 - (Vertex*) createVertex:(NSString *) id;
-- (Edge*) createEdge:(Vertex *)originVertex destination:(Vertex *)destinationVertex;
+- (Edge*) createEdge:(Vertex *) origin target:target;
 @end

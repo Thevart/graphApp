@@ -22,6 +22,6 @@
 - (Vertex*) getVertex: (NSString *) id;
 - (void) removeVertex : (Vertex*) vertex;
 
-- (void) addEdge : (Edge*) edge;
+- (void) addEdge: (Edge*) edge;
 - (void) removeEdge : (Edge*) edge;
 @end

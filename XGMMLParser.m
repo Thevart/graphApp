@@ -86,7 +86,7 @@
 {
     Vertex *origin = [self getVertexOrCreate:[attributes objectForKey:@"source"]];
     Vertex *target = [self getVertexOrCreate:[attributes objectForKey:@"target"]];
-    Edge* edge = [self.entityFactory createEdge:origin destination:target];
+    Edge* edge = [self.entityFactory createEdge:origin target:target];
 
     [edge setLabel:[attributes objectForKey:@"label"]];
     [self.graph addEdge:edge];

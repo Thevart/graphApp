@@ -16,6 +16,5 @@
 @property Vertex* target;
 @property int weight;
 
-- (id)initWithLabel:(NSString *) label;
-- (id)initWithVertices:(Vertex *)originVertex destination:(Vertex *)destinationVertex;
+- (id)initWithVertices:(Vertex *) origin target:(Vertex *) target;
 @end

@@ -80,7 +80,7 @@
 {
     Vertex *origin = [self getVertexOrCreate:[attributes objectForKey:@"source"]];
     Vertex *target = [self getVertexOrCreate:[attributes objectForKey:@"target"]];
-    Edge* edge = [[Edge alloc] initWithVertices:origin destination:target];
+    Edge* edge = [[Edge alloc] initWithVertices:origin target:target];
 
     [edge setLabel:[attributes objectForKey:@"id"]];
     [self.graph addEdge:edge];

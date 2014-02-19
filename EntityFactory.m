@@ -7,24 +7,16 @@
 //
 
 #import "EntityFactory.h"
-#import "Vertex.h"
-#import "Edge.h"
-
 
 @implementation EntityFactory
-
-- (id) init
-{
-    return [super init];
-}
 
 - (Vertex*) createVertex:(NSString *) id
 {
     return [[Vertex alloc] initWithId:id];
 }
 
-- (Edge*) createEdge:(Vertex *)originVertex destination:(Vertex *)destinationVertex
+- (Edge*) createEdge:(Vertex *) origin target:target
 {
-    return [[Edge alloc] initWithVertices:originVertex destination:destinationVertex];
+    return [[Edge alloc] initWithVertices:origin target:target];
 }
 @end

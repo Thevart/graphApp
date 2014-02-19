@@ -103,7 +103,7 @@ NSString* currentNodeAttribute;
 {
     Vertex *origin = [self getVertexOrCreate:[attributes objectForKey:@"source"]];
     Vertex *target = [self getVertexOrCreate:[attributes objectForKey:@"target"]];
-    Edge* edge = [self.entityFactory createEdge:origin destination:target];
+    Edge* edge = [self.entityFactory createEdge:origin target:target];
 
     [edge setLabel:[attributes objectForKey:@"id"]];
     [self.graph addEdge:edge];

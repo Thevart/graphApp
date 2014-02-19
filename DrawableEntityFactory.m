@@ -23,8 +23,8 @@
     return [[DrawableVertex alloc] initWithId:id];
 }
 
-- (Edge*) createEdge:(Vertex *)originVertex destination:(Vertex *)destinationVertex
+- (Edge*) createEdge:(Vertex *) origin target:(Vertex *)target
 {
-    return [[DrawableEdge alloc] initWithVertices:originVertex destination:destinationVertex];
+    return [[DrawableEdge alloc] initWithVertices:origin target:target];
 }
 @end

@@ -6,14 +6,13 @@
 //  Copyright (c) 2014 Arthur THEVENET. All rights reserved.
 //
 
-#import "Vertex.h"
 
 #import "Coord.h"
+#import "Vertex.h"
 
 static int nextVertexId = 1;
 
 @implementation Vertex
-
 
 - (id) init
 {
@@ -21,6 +20,7 @@ static int nextVertexId = 1;
     
     if (self) {
         self.id = [NSString stringWithFormat:@"%d", nextVertexId];
+        self.neighbours = [[NSMutableArray alloc] init];
         self.label = [NSString stringWithFormat:@"%d", nextVertexId];
         self.coord = [[Coord alloc] init];
 
@@ -30,7 +30,7 @@ static int nextVertexId = 1;
     return self;
 }
 
-- (id)initWithId:(NSString *) id
+- (id) initWithId:(NSString *) id
 {
     if (self = [self init]) {
         self.id = id;
@@ -53,6 +53,11 @@ static int nextVertexId = 1;
 - (BOOL) hasPosition
 {
     return self.coord.x != 0 && self.coord.y != 0;
+}
+
+- (void) addNeighbour:(Edge*) neighbour
+{
+    [self.neighbours addObject:neighbour];
 }
 
 @end
