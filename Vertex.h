@@ -9,13 +9,18 @@
 #import <Foundation/Foundation.h>
 #import "Coord.h"
 
+@class Edge;
+
 @interface Vertex : NSObject
 
 @property NSString* id;
 @property NSString* label;
 @property Coord* coord;
+@property NSMutableArray* neighbours;
 
-- (id)initWithId:(NSString *) id;
+- (id) initWithId:(NSString *) id;
 - (void) setPosition: (int)x y:(int) y;
 - (BOOL) hasPosition;
+
+- (void) addNeighbour:(Edge*) neighbour;
 @end

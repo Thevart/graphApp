@@ -10,21 +10,24 @@
 
 @implementation Edge
 
-- (id) initWithLabel:(NSString *) label
+- (id) init
 {
-    if (self = [self init]) {
-        self.label = label;
+    if (self = [super init]) {
+        self.label = @"";
+        self.weight = 1;
+
         return self;
     }
     
     return nil;
 }
 
--(id) initWithVertices:(Vertex *) originVertex destination:(Vertex *) destinationVertex
+- (id)initWithVertices:(Vertex *) origin target:(Vertex *) target
 {
     if (self = [self init]) {
-        self.origin = originVertex;
-        self.target = destinationVertex;
+        self.origin = origin;
+        self.target = target;
+
         return self;
     }
     

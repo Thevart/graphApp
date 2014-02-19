@@ -48,18 +48,20 @@
     return [self.vertices objectForKey:id];
 }
 
-- (void) addEdge: (Edge*) edge
+- (void) addEdge:(Edge*) edge
 {
     [self.edges addObject:edge];
+    [edge.origin addNeighbour:edge];
 }
 
 - (void) removeEdge: (Edge*) edge
 {
-    [self.edges removeObject:edge];
+    //[self.edges removeObject:edge];
 }
 
 - (void) removeVertex: (Vertex*) vertex
 {
+    /*
     NSArray *edgesToDelete = [[NSArray alloc] initWithArray:self.edges];
     [self.vertices removeObjectForKey:vertex.id];
 
@@ -68,5 +70,6 @@
             [self.edges removeObject:edge];
         }
     }
+     */
 }
 @end

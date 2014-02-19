@@ -129,8 +129,8 @@ float oldX, oldY;
             realEdge=edge;
         }
     }
-return realEdge;
 
+    return realEdge;
 }
 -(void)displayVertexMenu
 {
@@ -142,9 +142,11 @@ return realEdge;
     vertexMenu.hidden=false;
     [self setNeedsDisplay];
 }
--(void)undisplayVertexMenu{
-    vertexMenu.hidden=true;
-    vertexMenu.enabled=false;
+
+-(void)undisplayVertexMenu
+{
+    vertexMenu.hidden = true;
+    vertexMenu.enabled = false;
 }
 
 //must be called each time you touche the screen
@@ -172,14 +174,17 @@ return realEdge;
 //need to be refactor
 -(void) addEdge
 {
-    DrawableEdge* edge = [[DrawableEdge alloc] initWithVertices:origin destination:destination];
-    [graph addEdge:edge];
+    DrawableEdge* edge = [[DrawableEdge alloc] initWithVertices:origin target:destination];
     [edge setPosition: self.view.frame.size.width y:self.view.frame.size.height];
+
+    [graph addEdge:edge];
+
     [self.view addSubview:edge.edgeView];
     [edge.edgeView setNeedsDisplay];
+
     vertexCountLabel.text = [NSString stringWithFormat: @"You add a fucking edge"];
-    origin=nil;
-    destination=nil;
+    origin = nil;
+    destination = nil;
 }
 
 - (void) addVertex:(int) x y:(int) y
@@ -193,7 +198,7 @@ return realEdge;
 - (void) deleteVertex
 {
     //NEED TO BE FUCKING A REFACTO, but i'm tired...
-    DrawableVertex *removedVertex=(DrawableVertex*)[graph getVertex:origin.id];
+    DrawableVertex *removedVertex = (DrawableVertex*) [graph getVertex:origin.id];
     [removedVertex.vertexView removeFromSuperview];
     NSLog(@"i delete a vertex");
     NSArray *edgesToDelete = [[NSArray alloc] initWithArray:graph.edges];
@@ -201,18 +206,19 @@ return realEdge;
     
     for (Edge* edge in edgesToDelete) {
         if ([edge.origin.id isEqualToString:origin.id] || [edge.target.id isEqualToString:origin.id]) {
-            DrawableEdge  *edgeToRemove=(DrawableVertex*)edge;
+            DrawableEdge *edgeToRemove = (DrawableEdge *) edge;
             [edgeToRemove.edgeView removeFromSuperview];
         }
     }
+
     [graph removeVertex:origin];
     [self undisplayVertexMenu];
-    origin=nil;
+    origin = nil;
 }
 - (void) viewDidLoad
 {
     [super viewDidLoad];
-    graph = [[Graph alloc] init];
+
     [self readSampleGraph];
 }
 
@@ -236,7 +242,6 @@ return realEdge;
     // display the loaded vertices
     for (NSString* id in graph.vertices) {
         DrawableVertex* vertex = [graph.vertices objectForKey:id];
-
         [self.view addSubview:vertex.vertexView];
     }
 
