@@ -7,6 +7,7 @@
 #import <UIKit/UIKit.h>
 #import "Graph.h"
 #import "DrawableVertex.h"
+#import "DrawableEdge.h"
 
 @interface ViewController : UIViewController
 {
@@ -14,6 +15,7 @@
     Vertex* origin;
     Vertex* destination;
     DrawableVertex *touchedVertex;
+    DrawableEdge *touchedEdge;
 }
 
 
