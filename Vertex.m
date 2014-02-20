@@ -59,5 +59,8 @@ static int nextVertexId = 1;
 {
     [self.neighbours addObject:neighbour];
 }
-
+- (void) removeNeighbour:(Edge *)neighbour
+{
+    [self.neighbours removeObject:neighbour];
+}
 @end

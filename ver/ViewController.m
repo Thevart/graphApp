@@ -24,6 +24,7 @@
 
 @synthesize vertexCountLabel;
 @synthesize vertexMenu;
+@synthesize edgeMenu;
 BOOL dragging;
 float oldX, oldY;
 - (void)didReceiveMemoryWarning
@@ -34,19 +35,24 @@ float oldX, oldY;
 
 
 #pragma mark - View lifecycle
-//NEED TO BE FUCKING A REFACTO, but i'm tired...
+
 -(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     UITouch *touch = [[event allTouches] anyObject];
     CGPoint location = [touch locationInView:self.view];
     //you touched the deleteVertexButton
-    touchedEdge = [self edgeAtLocation:location];
-    touchedVertex = [self vertexAtLocation:location];
+
     if(CGRectContainsPoint(vertexMenu.frame,location)){
         [self deleteVertex];
     
-    } 
-    else if(touchedVertex!=nil){
+    }
+    else if (CGRectContainsPoint(edgeMenu.frame, location)){
+        [self deleteEdge];
+    }
+    else{
+        touchedEdge = [self edgeAtLocation:location];
+        touchedVertex = [self vertexAtLocation:location];
+        if(touchedVertex!=nil){
         
         //if we touched a Vertex
         if(touchedVertex!=nil){
@@ -71,15 +77,16 @@ float oldX, oldY;
             oldX=location.x;
             oldY=location.y;
         }
-        touchedEdge=nil;
+        //touchedEdge=nil;
         
         [self changeEdgeColor];
     }
     else if(touchedEdge!=nil){
-        touchedEdge.edgeView.color=[[UIColor alloc]initWithRed:1.0 green:0.0 blue:0.0 alpha:1.0];
+        
         [self changeEdgeColor];
+        [self displayEdgeMenu];
         [self setNeedsDisplay];
-        touchedEdge=nil;
+
         
     }else {
         
@@ -92,7 +99,7 @@ float oldX, oldY;
         [self changeEdgeColor];
         [self undisplayVertexMenu];
     }
-
+    }
     
 }
 
@@ -128,7 +135,6 @@ float oldX, oldY;
     if (dragging && touchedVertex!=nil) {
         [self undisplayVertexMenu];
         [touchedVertex setPosition:touchLocation.x y:touchLocation.y];
-        NSLog(@"vertex location x : %d , y : %d", touchedVertex.coord.x, touchedVertex.coord.y);
         [self setNeedsDisplay];
     }
 }
@@ -149,11 +155,11 @@ float oldX, oldY;
     return realVertex;
 }
 
-- (DrawableEdge*) edgeAtLocation:(CGPoint) location{
-    DrawableEdge* realEdge=nil;
+- (Edge*) edgeAtLocation:(CGPoint) location{
+    Edge *realEdge=nil;
     NSArray *edgesToDelete = [[NSArray alloc] initWithArray:graph.edges];
     
-    for (DrawableEdge* edge in edgesToDelete) {
+    for (Edge* edge in edgesToDelete) {
         int xE=edge.origin.coord.x;
         int xB=edge.target.coord.x;
         int yE=edge.origin.coord.y;
@@ -203,13 +209,11 @@ float oldX, oldY;
             s=abs(b*xM-a*yM+w3)/sqrt(a*a+b*b);
         }
         if(s<10){
-            NSLog(@"We got a winner");
             realEdge=edge;
         }
-        NSLog(@"%f", s);	
+
         
     }
-
     return realEdge;
 }
 
@@ -228,6 +232,22 @@ float oldX, oldY;
 {
     vertexMenu.hidden = true;
     vertexMenu.enabled = false;
+}
+- (void) displayEdgeMenu
+{
+    CGRect frame = edgeMenu.frame;
+    frame.origin.x = (touchedEdge.origin.coord.x+touchedEdge.target.coord.x)/2+15;
+    
+    frame.origin.y = (touchedEdge.origin.coord.y+touchedEdge.target.coord.y)/2+15;
+    edgeMenu.frame= frame;
+    edgeMenu.enabled=true;
+    edgeMenu.hidden=false;
+    [self setNeedsDisplay];
+}
+- (void) undisplayEdgeMenu
+{
+    edgeMenu.hidden = true;
+    edgeMenu.enabled = false;
 }
 
 //must be called each time you touche the screen
@@ -257,7 +277,6 @@ float oldX, oldY;
 -(void) addEdge
 {
     DrawableEdge* edge = [[DrawableEdge alloc] initWithVertices:origin target:destination];
-    NSLog(@"Coord destination : %d",destination.coord.x);
     [edge setPosition: self.view.frame.size.width y:self.view.frame.size.height];
 
     [graph addEdge:edge];
@@ -295,10 +314,26 @@ float oldX, oldY;
     }
 
     [graph removeVertex:origin];
-    [self undisplayVertexMenu];
+    [self undisplayEdgeMenu];
     origin = nil;
 }
+-(void) deleteEdge
+{
+    NSLog(@"coord oroigin touchedEdge : %d",  touchedEdge.origin.coord.x);
+        NSArray *edgesToDelete = [[NSArray alloc] initWithArray:graph.edges];
+    for (Edge* edge in edgesToDelete) {
+        if ([edge.origin.id isEqualToString:touchedEdge.origin.id] && [edge.target.id isEqualToString:touchedEdge.target.id]) {
+            DrawableEdge *edgeToRemove = (DrawableEdge *) edge;
+            [edgeToRemove.edgeView removeFromSuperview];
+            [graph removeEdge:touchedEdge];
 
+	        }
+    }
+
+    touchedEdge=nil;
+        [self undisplayVertexMenu];
+
+}
 - (void) viewDidLoad
 {
     [super viewDidLoad];

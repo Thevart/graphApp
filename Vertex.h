@@ -25,4 +25,5 @@
 - (BOOL) hasPosition;
 
 - (void) addNeighbour:(Edge*) neighbour;
+- (void) removeNeighbour:(Edge *)neighbour;
 @end

@@ -39,14 +39,21 @@
     
     CGContextSetFillColorWithColor(_context, _color.CGColor);
     CGContextSetStrokeColorWithColor(_context, _color.CGColor);
-
     CGContextMoveToPoint(_context, self.origin.x, self.origin.y);
     CGContextAddLineToPoint(_context, self.destination.x, self.destination.y);
-    
     CGContextStrokePath(_context);
+    
+    //Code censé dessiner une flèche
+    /*CGContextSetFillColorWithColor(_context, [[UIColor redColor] CGColor]);
+    CGContextMoveToPoint(_context, self.destination.x, self.destination.y);
+    CGContextAddLineToPoint(_context, self.destination.x+15, self.destination.y+15);
+    CGContextAddLineToPoint(_context,self.destination.x+30, self.destination.y+50);
+    CGContextFillPath(_context);*/
+    
     CGColorSpaceRelease(colorspace);
     CGContextDrawPath(_context, kCGPathStroke);
-    CGContextStrokePath(_context);
+    
+
 }
 
 

@@ -15,9 +15,10 @@
     Vertex* origin;
     Vertex* destination;
     DrawableVertex *touchedVertex;
-    DrawableEdge *touchedEdge;
+    Edge *touchedEdge;
 }
 
+@property (weak, nonatomic) IBOutlet UIButton *edgeMenu;
 
 @property (weak, nonatomic) IBOutlet UIButton *vertexMenu;
 @property (weak, nonatomic) IBOutlet UILabel *vertexCountLabel;

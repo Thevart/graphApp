@@ -56,7 +56,9 @@
 
 - (void) removeEdge: (Edge*) edge
 {
-    //[self.edges removeObject:edge];
+    [edge.origin removeNeighbour:edge];
+    [edge.target removeNeighbour:edge];
+    [self.edges removeObject:edge];
 }
 
 - (void) removeVertex: (Vertex*) vertex
