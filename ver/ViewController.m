@@ -41,15 +41,12 @@ float oldX, oldY;
     CGPoint location = [touch locationInView:self.view];
     //you touched the deleteVertexButton
     touchedEdge = [self edgeAtLocation:location];
+    touchedVertex = [self vertexAtLocation:location];
     if(CGRectContainsPoint(vertexMenu.frame,location)){
         [self deleteVertex];
-    } else if(touchedEdge!=nil){
-        touchedEdge.edgeView.color=[[UIColor alloc]initWithRed:1.0 green:0.0 blue:0.0 alpha:1.0];
-        [self setNeedsDisplay];
-        touchedEdge=nil;
-    }
-    else{
-        touchedVertex = [self vertexAtLocation:location];
+    
+    } 
+    else if(touchedVertex!=nil){
         
         //if we touched a Vertex
         if(touchedVertex!=nil){
@@ -73,14 +70,29 @@ float oldX, oldY;
             dragging = YES;
             oldX=location.x;
             oldY=location.y;
-        } else {
-            [self addVertex:location.x y:location.y];
-            origin = nil;
-            destination = nil;
-            [self changeColor];
-            [self undisplayVertexMenu];
         }
+        touchedEdge=nil;
+        
+        [self changeEdgeColor];
     }
+    else if(touchedEdge!=nil){
+        touchedEdge.edgeView.color=[[UIColor alloc]initWithRed:1.0 green:0.0 blue:0.0 alpha:1.0];
+        [self changeEdgeColor];
+        [self setNeedsDisplay];
+        touchedEdge=nil;
+        
+    }else {
+        
+        touchedEdge=nil;
+        [self addVertex:location.x y:location.y];
+        origin = nil;
+        destination = nil;
+        [self changeColor];
+        
+        [self changeEdgeColor];
+        [self undisplayVertexMenu];
+    }
+
     
 }
 
@@ -89,8 +101,25 @@ float oldX, oldY;
     dragging = NO;
     touchedVertex = nil;
 }
+-(void) changeEdgeColor
+{
+    UIColor* color;
 
-//to be redonne, THIS IS A SHITTY METHOD
+    NSArray *edges = [[NSArray alloc] initWithArray:graph.edges];
+    for (DrawableEdge* edge in edges) {
+        
+        if ([edge.origin.id isEqualToString:touchedEdge.origin.id] && [edge.target.id isEqualToString:touchedEdge.target.id]) {
+            color = [UIColor colorWithRed:255.0/255.0 green: 0.0/255.0 blue: 0.0/255.0 alpha: 1.0];
+        }else {
+            color = [UIColor colorWithRed:0.0/255.0 green: 0.0/255.0 blue: 255.0/255.0 alpha: 1.0];
+        }
+        
+        edge.edgeView.color = color;
+        
+        [self setNeedsDisplay];
+    }
+}
+
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch *touch = [[event allTouches] anyObject];
     CGPoint touchLocation = [touch locationInView:self.view];
@@ -104,15 +133,13 @@ float oldX, oldY;
     }
 }
 
-//this is a good one
+
 - (DrawableVertex*) vertexAtLocation:(CGPoint) location
 {
     DrawableVertex* realVertex = nil;
     DrawableVertex* vertex ;
     for (NSString* id in graph.vertices) {
         vertex=[graph.vertices objectForKey:id];
-
-
         if (CGRectContainsPoint(vertex.vertexView.frame,location)) {
             vertexCountLabel.text = [NSString stringWithFormat: @"You touch my VertexTrala"];
             realVertex = vertex;
@@ -127,14 +154,27 @@ float oldX, oldY;
     NSArray *edgesToDelete = [[NSArray alloc] initWithArray:graph.edges];
     
     for (DrawableEdge* edge in edgesToDelete) {
-        
-        
-            int xE=edge.origin.coord.x;
-            int xB=edge.target.coord.x;
-            int yE=edge.origin.coord.y;
-            int yB=edge.target.coord.y;
-            int xM=location.x;
-            int yM=location.y;
+        int xE=edge.origin.coord.x;
+        int xB=edge.target.coord.x;
+        int yE=edge.origin.coord.y;
+        int yB=edge.target.coord.y;
+        int xM=location.x;
+        int yM=location.y;
+        if(edge.origin.coord.x<edge.target.coord.x){
+            xE=edge.origin.coord.x;
+            xB=edge.target.coord.x;
+            yE=edge.origin.coord.y;
+            yB=edge.target.coord.y;
+            xM=location.x;
+            yM=location.y;
+        }else{
+            xE=edge.target.coord.x;
+            xB=edge.origin.coord.x;
+            yE=edge.target.coord.y;
+            yB=edge.origin.coord.y;
+            xM=location.x;
+            yM=location.y;
+        }
         float s;
         // coordonnées a,b du vecteur EB
         int a=xE-xB;
@@ -166,7 +206,7 @@ float oldX, oldY;
             NSLog(@"We got a winner");
             realEdge=edge;
         }
-        NSLog(@"%f", s);
+        NSLog(@"%f", s);	
         
     }
 
@@ -293,6 +333,7 @@ float oldX, oldY;
     for (DrawableEdge* edge in graph.edges) {
         [edge setPosition:self.view.frame.size.width y:self.view.frame.size.height];
         [self.view addSubview:edge.edgeView];
+        NSLog(@"coord x origin : %d", edge.origin.coord.x);
     }
 
     //[graph removeVertex:[graph getVertex:@"1"]];
