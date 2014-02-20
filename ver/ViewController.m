@@ -40,10 +40,15 @@ float oldX, oldY;
     UITouch *touch = [[event allTouches] anyObject];
     CGPoint location = [touch locationInView:self.view];
     //you touched the deleteVertexButton
+    touchedEdge = [self edgeAtLocation:location];
     if(CGRectContainsPoint(vertexMenu.frame,location)){
         [self deleteVertex];
-    } else{
-        touchedEdge = [self edgeAtLocation:location];
+    } else if(touchedEdge!=nil){
+        touchedEdge.edgeView.color=[[UIColor alloc]initWithRed:1.0 green:0.0 blue:0.0 alpha:1.0];
+        [self setNeedsDisplay];
+        touchedEdge=nil;
+    }
+    else{
         touchedVertex = [self vertexAtLocation:location];
         
         //if we touched a Vertex
@@ -123,11 +128,46 @@ float oldX, oldY;
     
     for (DrawableEdge* edge in edgesToDelete) {
         
-        if([edge.edgeView hitTest:location withEvent:nil]){
-            vertexCountLabel.text = [NSString stringWithFormat: @"You touch my Edgetrala"];
-            NSLog(@"u touched a edge");
+        
+            int xE=edge.origin.coord.x;
+            int xB=edge.target.coord.x;
+            int yE=edge.origin.coord.y;
+            int yB=edge.target.coord.y;
+            int xM=location.x;
+            int yM=location.y;
+        float s;
+        // coordonnées a,b du vecteur EB
+        int a=xE-xB;
+        int b=yE-yB;
+// équation de la perpendiculaire D1 en B à (EB): ax+by+w1
+        int w1=-a*xB-b*yB;
+// équation de la perpendiculaire D2 en E à (EB): ax+by+w2
+        int w2=-a*xE-b*yE;
+// équation de la droite (EB) : bx-ay+w3
+        int w3= a*yB-b*xB;
+//puissance de M par rapport à D1
+        int PMD1=a*xM+b*yM+w1;
+// puissance de M par rapport à D2
+        int PMD2=a*xM+b*yM+w2;
+        //puissance de B par rapport à D2
+        int PBD2=a*xB+b*yB+w2;
+//puissance de E par rapport à D1
+        int PED1=a*xE+b*yE+w1;
+// A ce stade encore ni racine ni quotient
+        if (PMD1*PED1 <0){//M et E de part et d'autre de D1
+            s= sqrt((xM-xB)*(xM-xB)+(yM-yB)*(yM-yB));
+        }
+        else if (PMD2*PBD2 <0){ //#M et B de part et d'autre de D2
+            s= sqrt((xM-xE)*(xM-xE)+(yM-yE)*(yM-yE));
+        }else{
+            s=abs(b*xM-a*yM+w3)/sqrt(a*a+b*b);
+        }
+        if(s<10){
+            NSLog(@"We got a winner");
             realEdge=edge;
         }
+        NSLog(@"%f", s);
+        
     }
 
     return realEdge;
@@ -177,6 +217,7 @@ float oldX, oldY;
 -(void) addEdge
 {
     DrawableEdge* edge = [[DrawableEdge alloc] initWithVertices:origin target:destination];
+    NSLog(@"Coord destination : %d",destination.coord.x);
     [edge setPosition: self.view.frame.size.width y:self.view.frame.size.height];
 
     [graph addEdge:edge];
@@ -283,6 +324,7 @@ float oldX, oldY;
     graph = nil;
     origin=nil;
     destination=nil;
+    
 
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;

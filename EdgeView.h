@@ -12,6 +12,7 @@
 @property Coord* origin;
 @property Coord* destination;
 @property CGContextRef context;
+@property UIColor* color;
 - (void) setPosition: (Coord*)origin destination:(Coord*) desti;
 - (bool) containPoints: (CGPoint)location;
 @end

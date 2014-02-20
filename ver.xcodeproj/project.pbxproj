@@ -38,6 +38,7 @@
 		0AC277DB18A42A24004863C8 /* Graph.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC277D618A42A24004863C8 /* Graph.m */; };
 		0AC277DC18A42A24004863C8 /* Vertex.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC277D818A42A24004863C8 /* Vertex.m */; };
 		245FFA3E18AD1C2600796C14 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 245FFA3D18AD1C2600796C14 /* Storyboard.storyboard */; };
+		247BDB1518B56E4C004FDF7B /* DrawableGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 247BDB1418B56E4B004FDF7B /* DrawableGraph.m */; };
 		248570FD18A97190000DAABD /* DrawableEdge.m in Sources */ = {isa = PBXBuildFile; fileRef = 248570FC18A97190000DAABD /* DrawableEdge.m */; };
 		248CB68318ACF8BB00F11E43 /* VertexView.m in Sources */ = {isa = PBXBuildFile; fileRef = 248CB68218ACF8BB00F11E43 /* VertexView.m */; };
 		24F49DE118ABCEAD00E28E8E /* EdgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F49DE018ABCEAD00E28E8E /* EdgeView.m */; };
@@ -104,6 +105,8 @@
 		0AC277D718A42A24004863C8 /* Vertex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vertex.h; sourceTree = "<group>"; };
 		0AC277D818A42A24004863C8 /* Vertex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Vertex.m; sourceTree = "<group>"; };
 		245FFA3D18AD1C2600796C14 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
+		247BDB1318B56E4B004FDF7B /* DrawableGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawableGraph.h; sourceTree = "<group>"; };
+		247BDB1418B56E4B004FDF7B /* DrawableGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawableGraph.m; sourceTree = "<group>"; };
 		248570FB18A97190000DAABD /* DrawableEdge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawableEdge.h; sourceTree = "<group>"; };
 		248570FC18A97190000DAABD /* DrawableEdge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawableEdge.m; sourceTree = "<group>"; };
 		248CB68118ACF8BB00F11E43 /* VertexView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VertexView.h; sourceTree = "<group>"; };
@@ -225,12 +228,14 @@
 		0A7DFEE418A7F7900033D747 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				247BDB1318B56E4B004FDF7B /* DrawableGraph.h */,
+				247BDB1418B56E4B004FDF7B /* DrawableGraph.m */,
 				0A7DFEE518A7F7F60033D747 /* DrawableVertex.h */,
 				0A7DFEE618A7F7F60033D747 /* DrawableVertex.m */,
 				248CB68118ACF8BB00F11E43 /* VertexView.h */,
 				248CB68218ACF8BB00F11E43 /* VertexView.m */,
-				24F49DE018ABCEAD00E28E8E /* EdgeView.m */,
 				24F49DDF18ABCEAD00E28E8E /* EdgeView.h */,
+				24F49DE018ABCEAD00E28E8E /* EdgeView.m */,
 				248570FB18A97190000DAABD /* DrawableEdge.h */,
 				248570FC18A97190000DAABD /* DrawableEdge.m */,
 			);
@@ -412,6 +417,7 @@
 				0A84610318B4EA5200EB3FF0 /* DijkstraData.m in Sources */,
 				0A84610F18B4F96100EB3FF0 /* PriorityQueue.m in Sources */,
 				0A84611218B4FB2600EB3FF0 /* PriorityQueueItem.m in Sources */,
+				247BDB1518B56E4C004FDF7B /* DrawableGraph.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
