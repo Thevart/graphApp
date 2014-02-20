@@ -69,7 +69,7 @@
     }
 
     NSArray* path = [self extractShortestPath:endVertex];
-    NSLog(@"Path from %@ to %@", startVertex.id, endVertex.id);
+    NSLog(@"Path from %@ to %@ (distance = %d)", startVertex.id, endVertex.id, ((DijkstraData *) endVertex.userData).distance);
     for (Vertex* v in path) {
         NSLog(@"%@", v.id);
     }
