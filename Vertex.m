@@ -23,6 +23,7 @@ static int nextVertexId = 1;
         self.neighbours = [[NSMutableArray alloc] init];
         self.label = [NSString stringWithFormat:@"%d", nextVertexId];
         self.coord = [[Coord alloc] init];
+        self.color = -1;
 
         nextVertexId += 1;
     }
@@ -42,6 +43,9 @@ static int nextVertexId = 1;
     return nil;
 }
 
+- (void) setHexColor: (int) color
+{
+}
 
 - (void) setPosition: (int)x y:(int) y
 {

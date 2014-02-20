@@ -18,10 +18,12 @@
 @property Coord* coord;
 @property NSMutableArray* neighbours;
 
+@property int color;
 @property id userData;
 
 - (id) initWithId:(NSString *) id;
 - (void) setPosition: (int)x y:(int) y;
+- (void) setHexColor: (int) color;
 - (BOOL) hasPosition;
 
 - (void) addNeighbour:(Edge*) neighbour;

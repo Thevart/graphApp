@@ -12,14 +12,10 @@
 
 - (id) initWithFrame:(CGRect)frame
 {
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-        UIColor *color =[ UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.0];
+    if (self = [super initWithFrame:frame]) {
+        UIColor *color = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.0];
         self.backgroundColor=color;
         self.uilabel=[[UILabel alloc]initWithFrame:frame];
-
-
     }
 
     return self;
@@ -27,7 +23,6 @@
 -(void) drawLabel
 {
     _uilabel = [[UILabel alloc]initWithFrame:CGRectMake(-30, 0, 30, 15)];
-    
     
     _uilabel.numberOfLines = 1;
     _uilabel.baselineAdjustment = YES;
@@ -37,15 +32,14 @@
     _uilabel.backgroundColor = [UIColor clearColor];
     _uilabel.textColor = [UIColor blackColor];
     _uilabel.textAlignment = NSTextAlignmentLeft;
-    _uilabel.text=self.label;
+    _uilabel.text = self.label;
+
     [self addSubview:_uilabel];
 }
 
 - (void) setPostion:(int)x y:(int) y;
 {
-    self.center=CGPointMake(x,y);
-
-    
+    self.center = CGPointMake(x,y);
 }
 
 // Only override drawRect: if you perform custom drawing.
@@ -61,8 +55,8 @@
     
     CGContextSetStrokeColorWithColor(context, [UIColor redColor].CGColor);
     CGContextStrokeEllipseInRect(context, CGRectMake(0,0,30,30));
-    [self drawLabel];
 
+    [self drawLabel];
 }
 
 @end
