@@ -46,6 +46,7 @@ float oldX, oldY;
 
     if(CGRectContainsPoint(vertexMenu.frame,location)){
         [self deleteVertex];
+        [self undisplayEdgeMenu];
     
     }
     else if (CGRectContainsPoint(edgeMenu.frame, location)){
@@ -82,6 +83,7 @@ float oldX, oldY;
         //touchedEdge=nil;
         
         [self changeEdgeColor];
+            [self undisplayEdgeMenu];
     }
     else if(touchedEdge!=nil){
         
@@ -100,6 +102,7 @@ float oldX, oldY;
         
         [self changeEdgeColor];
         [self undisplayVertexMenu];
+        [self undisplayEdgeMenu];
     }
     }
     
@@ -333,7 +336,7 @@ float oldX, oldY;
     }
 
     touchedEdge=nil;
-        [self undisplayVertexMenu];
+        [self undisplayEdgeMenu];
 
 }
 - (void) viewDidLoad
