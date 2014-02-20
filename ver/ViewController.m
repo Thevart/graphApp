@@ -18,6 +18,7 @@
 #import "RandomLayoutCreator.h"
 #import "AlgorithmProtocol.h"
 #import "DijkstraAlgorithm.h"
+#import "GreedyColoringAlgorithm.h"
 #import "DotDumper.h"
 
 @implementation ViewController
@@ -26,6 +27,7 @@
 @synthesize vertexMenu;
 BOOL dragging;
 float oldX, oldY;
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -351,7 +353,8 @@ float oldX, oldY;
 
 - (void) threadedComputation: (id) args	
 {
-    id<AlgorithmProtocol> algo = [[DijkstraAlgorithm alloc] init];
+    //id<AlgorithmProtocol> algo = [[DijkstraAlgorithm alloc] init];
+    id<AlgorithmProtocol> algo = [[GreedyColoringAlgorithm alloc] init];
     [algo execute:graph];
 
     NSLog(@"End");
