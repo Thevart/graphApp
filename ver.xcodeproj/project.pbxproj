@@ -265,11 +265,8 @@
 		0A7FE23C18B2C00F004BA9DD /* algorithm */ = {
 			isa = PBXGroup;
 			children = (
+				0A83298418B62CE2008F1077 /* shortest_path */,
 				0A7FE23D18B2C024004BA9DD /* AlgorithmProtocol.h */,
-				0A7FE29818B2C09B004BA9DD /* DijkstraAlgorithm.h */,
-				0A7FE29918B2C09B004BA9DD /* DijkstraAlgorithm.m */,
-				0A84610118B4EA5200EB3FF0 /* DijkstraData.h */,
-				0A84610218B4EA5200EB3FF0 /* DijkstraData.m */,
 			);
 			name = algorithm;
 			sourceTree = "<group>";
@@ -284,6 +281,17 @@
 				0A816ECC18A833D700BDF675 /* EntityFactory.m */,
 			);
 			name = factory;
+			sourceTree = "<group>";
+		};
+		0A83298418B62CE2008F1077 /* shortest_path */ = {
+			isa = PBXGroup;
+			children = (
+				0A7FE29818B2C09B004BA9DD /* DijkstraAlgorithm.h */,
+				0A7FE29918B2C09B004BA9DD /* DijkstraAlgorithm.m */,
+				0A84610118B4EA5200EB3FF0 /* DijkstraData.h */,
+				0A84610218B4EA5200EB3FF0 /* DijkstraData.m */,
+			);
+			name = shortest_path;
 			sourceTree = "<group>";
 		};
 		0A84610618B4EE0200EB3FF0 /* data_structures */ = {

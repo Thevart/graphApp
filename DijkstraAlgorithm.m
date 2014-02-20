@@ -16,7 +16,10 @@
 
 - (void) execute: (Graph *) graph
 {
+    // input parameters
     Vertex* startVertex = [graph getVertex:@"0"];
+    Vertex* endVertex = [graph getVertex:@"1"];
+
     Vertex* currentVertex;
     PriorityQueue *queue = [[PriorityQueue alloc] init];
 
@@ -41,18 +44,17 @@
         [queue addObject:data.pqItem];
     }
 
+    // while there is a node to explore
     while ([queue count] > 1) {
         currentVertex = ((PriorityQueueItem *) [queue pop]).obj;
-        NSLog(@"Exploring vertex %@", currentVertex.id);
 
+        // explore its neighbours
         for (Edge* edge in currentVertex.neighbours) {
             DijkstraData* neighbourData = edge.target.userData;
             int newDistance = ((DijkstraData *) currentVertex.userData).distance + edge.weight;
-            NSLog(@"    Exploring neighbour %@, weight = %d", edge.target.id, edge.weight);
-            NSLog(@"    Old distance is %d; neighbour one is %d", newDistance, neighbourData.distance);
 
+            // by using the current neighbour, we have a shorter path
             if (neighbourData.distance > newDistance) {
-                NSLog(@"  keep old distance");
                 // update the distance
                 neighbourData.distance = newDistance;
                 neighbourData.pqItem.value = newDistance;
@@ -66,13 +68,26 @@
         }
     }
 
-    NSLog(@"Distances to %@", startVertex.id);
-    for (NSString* id in graph.vertices) {
-        Vertex* vertex = [graph.vertices objectForKey:id];
-        DijkstraData* data = (DijkstraData *) vertex.userData;
-
-        NSLog(@"    %@ = %d", vertex.id, data.distance);
+    NSArray* path = [self extractShortestPath:endVertex];
+    NSLog(@"Path from %@ to %@ (distance = %d)", startVertex.id, endVertex.id, ((DijkstraData *) endVertex.userData).distance);
+    for (Vertex* v in path) {
+        NSLog(@"%@", v.id);
     }
+}
+
+- (NSArray*) extractShortestPath: (Vertex*) to
+{
+    NSMutableArray* path = [[NSMutableArray alloc] init];
+    Vertex *vertex = to;
+    DijkstraData* data = vertex.userData;
+    while (vertex != nil) {
+        [path insertObject:vertex atIndex:0];
+
+        vertex = data.previous;
+        data = vertex.userData;
+    }
+
+    return path;
 }
 
 @end
