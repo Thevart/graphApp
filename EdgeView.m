@@ -32,7 +32,7 @@
 - (void)drawRect:(CGRect)rect {
     _context = UIGraphicsGetCurrentContext();
     
-    CGContextSetLineWidth(_context, 10.0);
+    CGContextSetLineWidth(_context, 6.0);
     
     CGColorSpaceRef colorspace = CGColorSpaceCreateDeviceRGB();
     

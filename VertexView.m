@@ -50,7 +50,7 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
 
     CGContextSetFillColorWithColor(context, _color.CGColor);
-    CGContextSetAlpha(context, 0.5);
+    CGContextSetAlpha(context, 1);
     CGContextFillEllipseInRect(context, CGRectMake(0,0,30,30));
     
     CGContextSetStrokeColorWithColor(context, [UIColor redColor].CGColor);

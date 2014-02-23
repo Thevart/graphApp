@@ -55,8 +55,6 @@ float oldX, oldY;
     else{
         touchedEdge = [self edgeAtLocation:location];
         touchedVertex = [self vertexAtLocation:location];
-        if(touchedVertex!=nil){
-        
         //if we touched a Vertex
         if(touchedVertex!=nil){
             if(origin!=nil){
@@ -79,31 +77,31 @@ float oldX, oldY;
             dragging = YES;
             oldX=location.x;
             oldY=location.y;
-        }
-        //touchedEdge=nil;
         
-        [self changeEdgeColor];
+            touchedEdge=nil;
+        
+            [self changeEdgeColor];
             [self undisplayEdgeMenu];
-    }
-    else if(touchedEdge!=nil){
+        }
+        else if(touchedVertex==nil && dragging==NO && touchedEdge!=nil){
         
-        [self changeEdgeColor];
-        [self displayEdgeMenu];
-        [self setNeedsDisplay];
+            [self changeEdgeColor];
+            [self displayEdgeMenu];
+            [self setNeedsDisplay];
 
         
-    }else {
+        }else {
+            
+            touchedEdge=nil;
+            [self addVertex:location.x y:location.y];
+            origin = nil;
+            destination = nil;
+            [self changeColor];
         
-        touchedEdge=nil;
-        [self addVertex:location.x y:location.y];
-        origin = nil;
-        destination = nil;
-        [self changeColor];
-        
-        [self changeEdgeColor];
-        [self undisplayVertexMenu];
-        [self undisplayEdgeMenu];
-    }
+            [self changeEdgeColor];
+            [self undisplayVertexMenu];
+            [self undisplayEdgeMenu];
+        }
     }
     
 }
@@ -127,7 +125,7 @@ float oldX, oldY;
         }
         
         edge.edgeView.color = color;
-        
+       		
         [self setNeedsDisplay];
     }
 }
@@ -171,21 +169,17 @@ float oldX, oldY;
         int yB=edge.target.coord.y;
         int xM=location.x;
         int yM=location.y;
-        if(edge.origin.coord.x<edge.target.coord.x){
+        /*if(edge.origin.coord.xedge.target.coord.x){
             xE=edge.origin.coord.x;
             xB=edge.target.coord.x;
             yE=edge.origin.coord.y;
             yB=edge.target.coord.y;
-            xM=location.x;
-            yM=location.y;
         }else{
             xE=edge.target.coord.x;
             xB=edge.origin.coord.x;
             yE=edge.target.coord.y;
             yB=edge.origin.coord.y;
-            xM=location.x;
-            yM=location.y;
-        }
+        }*/
         float s;
         // coordonnées a,b du vecteur EB
         int a=xE-xB;
@@ -273,7 +267,6 @@ float oldX, oldY;
         }
 
         vertex.vertexView.color = color;
-
         [self setNeedsDisplay];
     }
 }
@@ -287,9 +280,10 @@ float oldX, oldY;
     [graph addEdge:edge];
 
     [self.view addSubview:edge.edgeView];
+    [self.view sendSubviewToBack:edge.edgeView];
     [edge.edgeView setNeedsDisplay];
 
-    vertexCountLabel.text = [NSString stringWithFormat: @"You add a fucking edge"];
+    vertexCountLabel.text = [NSString stringWithFormat: @"You add a edge"];
     origin = nil;
     destination = nil;
 }
@@ -299,13 +293,15 @@ float oldX, oldY;
     DrawableVertex* vertex = [[DrawableVertex alloc] initWithCoord:x y:y];
     [graph addVertex:vertex];
     [self.view addSubview:vertex.vertexView];
+    [self.view bringSubviewToFront:vertex.vertexView];
+    
     [self setNeedsDisplay];
     vertexCountLabel.text = [NSString stringWithFormat: @" %i ...", [graph.vertices count]];
 }
 
 - (void) deleteVertex
 {
-    //NEED TO BE FUCKING A REFACTO, but i'm tired...
+
     DrawableVertex *removedVertex = (DrawableVertex*) [graph getVertex:origin.id];
     [removedVertex.vertexView removeFromSuperview];
     NSLog(@"i delete a vertex");
@@ -367,12 +363,14 @@ float oldX, oldY;
     for (NSString* id in graph.vertices) {
         DrawableVertex* vertex = [graph.vertices objectForKey:id];
         [self.view addSubview:vertex.vertexView];
+        [self.view bringSubviewToFront:vertex.vertexView];
     }
 
     // display the loaded edges
     for (DrawableEdge* edge in graph.edges) {
         [edge setPosition:self.view.frame.size.width y:self.view.frame.size.height];
         [self.view addSubview:edge.edgeView];
+         [self.view sendSubviewToBack:edge.edgeView];
         NSLog(@"coord x origin : %d", edge.origin.coord.x);
     }
 
