@@ -162,56 +162,12 @@ float oldX, oldY;
     Edge *realEdge=nil;
     NSArray *edgesToDelete = [[NSArray alloc] initWithArray:graph.edges];
     
-    for (Edge* edge in edgesToDelete) {
-        int xE=edge.origin.coord.x;
-        int xB=edge.target.coord.x;
-        int yE=edge.origin.coord.y;
-        int yB=edge.target.coord.y;
-        int xM=location.x;
-        int yM=location.y;
-        /*if(edge.origin.coord.xedge.target.coord.x){
-            xE=edge.origin.coord.x;
-            xB=edge.target.coord.x;
-            yE=edge.origin.coord.y;
-            yB=edge.target.coord.y;
-        }else{
-            xE=edge.target.coord.x;
-            xB=edge.origin.coord.x;
-            yE=edge.target.coord.y;
-            yB=edge.origin.coord.y;
-        }*/
-        float s;
-        // coordonnées a,b du vecteur EB
-        int a=xE-xB;
-        int b=yE-yB;
-// équation de la perpendiculaire D1 en B à (EB): ax+by+w1
-        int w1=-a*xB-b*yB;
-// équation de la perpendiculaire D2 en E à (EB): ax+by+w2
-        int w2=-a*xE-b*yE;
-// équation de la droite (EB) : bx-ay+w3
-        int w3= a*yB-b*xB;
-//puissance de M par rapport à D1
-        int PMD1=a*xM+b*yM+w1;
-// puissance de M par rapport à D2
-        int PMD2=a*xM+b*yM+w2;
-        //puissance de B par rapport à D2
-        int PBD2=a*xB+b*yB+w2;
-//puissance de E par rapport à D1
-        int PED1=a*xE+b*yE+w1;
-// A ce stade encore ni racine ni quotient
-        if (PMD1*PED1 <0){//M et E de part et d'autre de D1
-            s= sqrt((xM-xB)*(xM-xB)+(yM-yB)*(yM-yB));
-        }
-        else if (PMD2*PBD2 <0){ //#M et B de part et d'autre de D2
-            s= sqrt((xM-xE)*(xM-xE)+(yM-yE)*(yM-yE));
-        }else{
-            s=abs(b*xM-a*yM+w3)/sqrt(a*a+b*b);
-        }
-        if(s<10){
+    for (DrawableEdge* edge in edgesToDelete) {
+
+        if([edge.edgeView containPoint: location]){
             realEdge=edge;
         }
-
-        
+    
     }
     return realEdge;
 }

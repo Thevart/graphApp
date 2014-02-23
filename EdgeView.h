@@ -11,8 +11,10 @@
 @interface EdgeView : UIView
 @property Coord* origin;
 @property Coord* destination;
-@property CGContextRef context;
+@property CGContextRef offscreenContext;
+@property CGPathRef pathref;
+@property float pathWidth;
 @property UIColor* color;
 - (void) setPosition: (Coord*)origin destination:(Coord*) desti;
-- (bool) containPoints: (CGPoint)location;
+- (bool) containPoint: (CGPoint)location;
 @end
