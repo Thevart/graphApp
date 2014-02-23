@@ -47,17 +47,11 @@
     [self.vertexView setNeedsDisplay];
 }
 
-- (void) setHexColor: (int) color
+- (void) setColor: (Color *) color
 {
-    [super setHexColor:color];
+    [super setColor:color];
 
-    unsigned char r, g, b;
-
-    b = color & 0xFF;
-    g = (color >> 8) & 0xFF;
-    r = (color >> 16) & 0xFF;
-
-    self.vertexView.color = [UIColor colorWithRed:(float)r/255.0f green:(float)g/255.0f blue:(float)b/255.0f alpha:1];
+    self.vertexView.color = [UIColor colorWithRed:[color r] green:[color g] blue:[color b] alpha:1];
     [self.vertexView setNeedsDisplay];
 }
 
