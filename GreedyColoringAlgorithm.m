@@ -10,30 +10,26 @@
 
 @implementation GreedyColoringAlgorithm
 
-int k;
-
-- (id) init
-{
-    if (self = [super init]) {
-        k = 0;
-    }
-
-    return self;
-}
+int k, base_seed;
+NSMutableDictionary *colorsMap;
 
 - (void) execute: (Graph *) graph
 {
+    srand(time(NULL));
+    base_seed = rand();
+    k = 0;
+    colorsMap = [[NSMutableDictionary alloc] init];
+
+    // initialize colors
+    for (NSString* id in graph.vertices) {
+        [colorsMap setValue:[NSNumber numberWithInt:-1] forKey:id];
+    }
+
+    // assign colors
     for (NSString* id in graph.vertices) {
         Vertex* vertex = [graph.vertices objectForKey:id];
 
         [self selectColor:vertex];
-    }
-
-    // convert the integers to their hexadecimal equivalent
-    for (NSString* id in graph.vertices) {
-        Vertex* vertex = [graph.vertices objectForKey:id];
-
-        [self convertColorToHexa:vertex];
     }
 }
 
@@ -46,10 +42,12 @@ int k;
         if ([obj1 isKindOfClass:[Vertex class]] && [obj2 isKindOfClass:[Vertex class]]) {
             Vertex* v1 = obj1;
             Vertex* v2 = obj2;
+            int v1Color = [[colorsMap objectForKey:v1.id] intValue];
+            int v2Color = [[colorsMap objectForKey:v2.id] intValue];
 
-            if (v1.color > v2.color) {
+            if (v1Color > v2Color) {
                 return (NSComparisonResult) NSOrderedAscending;
-            } else if (v1.color < v2.color) {
+            } else if (v1Color < v2Color) {
                 return (NSComparisonResult) NSOrderedDescending;
             }
         }
@@ -61,30 +59,32 @@ int k;
     // ie: the first "color gap" in the neighbours will be the selected color
     //     (Kevin's metaheuristic: select the first hole)
     for (Edge* edge in sortedNeighbours) {
-        if (edge.target.color == -1) {
+        Vertex* target = edge.target;
+        int targetColor = [[colorsMap objectForKey:target.id] intValue];
+
+        if (targetColor == -1) {
             continue;
         }
 
-        if (edge.target.color == color) {
+        if (targetColor == color) {
             color += 1;
         } else {
             break;
         }
     }
 
+    // color = 2 means 3 colors
     k = MAX(color + 1, k);
-    vertex.color = color;
+
+    [colorsMap setValue:[NSNumber numberWithInt:color] forKey:vertex.id];
+    [self convertColorToHexa:vertex color:color];
 }
 
-- (void) convertColorToHexa: (Vertex*) vertex
+- (void) convertColorToHexa: (Vertex*) vertex color:(int) color
 {
-    srand(vertex.color + 1);
-    NSString* hexValue = [NSString stringWithFormat:@"%02x%02x%02x", rand() % 256, rand() % 256, rand() % 256];
-    unsigned int outVal;
-    NSScanner* scanner = [NSScanner scannerWithString:hexValue];
-    [scanner scanHexInt:&outVal];
+    srand(base_seed + color + 1);
 
-    [vertex setHexColor: outVal];
+    [vertex setColor: [Color initFromRGB:rand() % 256 g:rand() % 256 b:rand() % 256]];
 }
 
 @end

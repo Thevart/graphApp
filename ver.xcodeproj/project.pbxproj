@@ -26,6 +26,7 @@
 		0A7FE29A18B2C09B004BA9DD /* DijkstraAlgorithm.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7FE29918B2C09B004BA9DD /* DijkstraAlgorithm.m */; };
 		0A816EC918A8278800BDF675 /* DrawableEntityFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A816EC818A8278800BDF675 /* DrawableEntityFactory.m */; };
 		0A816ECD18A833D700BDF675 /* EntityFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A816ECC18A833D700BDF675 /* EntityFactory.m */; };
+		0A823B9C18BA4AEB00B2D3BC /* Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A823B9B18BA4AEB00B2D3BC /* Color.m */; };
 		0A83298818B62E9A008F1077 /* GreedyColoringAlgorithm.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A83298718B62E9A008F1077 /* GreedyColoringAlgorithm.m */; };
 		0A83D0FF18A9141A00767551 /* AbstractSaxParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A83D0FE18A9141A00767551 /* AbstractSaxParser.m */; };
 		0A84610318B4EA5200EB3FF0 /* DijkstraData.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A84610218B4EA5200EB3FF0 /* DijkstraData.m */; };
@@ -82,6 +83,8 @@
 		0A816EC818A8278800BDF675 /* DrawableEntityFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawableEntityFactory.m; sourceTree = "<group>"; };
 		0A816ECB18A833D700BDF675 /* EntityFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntityFactory.h; sourceTree = "<group>"; };
 		0A816ECC18A833D700BDF675 /* EntityFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntityFactory.m; sourceTree = "<group>"; };
+		0A823B9A18BA4AEB00B2D3BC /* Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Color.h; sourceTree = "<group>"; };
+		0A823B9B18BA4AEB00B2D3BC /* Color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Color.m; sourceTree = "<group>"; };
 		0A83298618B62E9A008F1077 /* GreedyColoringAlgorithm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GreedyColoringAlgorithm.h; sourceTree = "<group>"; };
 		0A83298718B62E9A008F1077 /* GreedyColoringAlgorithm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GreedyColoringAlgorithm.m; sourceTree = "<group>"; };
 		0A83D0FD18A9141A00767551 /* AbstractSaxParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractSaxParser.h; sourceTree = "<group>"; };
@@ -224,6 +227,8 @@
 				0AC277D618A42A24004863C8 /* Graph.m */,
 				0AC277D718A42A24004863C8 /* Vertex.h */,
 				0AC277D818A42A24004863C8 /* Vertex.m */,
+				0A823B9A18BA4AEB00B2D3BC /* Color.h */,
+				0A823B9B18BA4AEB00B2D3BC /* Color.m */,
 			);
 			name = domain;
 			sourceTree = "<group>";
@@ -440,6 +445,7 @@
 				0A84611218B4FB2600EB3FF0 /* PriorityQueueItem.m in Sources */,
 				247BDB1518B56E4C004FDF7B /* DrawableGraph.m in Sources */,
 				0A83298818B62E9A008F1077 /* GreedyColoringAlgorithm.m in Sources */,
+				0A823B9C18BA4AEB00B2D3BC /* Color.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

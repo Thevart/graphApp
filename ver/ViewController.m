@@ -125,7 +125,7 @@ float oldX, oldY;
         }else {
             color = [UIColor colorWithRed:0.0/255.0 green: 0.0/255.0 blue: 255.0/255.0 alpha: 1.0];
         }
-        
+
         edge.edgeView.color = color;
         
         [self setNeedsDisplay];
@@ -258,21 +258,21 @@ float oldX, oldY;
 //must be called each time you touche the screen
 - (void) changeColor
 {
-    UIColor *color;
+    Color *color;
     DrawableVertex* vertex;
 
     for (NSString* id in graph.vertices) {
         vertex = [graph.vertices objectForKey:id];
 
         if ([vertex.id isEqual:origin.id]) {
-            color = [UIColor colorWithRed:255.0/255.0 green: 0.0/255.0 blue: 0.0/255.0 alpha: 1.0];
+            color = [Color initFromRGB:255 g:0 b:0];
         } else if ([vertex.id isEqual:destination.id]) {
-            color = [UIColor colorWithRed:197.0/255.0 green: 259.0/255.0 blue: 40.0/255.0 alpha: 1.0];
+            color = [Color initFromRGB:197 g:4 b:40];
         } else {
-            color = [UIColor colorWithRed:0.0/255.0 green: 136.0/255.0 blue: 255.0/255.0 alpha: 1.0];
+            color = [Color initFromRGB:0 g:136 b:255];
         }
 
-        vertex.vertexView.color = color;
+        [vertex setColor:color];
 
         [self setNeedsDisplay];
     }
@@ -322,21 +322,22 @@ float oldX, oldY;
     [self undisplayEdgeMenu];
     origin = nil;
 }
+
 -(void) deleteEdge
 {
     NSLog(@"coord oroigin touchedEdge : %d",  touchedEdge.origin.coord.x);
-        NSArray *edgesToDelete = [[NSArray alloc] initWithArray:graph.edges];
+    NSArray *edgesToDelete = [[NSArray alloc] initWithArray:graph.edges];
     for (Edge* edge in edgesToDelete) {
         if ([edge.origin.id isEqualToString:touchedEdge.origin.id] && [edge.target.id isEqualToString:touchedEdge.target.id]) {
             DrawableEdge *edgeToRemove = (DrawableEdge *) edge;
+
             [edgeToRemove.edgeView removeFromSuperview];
             [graph removeEdge:touchedEdge];
-
-	        }
+        }
     }
 
-    touchedEdge=nil;
-        [self undisplayEdgeMenu];
+    touchedEdge = nil;
+    [self undisplayEdgeMenu];
 
 }
 - (void) viewDidLoad
@@ -379,7 +380,7 @@ float oldX, oldY;
     //[graph removeVertex:[graph getVertex:@"1"]];
 
     // test for graph dumpers
-    id<DumperProtocol> dumper = [[DotDumper alloc] init];
+    //id<DumperProtocol> dumper = [[DotDumper alloc] init];
     //NSLog([dumper dump:graph]);
 
     // and start a computation
