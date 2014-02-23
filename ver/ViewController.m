@@ -266,7 +266,8 @@ float oldX, oldY;
             color = [Color initFromRGB:0 g:136 b:255];
         }
 
-        vertex.vertexView.color = color;
+        [vertex setColor:color];
+
         [self setNeedsDisplay];
     }
 }
