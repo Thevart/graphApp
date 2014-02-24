@@ -8,9 +8,17 @@
 
 #import <Foundation/Foundation.h>
 #import "Graph.h"
+#import "AlgorithmInputProtocol.h"
+
+typedef enum {
+    ResultVoid,
+    ResultPath
+} AlgorithmResultType;
 
 @protocol AlgorithmProtocol
 
-- (void) execute: (Graph*) graph;
+- (id) execute: (Graph*) graph input:(id<AlgorithmInputProtocol>) input;
+
++ (AlgorithmResultType) getResultType;
 
 @end

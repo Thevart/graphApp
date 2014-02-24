@@ -18,6 +18,7 @@
 #import "RandomLayoutCreator.h"
 #import "AlgorithmProtocol.h"
 #import "DijkstraAlgorithm.h"
+#import "DijkstraInput.h"
 #import "GreedyColoringAlgorithm.h"
 #import "DotDumper.h"
 
@@ -351,11 +352,11 @@ float oldX, oldY;
 
 - (void) threadedComputation: (id) args	
 {
-    //id<AlgorithmProtocol> algo = [[DijkstraAlgorithm alloc] init];
-    id<AlgorithmProtocol> algo = [[GreedyColoringAlgorithm alloc] init];
-    [algo execute:graph];
+    id<AlgorithmProtocol> algo = [[DijkstraAlgorithm alloc] init];
+    //id<AlgorithmProtocol> algo = [[GreedyColoringAlgorithm alloc] init];
+    [algo execute:graph input:[DijkstraInput createWithVertices:[graph getVertex:@"0"] target:[graph getVertex:@"1"]]];
 
-    NSLog(@"End");
+    NSLog(@"End algorithm");
 }
 
 - (void) viewDidUnload

@@ -13,7 +13,12 @@
 int k, base_seed;
 NSMutableDictionary *colorsMap;
 
-- (void) execute: (Graph *) graph
++ (AlgorithmResultType) getResultType
+{
+    return ResultVoid;
+}
+
+- (id) execute: (Graph*) graph input:(id<AlgorithmInputProtocol>) input
 {
     srand(time(NULL));
     base_seed = rand();
@@ -31,6 +36,8 @@ NSMutableDictionary *colorsMap;
 
         [self selectColor:vertex];
     }
+
+    return nil;
 }
 
 - (void) selectColor: (Vertex*) vertex
