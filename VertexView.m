@@ -22,17 +22,17 @@
 }
 -(void) drawLabel
 {
-    _uilabel = [[UILabel alloc]initWithFrame:CGRectMake(-30, 0, 30, 15)];
+    self.uilabel = [[UILabel alloc]initWithFrame:CGRectMake(-30, 0, 30, 15)];
     
-    _uilabel.numberOfLines = 1;
-    _uilabel.baselineAdjustment = YES;
-    _uilabel.adjustsFontSizeToFitWidth = YES;
-    _uilabel.adjustsLetterSpacingToFitWidth = YES;
-    _uilabel.clipsToBounds = YES;
-    _uilabel.backgroundColor = [UIColor clearColor];
-    _uilabel.textColor = [UIColor blackColor];
-    _uilabel.textAlignment = NSTextAlignmentLeft;
-    _uilabel.text = self.label;
+    self.uilabel.numberOfLines = 1;
+    self.uilabel.baselineAdjustment = YES;
+    self.uilabel.adjustsFontSizeToFitWidth = YES;
+    self.uilabel.adjustsLetterSpacingToFitWidth = YES;
+    self.uilabel.clipsToBounds = YES;
+    self.uilabel.backgroundColor = [UIColor clearColor];
+    self.uilabel.textColor = [UIColor blackColor];
+    self.uilabel.textAlignment = NSTextAlignmentLeft;
+    self.uilabel.text = self.label;
 
     [self addSubview:_uilabel];
 }
@@ -42,8 +42,7 @@
     self.center = CGPointMake(x,y);
 }
 
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
+
 - (void)drawRect:(CGRect)rect {
     [super drawRect:rect];
 

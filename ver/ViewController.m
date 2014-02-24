@@ -42,7 +42,7 @@ float oldX, oldY;
 {
     UITouch *touch = [[event allTouches] anyObject];
     CGPoint location = [touch locationInView:self.view];
-    //you touched the deleteVertexButton
+
 
     if(CGRectContainsPoint(vertexMenu.frame,location)){
         [self deleteVertex];
@@ -51,6 +51,7 @@ float oldX, oldY;
     }
     else if (CGRectContainsPoint(edgeMenu.frame, location)){
         [self deleteEdge];
+        NSLog(@"You touched the delete button of the edege");
     }
     else{
         touchedEdge = [self edgeAtLocation:location];
@@ -237,7 +238,6 @@ float oldX, oldY;
     [graph addEdge:edge];
 
     [self.view addSubview:edge.edgeView];
-    [self.view sendSubviewToBack:edge.edgeView];
     [edge.edgeView setNeedsDisplay];
 
     vertexCountLabel.text = [NSString stringWithFormat: @"You add a edge"];
@@ -250,7 +250,7 @@ float oldX, oldY;
     DrawableVertex* vertex = [[DrawableVertex alloc] initWithCoord:x y:y];
     [graph addVertex:vertex];
     [self.view addSubview:vertex.vertexView];
-    [self.view bringSubviewToFront:vertex.vertexView];
+    //[self.view bringSubviewToFront:vertex.vertexView];
     
     [self setNeedsDisplay];
     vertexCountLabel.text = [NSString stringWithFormat: @" %i ...", [graph.vertices count]];
@@ -298,6 +298,10 @@ float oldX, oldY;
     [super viewDidLoad];
 
     [self readSampleGraph];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"SquGridLandscape.png"]] ;
+    
+    [self.view addSubview:imageView];
+    [self.view sendSubviewToBack:imageView];
 }
 
 - (void) readSampleGraph

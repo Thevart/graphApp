@@ -42,6 +42,7 @@
 		245FFA3E18AD1C2600796C14 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 245FFA3D18AD1C2600796C14 /* Storyboard.storyboard */; };
 		247BDB1518B56E4C004FDF7B /* DrawableGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 247BDB1418B56E4B004FDF7B /* DrawableGraph.m */; };
 		248570FD18A97190000DAABD /* DrawableEdge.m in Sources */ = {isa = PBXBuildFile; fileRef = 248570FC18A97190000DAABD /* DrawableEdge.m */; };
+		2485AA4418BABBDE003F1B95 /* SquGridLandscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 2485AA4318BABBDE003F1B95 /* SquGridLandscape.png */; };
 		248CB68318ACF8BB00F11E43 /* VertexView.m in Sources */ = {isa = PBXBuildFile; fileRef = 248CB68218ACF8BB00F11E43 /* VertexView.m */; };
 		24F49DE118ABCEAD00E28E8E /* EdgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F49DE018ABCEAD00E28E8E /* EdgeView.m */; };
 		F9E49B7318A3D3C700FAB88D /* cercle.png in Resources */ = {isa = PBXBuildFile; fileRef = F9E49B7218A3D3C700FAB88D /* cercle.png */; };
@@ -115,6 +116,7 @@
 		247BDB1418B56E4B004FDF7B /* DrawableGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawableGraph.m; sourceTree = "<group>"; };
 		248570FB18A97190000DAABD /* DrawableEdge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawableEdge.h; sourceTree = "<group>"; };
 		248570FC18A97190000DAABD /* DrawableEdge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawableEdge.m; sourceTree = "<group>"; };
+		2485AA4318BABBDE003F1B95 /* SquGridLandscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SquGridLandscape.png; sourceTree = "<group>"; };
 		248CB68118ACF8BB00F11E43 /* VertexView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VertexView.h; sourceTree = "<group>"; };
 		248CB68218ACF8BB00F11E43 /* VertexView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VertexView.m; sourceTree = "<group>"; };
 		24F49DDF18ABCEAD00E28E8E /* EdgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EdgeView.h; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 			children = (
 				0A76A8B218ABB64F008EB9A2 /* samples */,
 				F9E49B7218A3D3C700FAB88D /* cercle.png */,
+				2485AA4318BABBDE003F1B95 /* SquGridLandscape.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -409,6 +412,7 @@
 				0A76A8B818ABBF6C008EB9A2 /* graph.gexf in Resources */,
 				0A76A8BA18ABC078008EB9A2 /* graph.graphml in Resources */,
 				245FFA3E18AD1C2600796C14 /* Storyboard.storyboard in Resources */,
+				2485AA4418BABBDE003F1B95 /* SquGridLandscape.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

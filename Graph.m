@@ -52,6 +52,7 @@
 {
     [self.edges addObject:edge];
     [edge.origin addNeighbour:edge];
+    [edge.target addNeighbour:edge];//????????
 }
 
 - (void) removeEdge: (Edge*) edge
@@ -63,15 +64,13 @@
 
 - (void) removeVertex: (Vertex*) vertex
 {
-    /*
-    NSArray *edgesToDelete = [[NSArray alloc] initWithArray:self.edges];
+    
+    NSArray *neighboursToUpdate= [[NSArray alloc]initWithArray:vertex.neighbours];
+
+    for (Edge* edge in neighboursToUpdate) {
+        [self removeEdge:edge];
+    }
     [self.vertices removeObjectForKey:vertex.id];
 
-    for (Edge* edge in edgesToDelete) {
-        if ([edge.origin.id isEqualToString:vertex.id] || [edge.target.id isEqualToString:vertex.id]) {
-            [self.edges removeObject:edge];
-        }
-    }
-     */
 }
 @end

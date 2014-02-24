@@ -16,7 +16,7 @@
     if (self ) {
         UIColor *color =[ UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.0];
         self.backgroundColor=color;
-        _color=[ UIColor colorWithRed:0.0 green:0.0 blue:1.0 alpha:1.0];
+        self.color=[ UIColor colorWithRed:0.0 green:0.0 blue:1.0 alpha:1.0];
         self.pathWidth=6;
         
     }
@@ -69,13 +69,11 @@
 
 - (bool) containPoint: (CGPoint)location
 {
-    NSLog(@"%f ,%f",location.x, location.y);
     
     if( CGContextPathContainsPoint(self.offscreenContext, location, kCGPathStroke)){
-        NSLog(@"We detext that u touched my tralala");
+        NSLog(@"We detect that u touched my tralala");
         return true;
     }
-    NSLog(@"NOOOOO");
     return false;
     
 }
