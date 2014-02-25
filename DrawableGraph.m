@@ -58,7 +58,7 @@
     [self.graphView addSubview:edge.edgeView];
     [self.graphView sendSubviewToBack:edge.edgeView];
 
-
+    [self setNeedsDisplay];
 }
 
 - (void) removeDrawableEdge : (DrawableEdge*) drawedge{
@@ -113,7 +113,14 @@
             NSLog(@"We detetect that you touched a vertex.");
             if([vertex isEqual:self.selectedOrigin]){
                 [self switchSelectedVertex:nil];
-                
+            }
+            else if(self.selectedOrigin!=nil){
+                NSLog(@"id : %@", self.selectedOrigin.id);
+
+                DrawableEdge* edge = [[DrawableEdge alloc] initWithVertices:self.selectedOrigin target:vertex];
+                [edge setPosition: self.graphView.frame.size.width y:self.graphView.frame.size.height];
+                [self addDrawableEdge:edge];
+                [self switchSelectedVertex:vertex];
             }
             else{
                 [self switchSelectedVertex:vertex];

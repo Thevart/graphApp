@@ -45,12 +45,14 @@ float oldX, oldY;
     [self undisplayVertexMenu];
     [self displayEdgeMenu];
     DrawableVertex *retourHitTest=[drawableGraph drawableVertexAtLocation:location];
-    if(touchedVertex!=retourHitTest){
+    NSLog(@"touched vertex %@", touchedVertex.id);
+    NSLog(@"retour test  %@", retourHitTest.id);
+
         touchedVertex=retourHitTest;
         if(touchedVertex){
+            
             [self displayVertexMenu];
             dragging = YES;
-            
         }
         else{
             touchedEdge = [drawableGraph drawableEdgeAtLocation:location];
@@ -62,11 +64,6 @@ float oldX, oldY;
                 [drawableGraph addDrawableVertex:vertex];
             }
         }
-    }else{
-        touchedVertex=nil;
-        [self undisplayVertexMenu];
-    }
-
        
         
     
