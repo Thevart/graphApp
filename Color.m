@@ -36,7 +36,7 @@ int hexColor;
     NSScanner* scanner = [NSScanner scannerWithString:string];
     [scanner scanHexInt:&value];
 
-    NSLog(@"        HEX %@", string);
+    //NSLog(@"        HEX %@", string);
 
     return [[Color alloc] initWithValue:value];
 }
@@ -45,7 +45,7 @@ int hexColor;
 {
     NSString* hexString = [NSString stringWithFormat:@"%02x%02x%02x", r, g, b];
 
-    NSLog(@"R = %d, G = %d, B = %d", r, g, b);
+   // NSLog(@"R = %d, G = %d, B = %d", r, g, b);
 
     return [Color initFromHexString:hexString];
 }

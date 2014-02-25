@@ -71,7 +71,6 @@
 {
     
     if( CGContextPathContainsPoint(self.offscreenContext, location, kCGPathStroke)){
-        NSLog(@"We detect that u touched my tralala");
         return true;
     }
     return false;

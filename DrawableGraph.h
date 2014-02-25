@@ -16,6 +16,7 @@
 @property (readonly) DrawableEdge* selectedEdge;
 @property (readonly) DrawableVertex* selectedOrigin;
 @property (readonly) DrawableVertex* selectedTarget;
+@property (readonly) UIView *graphView;
 
 
 
@@ -25,5 +26,9 @@
 - (void) addDrawableEdge: (DrawableEdge*) edge;
 - (void) removeDrawableEdge : (DrawableEdge*) edge;
 
+- (DrawableEdge*) drawableEdgeAtLocation:(CGPoint) location;
+- (DrawableVertex*) drawableVertexAtLocation:(CGPoint) location;
+
+-(void) setNeedsDisplay;
 
 @end

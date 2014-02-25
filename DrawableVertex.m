@@ -24,6 +24,7 @@
     if (self = [super init]) {
         self.vertexView = [[VertexView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
         self.vertexView.label = self.label;
+        
     }
 
     return self;

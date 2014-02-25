@@ -8,12 +8,15 @@
 #import "Graph.h"
 #import "DrawableVertex.h"
 #import "DrawableEdge.h"
+#import "DrawableGraph.h"
+
 
 @interface ViewController : UIViewController
 {
     Graph* graph;
     Vertex* origin;
     Vertex* destination;
+    DrawableGraph *drawableGraph;
     DrawableVertex *touchedVertex;
     Edge *touchedEdge;
 }
