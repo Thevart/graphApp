@@ -104,7 +104,6 @@
 }
 
 - (DrawableVertex*) drawableVertexAtLocation:(CGPoint) location{
-    DrawableVertex* realVertex = nil;
     DrawableVertex* vertex = nil;
 
     for(NSString* id in self.drawableVertices)
@@ -112,12 +111,19 @@
         vertex=[self.drawableVertices objectForKey:id];
         if (CGRectContainsPoint(vertex.vertexView.frame,location)) {
             NSLog(@"We detetect that you touched a vertex.");
-            [self switchSelectedVertex:vertex];
+            if([vertex isEqual:self.selectedOrigin]){
+                [self switchSelectedVertex:nil];
+                
+            }
+            else{
+                [self switchSelectedVertex:vertex];
+            }
             return vertex;
+
             
         }
     }
-    return realVertex;
+    return nil;
 }
 -(void) setNeedsDisplay {
     

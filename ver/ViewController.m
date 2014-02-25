@@ -42,101 +42,37 @@ float oldX, oldY;
 {
     UITouch *touch = [[event allTouches] anyObject];
     CGPoint location = [touch locationInView:self.view];
-    if(CGRectContainsPoint(vertexMenu.frame,location) && vertexMenu.enabled==true){
-        [self deleteVertex];
-        [self undisplayVertexMenu];
-        
-    }
-    else if (CGRectContainsPoint(edgeMenu.frame, location) && edgeMenu.enabled==true){
-        [self deleteEdge];
-        [self undisplayEdgeMenu];
-    }else{
-        touchedVertex = [drawableGraph drawableVertexAtLocation:location];
-
+    [self undisplayVertexMenu];
+    [self displayEdgeMenu];
+    DrawableVertex *retourHitTest=[drawableGraph drawableVertexAtLocation:location];
+    if(touchedVertex!=retourHitTest){
+        touchedVertex=retourHitTest;
         if(touchedVertex){
             [self displayVertexMenu];
             dragging = YES;
+            
         }
         else{
             touchedEdge = [drawableGraph drawableEdgeAtLocation:location];
             if(touchedEdge){
-
+                [self displayEdgeMenu];
             }
             else{
                 DrawableVertex* vertex = [[DrawableVertex alloc] initWithCoord:location.x y:location.y];
                 [drawableGraph addDrawableVertex:vertex];
             }
         }
-        
+    }else{
+        touchedVertex=nil;
+        [self undisplayVertexMenu];
     }
+
+       
+        
+    
     [self.view setNeedsDisplay];
 }
-/*-(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    UITouch *touch = [[event allTouches] anyObject];
-    CGPoint location = [touch locationInView:self.view];
 
-
-    if(CGRectContainsPoint(vertexMenu.frame,location)){
-        [self deleteVertex];
-        [self undisplayEdgeMenu];
-    
-    }
-    else if (CGRectContainsPoint(edgeMenu.frame, location)){
-        [self deleteEdge];
-        NSLog(@"You touched the delete button of the edege");
-    }
-    else{
-        touchedEdge = [drawableGraph drawableEdgeAtLocation:location];
-        touchedVertex = [drawableGraph drawableVertexAtLocation:location];
-        //if we touched a Vertex
-        if(touchedVertex!=nil){
-            if(origin!=nil){
-                //we add a edge if origin=-destination
-                if([origin.id isEqual:touchedVertex.id]){
-                    origin=nil;
-                    [self undisplayVertexMenu];
-                }
-                else{
-                    destination=touchedVertex;
-                    [self undisplayVertexMenu];
-                    [self addEdge];
-                }
-            }
-            else{
-                origin=touchedVertex;
-                [self displayVertexMenu];
-            }
-            [self changeColor];
-            dragging = YES;
-            oldX=location.x;
-            oldY=location.y;
-        
-            touchedEdge=nil;
-        
-
-            [self undisplayEdgeMenu];
-        }
-        else if(touchedVertex==nil && dragging==NO && touchedEdge!=nil){
-        
-
-            [self displayEdgeMenu];
-            [self setNeedsDisplay];
-
-        
-        }else {
-            
-            touchedEdge=nil;
-            [self addVertex:location.x y:location.y];
-            origin = nil;
-            destination = nil;
-        
-            [self undisplayVertexMenu];
-            [self undisplayEdgeMenu];
-        }
-    }
-    
-}*/
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
@@ -164,6 +100,7 @@ float oldX, oldY;
     vertexMenu.frame= frame;
     vertexMenu.enabled=true;
     vertexMenu.hidden=false;
+    [self.view bringSubviewToFront:vertexMenu];
     [self setNeedsDisplay];
 }
 
@@ -207,31 +144,7 @@ float oldX, oldY;
     destination = nil;
 }
 
-- (void) addVertex:(int) x y:(int) y
-{
-    DrawableVertex* vertex = [[DrawableVertex alloc] initWithCoord:x y:y];
-    [graph addVertex:vertex];
-    [self.view addSubview:vertex.vertexView];
-    //[self.view bringSubviewToFront:vertex.vertexView];
-    
-    [self setNeedsDisplay];
-    vertexCountLabel.text = [NSString stringWithFormat: @" %i ...", [graph.vertices count]];
-}
 
-- (void) deleteVertex
-{
-    [drawableGraph removeDrawableVertex:(DrawableVertex*)touchedVertex];
-    [self undisplayEdgeMenu];
-    origin = nil;
-}
-
--(void) deleteEdge
-{
-    [drawableGraph removeDrawableEdge:(DrawableEdge*)touchedEdge];
-    touchedEdge = nil;
-    [self undisplayEdgeMenu];
-
-}
 - (void) viewDidLoad
 {
     [super viewDidLoad];
@@ -254,6 +167,7 @@ float oldX, oldY;
     }
     drawableGraph=[[DrawableGraph alloc]init];
     [self.view addSubview:drawableGraph.graphView];
+    [self.view sendSubviewToBack:drawableGraph.graphView];
     id<LayoutCreatorProtocol> layoutCreator = [[RandomLayoutCreator alloc] init];
     [layoutCreator createLayout:graph x:self.view.frame.size.width y:self.view.frame.size.height];
     
@@ -334,4 +248,18 @@ float oldX, oldY;
 }
 
 
+- (IBAction)deleteEdge:(id)sender {
+    [drawableGraph removeDrawableEdge:(DrawableEdge*)touchedEdge];
+    touchedEdge = nil;
+    [self undisplayEdgeMenu];
+
+}
+
+- (IBAction)deleteVertex:(id)sender {
+        [drawableGraph removeDrawableVertex:drawableGraph.selectedOrigin];
+        [self undisplayEdgeMenu];
+        touchedVertex = nil;
+    [self undisplayVertexMenu];
+    
+}
 @end

@@ -22,11 +22,11 @@
 }
 
 @property (weak, nonatomic) IBOutlet UIButton *edgeMenu;
+- (IBAction)deleteEdge:(id)sender;
+- (IBAction)deleteVertex:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UIButton *vertexMenu;
 @property (weak, nonatomic) IBOutlet UILabel *vertexCountLabel;
 
 
-- (void) addVertex:(int)x y:(int)y;
-- (void) addEdge;
 @end
