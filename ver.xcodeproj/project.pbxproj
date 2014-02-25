@@ -20,6 +20,7 @@
 		0A76A8B818ABBF6C008EB9A2 /* graph.gexf in Resources */ = {isa = PBXBuildFile; fileRef = 0A76A8B718ABBF6C008EB9A2 /* graph.gexf */; };
 		0A76A8BA18ABC078008EB9A2 /* graph.graphml in Resources */ = {isa = PBXBuildFile; fileRef = 0A76A8B918ABC078008EB9A2 /* graph.graphml */; };
 		0A7DFEE718A7F7F60033D747 /* DrawableVertex.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7DFEE618A7F7F60033D747 /* DrawableVertex.m */; };
+		0A7E5E0818BBF331002E2451 /* DijkstraInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7E5E0718BBF331002E2451 /* DijkstraInput.m */; };
 		0A7EC5C918B266C100092297 /* RandomLayoutCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7EC5C818B266C100092297 /* RandomLayoutCreator.m */; };
 		0A7F1E1618ACF8E000FDE5AC /* GraphParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A76A8B018ABA99D008EB9A2 /* GraphParser.m */; };
 		0A7F1E1B18ACFCCA00FDE5AC /* DotDumper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7F1E1A18ACFCCA00FDE5AC /* DotDumper.m */; };
@@ -70,6 +71,9 @@
 		0A76A8B918ABC078008EB9A2 /* graph.graphml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = graph.graphml; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.xml; };
 		0A7DFEE518A7F7F60033D747 /* DrawableVertex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawableVertex.h; sourceTree = "<group>"; };
 		0A7DFEE618A7F7F60033D747 /* DrawableVertex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawableVertex.m; sourceTree = "<group>"; };
+		0A7E5E0618BBF331002E2451 /* DijkstraInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DijkstraInput.h; sourceTree = "<group>"; };
+		0A7E5E0718BBF331002E2451 /* DijkstraInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DijkstraInput.m; sourceTree = "<group>"; };
+		0A7E5E0918BBF342002E2451 /* AlgorithmInputProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlgorithmInputProtocol.h; sourceTree = "<group>"; };
 		0A7EC5C518B2663F00092297 /* LayoutCreatorProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LayoutCreatorProtocol.h; sourceTree = "<group>"; };
 		0A7EC5C718B266C100092297 /* RandomLayoutCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RandomLayoutCreator.h; sourceTree = "<group>"; };
 		0A7EC5C818B266C100092297 /* RandomLayoutCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RandomLayoutCreator.m; sourceTree = "<group>"; };
@@ -279,6 +283,7 @@
 				0A83298518B62DF6008F1077 /* coloration */,
 				0A83298418B62CE2008F1077 /* shortest_path */,
 				0A7FE23D18B2C024004BA9DD /* AlgorithmProtocol.h */,
+				0A7E5E0918BBF342002E2451 /* AlgorithmInputProtocol.h */,
 			);
 			name = algorithm;
 			sourceTree = "<group>";
@@ -302,6 +307,8 @@
 				0A7FE29918B2C09B004BA9DD /* DijkstraAlgorithm.m */,
 				0A84610118B4EA5200EB3FF0 /* DijkstraData.h */,
 				0A84610218B4EA5200EB3FF0 /* DijkstraData.m */,
+				0A7E5E0618BBF331002E2451 /* DijkstraInput.h */,
+				0A7E5E0718BBF331002E2451 /* DijkstraInput.m */,
 			);
 			name = shortest_path;
 			sourceTree = "<group>";
@@ -450,6 +457,7 @@
 				247BDB1518B56E4C004FDF7B /* DrawableGraph.m in Sources */,
 				0A83298818B62E9A008F1077 /* GreedyColoringAlgorithm.m in Sources */,
 				0A823B9C18BA4AEB00B2D3BC /* Color.m in Sources */,
+				0A7E5E0818BBF331002E2451 /* DijkstraInput.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

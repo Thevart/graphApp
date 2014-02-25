@@ -10,16 +10,24 @@
 #import "DijkstraData.h"
 #import "PriorityQueue.h"
 #import "PriorityQueueItem.h"
+#import "DijkstraInput.h"
 
 @implementation DijkstraAlgorithm
 
 
-- (void) execute: (Graph *) graph
++ (AlgorithmResultType) getResultType
+{
+    return ResultPath;
+}
+
+- (id) execute: (Graph*) graph input:(id<AlgorithmInputProtocol>) input
 {
     // input parameters
-    Vertex* startVertex = [graph getVertex:@"0"];
-    Vertex* endVertex = [graph getVertex:@"1"];
+    DijkstraInput *args = input;
+    Vertex* startVertex = args.origin;
+    Vertex* endVertex = args.target;
 
+    // algorithm variables
     Vertex* currentVertex;
     PriorityQueue *queue = [[PriorityQueue alloc] init];
 
@@ -73,6 +81,8 @@
     for (Vertex* v in path) {
         NSLog(@"%@", v.id);
     }
+
+    return path;
 }
 
 - (NSArray*) extractShortestPath: (Vertex*) to
