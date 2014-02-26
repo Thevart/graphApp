@@ -23,11 +23,23 @@
 {
     if (self = [super init]) {
         self.vertexView = [[VertexView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
-        self.vertexView.label=self.label;
+        self.vertexView.label = self.label;
+        
     }
 
     return self;
 }
+
+
+- (id) initWithId:(NSString *)id
+{
+    if (self = [super initWithId:id]) {
+        self.vertexView.label=self.label;
+    }
+    
+    return self;
+}
+
 
 - (id) initWithCoord:(int)x y:(int)y
 {
@@ -44,6 +56,14 @@
 
     [self.vertexView setFrame:CGRectMake(x-15, y-15, 30, 30)];
     self.vertexView.center = CGPointMake(x, y);
+    [self.vertexView setNeedsDisplay];
+}
+
+- (void) setColor: (Color *) color
+{
+    [super setColor:color];
+
+    self.vertexView.color = [UIColor colorWithRed:[color r] green:[color g] blue:[color b] alpha:1];
     [self.vertexView setNeedsDisplay];
 }
 

@@ -14,6 +14,8 @@ static int nextVertexId = 1;
 
 @implementation Vertex
 
+Color *color;
+
 - (id) init
 {
     self = [super init];
@@ -23,6 +25,7 @@ static int nextVertexId = 1;
         self.neighbours = [[NSMutableArray alloc] init];
         self.label = [NSString stringWithFormat:@"%d", nextVertexId];
         self.coord = [[Coord alloc] init];
+        self.color = [[Color alloc] init];
 
         nextVertexId += 1;
     }
@@ -42,13 +45,21 @@ static int nextVertexId = 1;
     return nil;
 }
 
+- (void) setColor: (Color*) newColor
+{
+    color = newColor;
+}
+
+- (Color*) getColor
+{
+    return color;
+}
 
 - (void) setPosition: (int)x y:(int) y
 {
     self.coord.x = x;
     self.coord.y = y;
 }
-
 
 - (BOOL) hasPosition
 {
@@ -60,4 +71,8 @@ static int nextVertexId = 1;
     [self.neighbours addObject:neighbour];
 }
 
+- (void) removeNeighbour:(Edge *) neighbour
+{
+    [self.neighbours removeObject:neighbour];
+}
 @end

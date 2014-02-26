@@ -16,7 +16,9 @@
     if (self ) {
         UIColor *color =[ UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.0];
         self.backgroundColor=color;
-        _color=[ UIColor colorWithRed:0.0 green:0.0 blue:1.0 alpha:1.0];;
+        self.color=[ UIColor colorWithRed:0.0 green:0.0 blue:1.0 alpha:1.0];
+        self.pathWidth=6;
+        
     }
 
     return self;
@@ -26,39 +28,51 @@
 {
     self.origin = origin;
     self.destination = desti;
+    
 }
 
+- (void)createPath {
+    
+    CGMutablePathRef path = CGPathCreateMutable();
+    CGPathMoveToPoint(   path, nil, self.origin.x, self.origin.y);
+    CGPathAddLineToPoint(path, nil, self.origin.x+2, self.origin.y+2);
+    CGPathAddLineToPoint(path, nil, self.destination.x, self.destination.y);
+    CGPathAddLineToPoint(path, nil, self.destination.x+2, self.destination.y+2);
+    self.pathref   = path;
+    
+    
+    CGContextRef context = [self createOffscreenContext];
+    CGContextSetLineWidth(context, self.pathWidth);
+    
+    CGContextBeginPath(context);
+    CGContextAddPath(context, self.pathref);
+}
 
+- (CGContextRef)createOffscreenContext {
+    CFMutableDataRef empty = CFDataCreateMutable(NULL, 0);
+    CGDataConsumerRef consumer = CGDataConsumerCreateWithCFData(empty);
+    self.offscreenContext = CGPDFContextCreate(consumer, NULL, NULL);
+    CGDataConsumerRelease(consumer);
+    CFRelease(empty);
+    return self.offscreenContext;
+}
 - (void)drawRect:(CGRect)rect {
-    _context = UIGraphicsGetCurrentContext();
-    
-    CGContextSetLineWidth(_context, 10.0);
-    
-    CGColorSpaceRef colorspace = CGColorSpaceCreateDeviceRGB();
-    
-    
-    CGContextSetFillColorWithColor(_context, _color.CGColor);
-    CGContextSetStrokeColorWithColor(_context, _color.CGColor);
+    [self createPath ];
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetLineWidth(context, self.pathWidth);
+    CGContextAddPath(context, self.pathref);
+    CGContextSetStrokeColorWithColor(context, self.color.CGColor);
+    CGContextStrokePath(context);
 
-    CGContextMoveToPoint(_context, self.origin.x, self.origin.y);
-    CGContextAddLineToPoint(_context, self.destination.x, self.destination.y);
-    
-    CGContextStrokePath(_context);
-    CGColorSpaceRelease(colorspace);
-    CGContextDrawPath(_context, kCGPathStroke);
-    CGContextStrokePath(_context);
 }
 
 
-- (bool) containPoints: (CGPoint)location
+- (bool) containPoint: (CGPoint)location
 {
-
-
-    if( CGContextPathContainsPoint (_context,location,kCGPathStroke)){
-        NSLog(@"We detext that u touched my tralala");
+    
+    if( CGContextPathContainsPoint(self.offscreenContext, location, kCGPathStroke)){
         return true;
     }
-    NSLog(@"NOOOOO");
     return false;
     
 }

@@ -8,22 +8,26 @@
 #import "Graph.h"
 #import "DrawableVertex.h"
 #import "DrawableEdge.h"
+#import "DrawableGraph.h"
+
 
 @interface ViewController : UIViewController
 {
     Graph* graph;
     Vertex* origin;
     Vertex* destination;
+    DrawableGraph *drawableGraph;
     DrawableVertex *touchedVertex;
-    DrawableEdge *touchedEdge;
+    Edge *touchedEdge;
 }
 
+@property (weak, nonatomic) IBOutlet UIButton *edgeMenu;
+- (IBAction)deleteEdge:(id)sender;
+- (IBAction)deleteVertex:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UIButton *vertexMenu;
 @property (weak, nonatomic) IBOutlet UILabel *vertexCountLabel;
 @property (weak, nonatomic) IBOutlet UIButton *action;
 
 
-- (void) addVertex:(int)x y:(int)y;
-- (void) addEdge;
 @end
