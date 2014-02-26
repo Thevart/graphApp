@@ -21,6 +21,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *vertexMenu;
 @property (weak, nonatomic) IBOutlet UILabel *vertexCountLabel;
+@property (weak, nonatomic) IBOutlet UIButton *action;
 
 
 - (void) addVertex:(int)x y:(int)y;
