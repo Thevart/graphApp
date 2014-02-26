@@ -47,15 +47,28 @@ float oldX, oldY;
     [self undisplayEdgeMenu];
     DrawableVertex *retourHitTest=[drawableGraph drawableVertexAtLocation:location];
     if(retourHitTest!=nil){
+        [drawableGraph switchSelectedEdge: nil];
+        //déselection d'un vertex
         if([retourHitTest.id isEqualToString: touchedVertex.id]){
             [drawableGraph switchSelectedVertex:nil];
             touchedVertex=nil;
             [self undisplayVertexMenu];
-        }else{
+        }else if(touchedVertex!=nil){
+            //add an edge between touchedVertx and retourHitTest
+            DrawableEdge* edge = [[DrawableEdge alloc] initWithVertices:touchedVertex target:retourHitTest];
+            [edge setPosition: self.view.frame.size.width y:self.view.frame.size.height];
+            [drawableGraph addDrawableEdge:edge];
+            [drawableGraph switchSelectedVertex:nil];
+            touchedVertex=nil;
+            [self undisplayVertexMenu];
+        }
+        else{
+            //selection d'un vertex
             [drawableGraph switchSelectedVertex:retourHitTest];
             touchedVertex=retourHitTest;
             [self displayVertexMenu];
             dragging = YES;
+            
 
         }
     }else{
@@ -66,6 +79,8 @@ float oldX, oldY;
         else{
             DrawableVertex* vertex = [[DrawableVertex alloc] initWithCoord:location.x y:location.y];
             [drawableGraph addDrawableVertex:vertex];
+            [drawableGraph switchSelectedVertex:nil];
+
         }
     }
         
@@ -83,9 +98,9 @@ float oldX, oldY;
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch *touch = [[event allTouches] anyObject];
     CGPoint touchLocation = [touch locationInView:self.view];
-
+    [self undisplayVertexMenu];
     if (dragging && touchedVertex!=nil) {
-        [self undisplayVertexMenu];
+        
         [touchedVertex setPosition:touchLocation.x y:touchLocation.y];
         [drawableGraph setNeedsDisplay];
         [self setNeedsDisplay];
@@ -100,9 +115,6 @@ float oldX, oldY;
     vertexMenu.frame= frame;
     vertexMenu.enabled=true;
     vertexMenu.hidden=false;
-    //[self.view addSubview:vertexMenu];
-    
-    //[self.view bringSubviewToFront:vertexMenu];
     [self setNeedsDisplay];
 
 }
@@ -112,8 +124,6 @@ float oldX, oldY;
     NSLog(@"In the undisplay;");
     vertexMenu.hidden = true;
     vertexMenu.enabled = false;
-    //[vertexMenu removeFromSuperview];
-
     [self setNeedsDisplay];
 
 }
@@ -121,7 +131,6 @@ float oldX, oldY;
 {
     CGRect frame = edgeMenu.frame;
     frame.origin.x = (touchedEdge.origin.coord.x+touchedEdge.target.coord.x)/2+15;
-    
     frame.origin.y = (touchedEdge.origin.coord.y+touchedEdge.target.coord.y)/2+15;
     edgeMenu.frame= frame;
     edgeMenu.enabled=true;

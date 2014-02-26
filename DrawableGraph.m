@@ -57,7 +57,6 @@
     [super addEdge:edge];
     [self.graphView addSubview:edge.edgeView];
     [self.graphView sendSubviewToBack:edge.edgeView];
-
     [edge.edgeView setNeedsDisplay];
 }
 
