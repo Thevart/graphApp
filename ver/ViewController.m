@@ -211,8 +211,8 @@ float oldX, oldY;
 
 - (void) threadedComputation: (id) args	
 {
-    id<AlgorithmProtocol> algo = [[DijkstraAlgorithm alloc] init];
-    //id<AlgorithmProtocol> algo = [[GreedyColoringAlgorithm alloc] init];
+    //id<AlgorithmProtocol> algo = [[DijkstraAlgorithm alloc] init];
+    id<AlgorithmProtocol> algo = [[GreedyColoringAlgorithm alloc] init];
     [algo execute:graph input:[DijkstraInput createWithVertices:[graph getVertex:@"0"] target:[graph getVertex:@"1"]]];
 
     NSLog(@"End algorithm");

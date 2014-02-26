@@ -47,6 +47,8 @@
 		248CB68318ACF8BB00F11E43 /* VertexView.m in Sources */ = {isa = PBXBuildFile; fileRef = 248CB68218ACF8BB00F11E43 /* VertexView.m */; };
 		24F49DE118ABCEAD00E28E8E /* EdgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F49DE018ABCEAD00E28E8E /* EdgeView.m */; };
 		7D77BCE718BE0FBA001CA807 /* petersen.xgmml in Resources */ = {isa = PBXBuildFile; fileRef = 7D77BCE618BE0FBA001CA807 /* petersen.xgmml */; };
+		7D77BCE918BE20C9001CA807 /* clique5.xgmml in Resources */ = {isa = PBXBuildFile; fileRef = 7D77BCE818BE20C9001CA807 /* clique5.xgmml */; };
+		7D77BCEB18BE22A4001CA807 /* clique10.xgmml in Resources */ = {isa = PBXBuildFile; fileRef = 7D77BCEA18BE22A4001CA807 /* clique10.xgmml */; };
 		F9E49B7318A3D3C700FAB88D /* cercle.png in Resources */ = {isa = PBXBuildFile; fileRef = F9E49B7218A3D3C700FAB88D /* cercle.png */; };
 /* End PBXBuildFile section */
 
@@ -127,6 +129,8 @@
 		24F49DDF18ABCEAD00E28E8E /* EdgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EdgeView.h; sourceTree = "<group>"; };
 		24F49DE018ABCEAD00E28E8E /* EdgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EdgeView.m; sourceTree = "<group>"; };
 		7D77BCE618BE0FBA001CA807 /* petersen.xgmml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = petersen.xgmml; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.xml; };
+		7D77BCE818BE20C9001CA807 /* clique5.xgmml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = clique5.xgmml; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.xml; };
+		7D77BCEA18BE22A4001CA807 /* clique10.xgmml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = clique10.xgmml; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.xml; };
 		F9E49B7218A3D3C700FAB88D /* cercle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cercle.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -220,6 +224,8 @@
 			children = (
 				0A76A8B318ABB67E008EB9A2 /* graph.xgmml */,
 				7D77BCE618BE0FBA001CA807 /* petersen.xgmml */,
+				7D77BCE818BE20C9001CA807 /* clique5.xgmml */,
+				7D77BCEA18BE22A4001CA807 /* clique10.xgmml */,
 				0A76A8B718ABBF6C008EB9A2 /* graph.gexf */,
 				0A76A8B918ABC078008EB9A2 /* graph.graphml */,
 			);
@@ -426,7 +432,9 @@
 				0A76A8B418ABB67E008EB9A2 /* graph.xgmml in Resources */,
 				0A76A8B618ABBAB2008EB9A2 /* Default-568h@2x.png in Resources */,
 				0A76A8B818ABBF6C008EB9A2 /* graph.gexf in Resources */,
+				7D77BCE918BE20C9001CA807 /* clique5.xgmml in Resources */,
 				0A76A8BA18ABC078008EB9A2 /* graph.graphml in Resources */,
+				7D77BCEB18BE22A4001CA807 /* clique10.xgmml in Resources */,
 				245FFA3E18AD1C2600796C14 /* Storyboard.storyboard in Resources */,
 				2485AA4418BABBDE003F1B95 /* SquGridLandscape.png in Resources */,
 			);
