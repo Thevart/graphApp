@@ -30,6 +30,17 @@
     return self;
 }
 
+
+- (id) initWithId:(NSString *)id
+{
+    if (self = [super initWithId:id]) {
+        self.vertexView.label=self.label;
+    }
+    
+    return self;
+}
+
+
 - (id) initWithCoord:(int)x y:(int)y
 {
     if (self = [self init]) {
