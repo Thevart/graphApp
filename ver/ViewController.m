@@ -20,7 +20,7 @@
 #import "DijkstraAlgorithm.h"
 #import "DijkstraInput.h"
 #import "GreedyColoringAlgorithm.h"
-#import "DotDumper.h"
+#import "SVGDumper.h"
 
 @implementation ViewController
 
@@ -199,6 +199,9 @@ float oldX, oldY;
         [edge setPosition:self.view.frame.size.width y:self.view.frame.size.height];
         [drawableGraph addDrawableEdge:edge];
     }
+
+    SVGDumper* dumper = [[SVGDumper alloc] init];
+    NSLog([dumper dump:graph]);
     
     // and start a computation
     NSThread* thread = [[NSThread alloc] initWithTarget:self
