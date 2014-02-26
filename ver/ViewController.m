@@ -27,6 +27,7 @@
 @synthesize vertexCountLabel;
 @synthesize vertexMenu;
 @synthesize edgeMenu;
+DrawableVertex *touchedVertex;
 BOOL dragging;
 float oldX, oldY;
 
@@ -43,28 +44,30 @@ float oldX, oldY;
     UITouch *touch = [[event allTouches] anyObject];
     CGPoint location = [touch locationInView:self.view];
     [self undisplayVertexMenu];
-    [self displayEdgeMenu];
+    [self undisplayEdgeMenu];
     DrawableVertex *retourHitTest=[drawableGraph drawableVertexAtLocation:location];
-    NSLog(@"touched vertex %@", touchedVertex.id);
-    NSLog(@"retour test  %@", retourHitTest.id);
-
-        touchedVertex=retourHitTest;
-        if(touchedVertex){
-            
+    if(retourHitTest!=nil){
+        if([retourHitTest.id isEqualToString: touchedVertex.id]){
+            [drawableGraph switchSelectedVertex:nil];
+            touchedVertex=nil;
+            [self undisplayVertexMenu];
+        }else{
+            [drawableGraph switchSelectedVertex:retourHitTest];
+            touchedVertex=retourHitTest;
             [self displayVertexMenu];
             dragging = YES;
+
+        }
+    }else{
+        touchedEdge = [drawableGraph drawableEdgeAtLocation:location];
+        if(touchedEdge){
+            [self displayEdgeMenu];
         }
         else{
-            touchedEdge = [drawableGraph drawableEdgeAtLocation:location];
-            if(touchedEdge){
-                [self displayEdgeMenu];
-            }
-            else{
-                DrawableVertex* vertex = [[DrawableVertex alloc] initWithCoord:location.x y:location.y];
-                [drawableGraph addDrawableVertex:vertex];
-            }
+            DrawableVertex* vertex = [[DrawableVertex alloc] initWithCoord:location.x y:location.y];
+            [drawableGraph addDrawableVertex:vertex];
         }
-       
+    }
         
     
     [self.view setNeedsDisplay];
@@ -74,7 +77,7 @@ float oldX, oldY;
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
     dragging = NO;
-    touchedVertex = nil;
+
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -97,14 +100,22 @@ float oldX, oldY;
     vertexMenu.frame= frame;
     vertexMenu.enabled=true;
     vertexMenu.hidden=false;
-    [self.view bringSubviewToFront:vertexMenu];
+    //[self.view addSubview:vertexMenu];
+    
+    //[self.view bringSubviewToFront:vertexMenu];
     [self setNeedsDisplay];
+
 }
 
 - (void) undisplayVertexMenu
 {
+    NSLog(@"In the undisplay;");
     vertexMenu.hidden = true;
     vertexMenu.enabled = false;
+    //[vertexMenu removeFromSuperview];
+
+    [self setNeedsDisplay];
+
 }
 - (void) displayEdgeMenu
 {
@@ -148,7 +159,7 @@ float oldX, oldY;
 
     [self readSampleGraph];
     UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"SquGridLandscape.png"]] ;
-    
+    touchedVertex=nil;
     [self.view addSubview:imageView];
     [self.view sendSubviewToBack:imageView];
 }
@@ -253,9 +264,9 @@ float oldX, oldY;
 }
 
 - (IBAction)deleteVertex:(id)sender {
-        [drawableGraph removeDrawableVertex:drawableGraph.selectedOrigin];
-        [self undisplayEdgeMenu];
-        touchedVertex = nil;
+    [drawableGraph removeDrawableVertex:drawableGraph.selectedOrigin];
+    [self undisplayEdgeMenu];
+    touchedVertex = nil;
     [self undisplayVertexMenu];
     
 }
