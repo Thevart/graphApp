@@ -388,6 +388,11 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0420;
+				TargetAttributes = {
+					06320C3D14509DBB00C37973 = {
+						DevelopmentTeam = SU3MJ6K9BB;
+					};
+				};
 			};
 			buildConfigurationList = 06320C3814509DBB00C37973 /* Build configuration list for PBXProject "ver" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -531,11 +536,14 @@
 		06320C5D14509DBB00C37973 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ver/ver-Prefix.pch";
 				INFOPLIST_FILE = "ver/ver-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = graphApp;
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
@@ -544,11 +552,14 @@
 		06320C5E14509DBB00C37973 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ver/ver-Prefix.pch";
 				INFOPLIST_FILE = "ver/ver-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = graphApp;
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
