@@ -46,6 +46,8 @@
 		2485AA4418BABBDE003F1B95 /* SquGridLandscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 2485AA4318BABBDE003F1B95 /* SquGridLandscape.png */; };
 		248CB68318ACF8BB00F11E43 /* VertexView.m in Sources */ = {isa = PBXBuildFile; fileRef = 248CB68218ACF8BB00F11E43 /* VertexView.m */; };
 		24F49DE118ABCEAD00E28E8E /* EdgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F49DE018ABCEAD00E28E8E /* EdgeView.m */; };
+		3C63A4B618BE498200A8CE01 /* GraphDisplayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C63A4B518BE498200A8CE01 /* GraphDisplayerViewController.m */; };
+		3C63A4BC18BE4A5900A8CE01 /* MainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C63A4BB18BE4A5900A8CE01 /* MainMenuViewController.m */; };
 		F9E49B7318A3D3C700FAB88D /* cercle.png in Resources */ = {isa = PBXBuildFile; fileRef = F9E49B7218A3D3C700FAB88D /* cercle.png */; };
 /* End PBXBuildFile section */
 
@@ -125,6 +127,10 @@
 		248CB68218ACF8BB00F11E43 /* VertexView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VertexView.m; sourceTree = "<group>"; };
 		24F49DDF18ABCEAD00E28E8E /* EdgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EdgeView.h; sourceTree = "<group>"; };
 		24F49DE018ABCEAD00E28E8E /* EdgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EdgeView.m; sourceTree = "<group>"; };
+		3C63A4B418BE498200A8CE01 /* GraphDisplayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphDisplayerViewController.h; sourceTree = "<group>"; };
+		3C63A4B518BE498200A8CE01 /* GraphDisplayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphDisplayerViewController.m; sourceTree = "<group>"; };
+		3C63A4BA18BE4A5900A8CE01 /* MainMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuViewController.h; sourceTree = "<group>"; };
+		3C63A4BB18BE4A5900A8CE01 /* MainMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuViewController.m; sourceTree = "<group>"; };
 		F9E49B7218A3D3C700FAB88D /* cercle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cercle.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -186,6 +192,10 @@
 				06320C5414509DBB00C37973 /* MainStoryboard.storyboard */,
 				06320C5714509DBB00C37973 /* ViewController.h */,
 				06320C5814509DBB00C37973 /* ViewController.m */,
+				3C63A4B418BE498200A8CE01 /* GraphDisplayerViewController.h */,
+				3C63A4BB18BE4A5900A8CE01 /* MainMenuViewController.m */,
+				3C63A4BA18BE4A5900A8CE01 /* MainMenuViewController.h */,
+				3C63A4B518BE498200A8CE01 /* GraphDisplayerViewController.m */,
 				06320C4914509DBB00C37973 /* Supporting Files */,
 			);
 			name = view;
@@ -387,7 +397,7 @@
 		06320C3514509DBB00C37973 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0460;
 				TargetAttributes = {
 					06320C3D14509DBB00C37973 = {
 						DevelopmentTeam = SU3MJ6K9BB;
@@ -463,6 +473,8 @@
 				0A83298818B62E9A008F1077 /* GreedyColoringAlgorithm.m in Sources */,
 				0A823B9C18BA4AEB00B2D3BC /* Color.m in Sources */,
 				0A7E5E0818BBF331002E2451 /* DijkstraInput.m in Sources */,
+				3C63A4B618BE498200A8CE01 /* GraphDisplayerViewController.m in Sources */,
+				3C63A4BC18BE4A5900A8CE01 /* MainMenuViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -494,6 +506,10 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -507,6 +523,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				SDKROOT = iphoneos;
@@ -519,12 +536,17 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
