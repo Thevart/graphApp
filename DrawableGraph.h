@@ -25,7 +25,7 @@
 
 - (void) addDrawableEdge: (DrawableEdge*) edge;
 - (void) removeDrawableEdge : (DrawableEdge*) edge;
-
+-(void) switchSelectedEdge: (DrawableEdge*) newOrigin;
 -(void) switchSelectedVertex: (DrawableVertex*) newOrigin;
 
 - (DrawableEdge*) drawableEdgeAtLocation:(CGPoint) location;

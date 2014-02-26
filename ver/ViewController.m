@@ -27,6 +27,7 @@
 @synthesize vertexCountLabel;
 @synthesize vertexMenu;
 @synthesize edgeMenu;
+DrawableVertex *touchedVertex;
 BOOL dragging;
 float oldX, oldY;
 
@@ -43,28 +44,45 @@ float oldX, oldY;
     UITouch *touch = [[event allTouches] anyObject];
     CGPoint location = [touch locationInView:self.view];
     [self undisplayVertexMenu];
-    [self displayEdgeMenu];
+    [self undisplayEdgeMenu];
     DrawableVertex *retourHitTest=[drawableGraph drawableVertexAtLocation:location];
-    NSLog(@"touched vertex %@", touchedVertex.id);
-    NSLog(@"retour test  %@", retourHitTest.id);
-
-        touchedVertex=retourHitTest;
-        if(touchedVertex){
-            
-            [self displayVertexMenu];
-            dragging = YES;
+    if(retourHitTest!=nil){
+        [drawableGraph switchSelectedEdge: nil];
+        //déselection d'un vertex
+        if([retourHitTest.id isEqualToString: touchedVertex.id]){
+            [drawableGraph switchSelectedVertex:nil];
+            touchedVertex=nil;
+            [self undisplayVertexMenu];
+        }else if(touchedVertex!=nil){
+            //add an edge between touchedVertx and retourHitTest
+            DrawableEdge* edge = [[DrawableEdge alloc] initWithVertices:touchedVertex target:retourHitTest];
+            [edge setPosition: self.view.frame.size.width y:self.view.frame.size.height];
+            [drawableGraph addDrawableEdge:edge];
+            [drawableGraph switchSelectedVertex:nil];
+            touchedVertex=nil;
+            [self undisplayVertexMenu];
         }
         else{
-            touchedEdge = [drawableGraph drawableEdgeAtLocation:location];
-            if(touchedEdge){
-                [self displayEdgeMenu];
-            }
-            else{
-                DrawableVertex* vertex = [[DrawableVertex alloc] initWithCoord:location.x y:location.y];
-                [drawableGraph addDrawableVertex:vertex];
-            }
+            //selection d'un vertex
+            [drawableGraph switchSelectedVertex:retourHitTest];
+            touchedVertex=retourHitTest;
+            [self displayVertexMenu];
+            dragging = YES;
+            
+
         }
-       
+    }else{
+        touchedEdge = [drawableGraph drawableEdgeAtLocation:location];
+        if(touchedEdge){
+            [self displayEdgeMenu];
+        }
+        else{
+            DrawableVertex* vertex = [[DrawableVertex alloc] initWithCoord:location.x y:location.y];
+            [drawableGraph addDrawableVertex:vertex];
+            [drawableGraph switchSelectedVertex:nil];
+
+        }
+    }
         
     
     [self.view setNeedsDisplay];
@@ -74,15 +92,15 @@ float oldX, oldY;
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
     dragging = NO;
-    touchedVertex = nil;
+
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch *touch = [[event allTouches] anyObject];
     CGPoint touchLocation = [touch locationInView:self.view];
-
+    [self undisplayVertexMenu];
     if (dragging && touchedVertex!=nil) {
-        [self undisplayVertexMenu];
+        
         [touchedVertex setPosition:touchLocation.x y:touchLocation.y];
         [drawableGraph setNeedsDisplay];
         [self setNeedsDisplay];
@@ -97,20 +115,22 @@ float oldX, oldY;
     vertexMenu.frame= frame;
     vertexMenu.enabled=true;
     vertexMenu.hidden=false;
-    [self.view bringSubviewToFront:vertexMenu];
     [self setNeedsDisplay];
+
 }
 
 - (void) undisplayVertexMenu
 {
+    NSLog(@"In the undisplay;");
     vertexMenu.hidden = true;
     vertexMenu.enabled = false;
+    [self setNeedsDisplay];
+
 }
 - (void) displayEdgeMenu
 {
     CGRect frame = edgeMenu.frame;
     frame.origin.x = (touchedEdge.origin.coord.x+touchedEdge.target.coord.x)/2+15;
-    
     frame.origin.y = (touchedEdge.origin.coord.y+touchedEdge.target.coord.y)/2+15;
     edgeMenu.frame= frame;
     edgeMenu.enabled=true;
@@ -148,7 +168,7 @@ float oldX, oldY;
 
     [self readSampleGraph];
     UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"SquGridLandscape.png"]] ;
-    
+    touchedVertex=nil;
     [self.view addSubview:imageView];
     [self.view sendSubviewToBack:imageView];
 }
@@ -253,9 +273,9 @@ float oldX, oldY;
 }
 
 - (IBAction)deleteVertex:(id)sender {
-        [drawableGraph removeDrawableVertex:drawableGraph.selectedOrigin];
-        [self undisplayEdgeMenu];
-        touchedVertex = nil;
+    [drawableGraph removeDrawableVertex:drawableGraph.selectedOrigin];
+    [self undisplayEdgeMenu];
+    touchedVertex = nil;
     [self undisplayVertexMenu];
     
 }
