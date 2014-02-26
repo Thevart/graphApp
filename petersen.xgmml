@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graph label="Pertersen graph 10" xmlns:dc="http://purl.org/dc/elements/1.1/"
+       xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+       xmlns:cy="http://www.cytoscape.org" xmlns="http://www.cs.rpi.edu/XGMML"
+       directed="1">
+       
+       <node label="0" id="0">
+           <layout x="330" y="30" />
+       </node>
+       <node label="1" id="1">
+           <layout x="615" y="237" />
+       </node>
+       <node label="2" id="2">
+           <layout x="504" y="570" />
+       </node>
+       <node label="3" id="3">
+           <layout x="153" y="570" />
+       </node>
+       <node label="4" id="4">
+           <layout x="42" y="237" />
+       </node>
+       <node label="5" id="5">
+           <layout x="186" y="282" />
+       </node>
+       <node label="6" id="6">
+           <layout x="330" y="180" />
+       </node>
+       <node label="7" id="7">
+           <layout x="471" y="282" />
+       </node>
+       <node label="8" id="8">
+           <layout x="417" y="450" />
+       </node>
+       <node label="9" id="9">
+           <layout x="240" y="450" />
+       </node>
+    
+    
+    <edge label="0-1" source="0" target="1"></edge>
+    <edge label="1-2" source="1" target="2"></edge>
+    <edge label="2-3" source="2" target="3"></edge>
+    <edge label="3-4" source="3" target="4"></edge>
+    <edge label="4-0" source="4" target="0"></edge>
+    <edge label="0-6" source="0" target="6"></edge>
+    <edge label="1-7" source="1" target="7"></edge>
+    <edge label="2-8" source="2" target="8"></edge>
+    <edge label="3-9" source="3" target="9"></edge>
+    <edge label="4-5" source="4" target="5"></edge>
+    <edge label="5-7" source="5" target="7"></edge>
+    <edge label="6-8" source="6" target="8"></edge>
+    <edge label="7-9" source="7" target="9"></edge>
+    <edge label="8-5" source="8" target="5"></edge>
+    <edge label="9-6" source="9" target="6"></edge>
+    
+
+</graph>
