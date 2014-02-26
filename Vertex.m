@@ -18,9 +18,7 @@ Color *color;
 
 - (id) init
 {
-    self = [super init];
-    
-    if (self) {
+    if (self = [super init]) {
         self.id = [NSString stringWithFormat:@"%d", nextVertexId];
         self.neighbours = [[NSMutableArray alloc] init];
         self.label = [NSString stringWithFormat:@"%d", nextVertexId];
@@ -68,11 +66,24 @@ Color *color;
 
 - (void) addNeighbour:(Edge*) neighbour
 {
-    [self.neighbours addObject:neighbour];
+    if (![self.neighbours containsObject:neighbour]) {
+        [self.neighbours addObject:neighbour];
+    }
 }
 
 - (void) removeNeighbour:(Edge *) neighbour
 {
     [self.neighbours removeObject:neighbour];
 }
+
+- (void) removeNeighbourVertex:(Vertex *) neighbour
+{
+    for (Edge* edge in self.neighbours) {
+        if (edge.target == neighbour) {
+            [self removeNeighbour:edge];
+            break;
+        }
+    }
+}
+
 @end

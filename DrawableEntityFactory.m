@@ -9,13 +9,14 @@
 #import "DrawableEntityFactory.h"
 #import "DrawableVertex.h"
 #import "DrawableEdge.h"
+#import "DrawableGraph.h"
 
 
 @implementation DrawableEntityFactory
 
-- (id) init
+- (Graph*) createGraph
 {
-    return [super init];
+    return [[DrawableGraph alloc] init];
 }
 
 - (Vertex*) createVertex:(NSString *) id

@@ -13,10 +13,9 @@
 
 @interface ViewController : UIViewController
 {
-    Graph* graph;
+    DrawableGraph* graph;
     Vertex* origin;
     Vertex* destination;
-    DrawableGraph *drawableGraph;
     Edge *touchedEdge;
 }
 

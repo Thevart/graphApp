@@ -26,10 +26,10 @@
     return self;
 }
 
--(id) initWithVertices:(Vertex *)origin target:(Vertex *)target
+-(id) initWithVertices:(Vertex *) origin target:(Vertex *) target
 {
     if (self = [super initWithVertices:origin target:target]) {
-        [self.edgeView setPosition: self.origin.coord destination:self.target.coord];
+        [self.edgeView setPosition:self.origin.coord destination:self.target.coord];
         
         return self;
     }

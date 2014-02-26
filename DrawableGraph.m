@@ -11,59 +11,59 @@
 @property (readwrite) DrawableVertex* selectedOrigin;
 @property (readwrite) DrawableEdge* selectedEdge;
 @property (readwrite) UIView* graphView;
-@property (readwrite) NSMutableDictionary* drawableVertices;
-@property (readwrite) NSMutableArray* drawableEdges;
 
 @end
+
 @implementation DrawableGraph
 
-- (id) init{
+- (id) init {
     if (self = [super init]) {
-        self.graphView=[[UIView alloc] init];
-        self.drawableVertices = [[NSMutableDictionary alloc] init];
-        self.drawableEdges = [[NSMutableArray alloc] init];
-        self.selectedOrigin=[[DrawableVertex alloc]init];
-        self.selectedEdge=[[DrawableEdge alloc]init];
+        self.graphView = [[UIView alloc] init];
+        self.selectedOrigin = [[DrawableVertex alloc]init];
+        self.selectedEdge = [[DrawableEdge alloc]init];
     }
-    
+
     return self;
-
 }
-- (void) addDrawableVertex : (DrawableVertex*) vertex{
+
+- (void) addVertex: (Vertex*) vertex
+{
     NSLog(@"We add a vertex");
-    [self.drawableVertices setValue:vertex forKey:vertex.id];
+
     [super addVertex:vertex];
-    [self.graphView bringSubviewToFront:vertex.vertexView];
 
-    [self.graphView addSubview:vertex.vertexView];
+    DrawableVertex* dVertex = (DrawableVertex*) vertex;
 
+    [self.graphView bringSubviewToFront:dVertex.vertexView];
+    [self.graphView addSubview:dVertex.vertexView];
 }
 
-- (void) removeDrawableVertex : (DrawableVertex*) drawvertex{
+- (void) removeVertex : (Vertex*) vertex
+{
     NSLog(@"We delete a vertex");
-    [drawvertex.vertexView removeFromSuperview];
-    for (DrawableEdge* edge in drawvertex.neighbours) {
-        [self removeDrawableEdge:edge];
-    }
-    [self.drawableVertices removeObjectForKey:drawvertex.id];
-    [super removeVertex:drawvertex];
+    [super removeVertex:vertex];
 
+    [((DrawableVertex*) vertex).vertexView removeFromSuperview];
 }
 
 
-- (void) addDrawableEdge: (DrawableEdge*) edge{
+- (void) addEdge: (Edge*) edge
+{
     NSLog(@"We add a edge");
-    [self.drawableEdges addObject:edge];
     [super addEdge:edge];
-    [self.graphView addSubview:edge.edgeView];
-    [self.graphView sendSubviewToBack:edge.edgeView];
-    [edge.edgeView setNeedsDisplay];
+
+    DrawableEdge* dEdge = (DrawableEdge*) edge;
+
+    [self.graphView addSubview:dEdge.edgeView];
+    [self.graphView sendSubviewToBack:dEdge.edgeView];
+    [dEdge.edgeView setNeedsDisplay];
 }
 
-- (void) removeDrawableEdge : (DrawableEdge*) drawedge{
+- (void) removeEdge : (Edge*) edge
+{
     NSLog(@"We remove a edge");
-    [drawedge.edgeView removeFromSuperview];
-    [self.drawableEdges removeObject:drawedge];
+    [super removeEdge:edge];
+    [((DrawableEdge*) edge).edgeView removeFromSuperview];
 }
 
 
@@ -90,24 +90,27 @@
 }
 
 /*****Hit test Method of the DrawableGraph*******/
-- (DrawableEdge*) drawableEdgeAtLocation:(CGPoint) location{
+- (DrawableEdge*) edgeAtLocation:(CGPoint) location{
     DrawableEdge *realEdge=nil;
-    for (DrawableEdge* edge in self.drawableEdges) {
+
+    for (DrawableEdge* edge in self.edges) {
         if([edge.edgeView containPoint: location]){
             NSLog(@"We detetect that you touched a edge.");
+            // @todo: this shouldn't be here
             [self switchSelectedEdge:edge];
             return edge;
         }
     }
+
     return realEdge;
 }
 
-- (DrawableVertex*) drawableVertexAtLocation:(CGPoint) location{
+- (DrawableVertex*) vertexAtLocation:(CGPoint) location{
     DrawableVertex* vertex = nil;
 
-    for(NSString* id in self.drawableVertices)
-    {
-        vertex=[self.drawableVertices objectForKey:id];
+    for (NSString* id in self.vertices) {
+        vertex = [self.vertices objectForKey:id];
+
         if (CGRectContainsPoint(vertex.vertexView.frame,location)) {
             NSLog(@"We detetect that you touched a vertex.");
                 /*
@@ -122,8 +125,9 @@
     }
     return nil;
 }
--(void) setNeedsDisplay {
-    
+
+-(void) setNeedsDisplay
+{
     [self.graphView.subviews makeObjectsPerformSelector:@selector(setNeedsDisplay)];
     [self.graphView setNeedsDisplay];
 }

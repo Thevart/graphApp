@@ -22,7 +22,7 @@
     return nil;
 }
 
-- (id)initWithVertices:(Vertex *) origin target:(Vertex *) target
+- (id) initWithVertices:(Vertex *) origin target:(Vertex *) target
 {
     if (self = [self init]) {
         self.origin = origin;

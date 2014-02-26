@@ -10,6 +10,11 @@
 
 @implementation EntityFactory
 
+- (Graph*) createGraph
+{
+    return [[Graph alloc] init];
+}
+
 - (Vertex*) createVertex:(NSString *) id
 {
     return [[Vertex alloc] initWithId:id];

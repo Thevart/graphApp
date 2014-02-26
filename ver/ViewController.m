@@ -43,48 +43,50 @@ float oldX, oldY;
 {
     UITouch *touch = [[event allTouches] anyObject];
     CGPoint location = [touch locationInView:self.view];
+
     [self undisplayVertexMenu];
     [self undisplayEdgeMenu];
-    DrawableVertex *retourHitTest=[drawableGraph drawableVertexAtLocation:location];
-    if(retourHitTest!=nil){
-        [drawableGraph switchSelectedEdge: nil];
+
+    DrawableVertex *retourHitTest = [graph vertexAtLocation:location];
+
+    if (retourHitTest!=nil){
+        [graph switchSelectedEdge: nil];
         //déselection d'un vertex
         if([retourHitTest.id isEqualToString: touchedVertex.id]){
-            [drawableGraph switchSelectedVertex:nil];
+            [graph switchSelectedVertex:nil];
             touchedVertex=nil;
             [self undisplayVertexMenu];
         }else if(touchedVertex!=nil){
             //add an edge between touchedVertx and retourHitTest
             DrawableEdge* edge = [[DrawableEdge alloc] initWithVertices:touchedVertex target:retourHitTest];
             [edge setPosition: self.view.frame.size.width y:self.view.frame.size.height];
-            [drawableGraph addDrawableEdge:edge];
-            [drawableGraph switchSelectedVertex:nil];
+
+            [graph addEdge:edge];
+            [graph switchSelectedVertex:nil];
+
             touchedVertex=nil;
             [self undisplayVertexMenu];
         }
         else{
             //selection d'un vertex
-            [drawableGraph switchSelectedVertex:retourHitTest];
+            [graph switchSelectedVertex:retourHitTest];
             touchedVertex=retourHitTest;
             [self displayVertexMenu];
             dragging = YES;
-            
-
         }
     }else{
-        touchedEdge = [drawableGraph drawableEdgeAtLocation:location];
+        touchedEdge = [graph edgeAtLocation:location];
         if(touchedEdge){
             [self displayEdgeMenu];
         }
         else{
             DrawableVertex* vertex = [[DrawableVertex alloc] initWithCoord:location.x y:location.y];
-            [drawableGraph addDrawableVertex:vertex];
-            [drawableGraph switchSelectedVertex:nil];
+            [graph addVertex:vertex];
+            [graph switchSelectedVertex:nil];
 
         }
     }
         
-    
     [self.view setNeedsDisplay];
 }
 
@@ -98,11 +100,12 @@ float oldX, oldY;
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch *touch = [[event allTouches] anyObject];
     CGPoint touchLocation = [touch locationInView:self.view];
+
     [self undisplayVertexMenu];
+
     if (dragging && touchedVertex!=nil) {
-        
         [touchedVertex setPosition:touchLocation.x y:touchLocation.y];
-        [drawableGraph setNeedsDisplay];
+        [graph setNeedsDisplay];
         [self setNeedsDisplay];
     }
 }
@@ -146,7 +149,7 @@ float oldX, oldY;
 
 
 //need to be refactor
--(void) addEdge
+/*-(void) addEdge
 {
     DrawableEdge* edge = [[DrawableEdge alloc] initWithVertices:origin target:destination];
     [edge setPosition: self.view.frame.size.width y:self.view.frame.size.height];
@@ -159,7 +162,7 @@ float oldX, oldY;
     vertexCountLabel.text = [NSString stringWithFormat: @"You add a edge"];
     origin = nil;
     destination = nil;
-}
+}*/
 
 
 - (void) viewDidLoad
@@ -178,30 +181,33 @@ float oldX, oldY;
     GraphParser *parser = [GraphParser create:factory];
     NSString* path = [[NSBundle mainBundle] pathForResource:@"petersen" ofType:@"xgmml"];
     
-    graph = [parser parse:path];
+    graph = (DrawableGraph*) [parser parse:path];
     if (graph == nil) {
-        graph = [[Graph alloc] init];
+        graph = [[DrawableGraph alloc] init];
     }
-    drawableGraph=[[DrawableGraph alloc]init];
-    [self.view addSubview:drawableGraph.graphView];
-    [self.view sendSubviewToBack:drawableGraph.graphView];
+
+    // render the graph view in the bigger one
+    [self.view addSubview:graph.graphView];
+    [self.view sendSubviewToBack:graph.graphView];
+
+    // setup the graph layout
     id<LayoutCreatorProtocol> layoutCreator = [[RandomLayoutCreator alloc] init];
     [layoutCreator createLayout:graph x:self.view.frame.size.width y:self.view.frame.size.height];
     
     // display the loaded vertices
-    for (NSString* id in graph.vertices) {
+    /*for (NSString* id in graph.vertices) {
         DrawableVertex* vertex = [graph.vertices objectForKey:id];
-        [drawableGraph addDrawableVertex:vertex];
-    }
+        [graph addVertex:vertex];
+    }*/
     
     // display the loaded edges
     for (DrawableEdge* edge in graph.edges) {
         [edge setPosition:self.view.frame.size.width y:self.view.frame.size.height];
-        [drawableGraph addDrawableEdge:edge];
+        //[graph addEdge:edge];
     }
 
-    SVGDumper* dumper = [[SVGDumper alloc] init];
-    NSLog([dumper dump:graph]);
+    //SVGDumper* dumper = [[SVGDumper alloc] init];
+    //NSLog([dumper dump:graph]);
     
     // and start a computation
     NSThread* thread = [[NSThread alloc] initWithTarget:self
@@ -261,22 +267,22 @@ float oldX, oldY;
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
--(void) setNeedsDisplay {
-
+-(void) setNeedsDisplay
+{
     [self.view.subviews makeObjectsPerformSelector:@selector(setNeedsDisplay)];
     [super.view setNeedsDisplay];
 }
 
 
-- (IBAction)deleteEdge:(id)sender {
-    [drawableGraph removeDrawableEdge:(DrawableEdge*)touchedEdge];
+- (IBAction)deleteEdge:(id)sender
+{
+    [graph removeEdge:touchedEdge];
     touchedEdge = nil;
     [self undisplayEdgeMenu];
-
 }
 
 - (IBAction)deleteVertex:(id)sender {
-    [drawableGraph removeDrawableVertex:drawableGraph.selectedOrigin];
+    [graph removeVertex:((DrawableGraph*) graph).selectedOrigin];
     [self undisplayEdgeMenu];
     touchedVertex = nil;
     [self undisplayVertexMenu];

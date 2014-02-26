@@ -52,25 +52,33 @@
 {
     [self.edges addObject:edge];
     [edge.origin addNeighbour:edge];
-    [edge.target addNeighbour:edge];//????????
+
+    if (!self.oriented) {
+        Edge* returnEdge = [[Edge alloc] initWithVertices:edge.target target:edge.origin];
+
+        [edge.target addNeighbour:returnEdge];
+        [self.edges addObject:returnEdge];
+    }
 }
 
 - (void) removeEdge: (Edge*) edge
 {
-    [edge.origin removeNeighbour:edge];
-    [edge.target removeNeighbour:edge];
+    [edge.origin removeNeighbourVertex:edge.target];
+    if (!self.oriented) {
+        [edge.target removeNeighbourVertex:edge.origin];
+    }
+
     [self.edges removeObject:edge];
 }
 
 - (void) removeVertex: (Vertex*) vertex
 {
-    
-    NSArray *neighboursToUpdate= [[NSArray alloc]initWithArray:vertex.neighbours];
+    NSArray *neighboursToUpdate = [[NSArray alloc]initWithArray:vertex.neighbours];
 
     for (Edge* edge in neighboursToUpdate) {
         [self removeEdge:edge];
     }
-    [self.vertices removeObjectForKey:vertex.id];
 
+    [self.vertices removeObjectForKey:vertex.id];
 }
 @end

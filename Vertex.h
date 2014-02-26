@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "Coord.h"
 #import "Color.h"
+#import "Edge.h"
 
 @class Edge;
 
@@ -31,4 +32,5 @@
 
 - (void) addNeighbour:(Edge*) neighbour;
 - (void) removeNeighbour:(Edge *)neighbour;
+- (void) removeNeighbourVertex:(Vertex *) neighbour;
 @end
