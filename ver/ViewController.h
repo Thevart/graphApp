@@ -13,11 +13,9 @@
 
 @interface ViewController : UIViewController
 {
-    Graph* graph;
+    DrawableGraph* graph;
     Vertex* origin;
     Vertex* destination;
-    DrawableGraph *drawableGraph;
-    DrawableVertex *touchedVertex;
     Edge *touchedEdge;
 }
 
@@ -27,6 +25,4 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *vertexMenu;
 @property (weak, nonatomic) IBOutlet UILabel *vertexCountLabel;
-
-
 @end

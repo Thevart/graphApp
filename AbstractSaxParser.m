@@ -22,7 +22,7 @@
 
 - (Graph*) parse: (NSData*) data
 {
-    self.graph = [[Graph alloc] init];
+    self.graph = [self.entityFactory createGraph];
     self.scope = SCOPE_TOP;
 
     self.parser = [[NSXMLParser alloc] initWithData:data];

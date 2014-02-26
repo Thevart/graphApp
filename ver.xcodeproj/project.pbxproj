@@ -22,6 +22,7 @@
 		0A7DFEE718A7F7F60033D747 /* DrawableVertex.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7DFEE618A7F7F60033D747 /* DrawableVertex.m */; };
 		0A7E5E0818BBF331002E2451 /* DijkstraInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7E5E0718BBF331002E2451 /* DijkstraInput.m */; };
 		0A7EC5C918B266C100092297 /* RandomLayoutCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7EC5C818B266C100092297 /* RandomLayoutCreator.m */; };
+		0A7EFBAF18BE060E0019D4AC /* SVGDumper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7EFBAE18BE060E0019D4AC /* SVGDumper.m */; };
 		0A7F1E1618ACF8E000FDE5AC /* GraphParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A76A8B018ABA99D008EB9A2 /* GraphParser.m */; };
 		0A7F1E1B18ACFCCA00FDE5AC /* DotDumper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7F1E1A18ACFCCA00FDE5AC /* DotDumper.m */; };
 		0A7FE29A18B2C09B004BA9DD /* DijkstraAlgorithm.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7FE29918B2C09B004BA9DD /* DijkstraAlgorithm.m */; };
@@ -79,6 +80,8 @@
 		0A7EC5C518B2663F00092297 /* LayoutCreatorProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LayoutCreatorProtocol.h; sourceTree = "<group>"; };
 		0A7EC5C718B266C100092297 /* RandomLayoutCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RandomLayoutCreator.h; sourceTree = "<group>"; };
 		0A7EC5C818B266C100092297 /* RandomLayoutCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RandomLayoutCreator.m; sourceTree = "<group>"; };
+		0A7EFBAD18BE060E0019D4AC /* SVGDumper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVGDumper.h; sourceTree = "<group>"; };
+		0A7EFBAE18BE060E0019D4AC /* SVGDumper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVGDumper.m; sourceTree = "<group>"; };
 		0A7F1E1818ACFBB500FDE5AC /* DumperProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DumperProtocol.h; sourceTree = "<group>"; };
 		0A7F1E1918ACFCCA00FDE5AC /* DotDumper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DotDumper.h; sourceTree = "<group>"; };
 		0A7F1E1A18ACFCCA00FDE5AC /* DotDumper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DotDumper.m; sourceTree = "<group>"; };
@@ -227,6 +230,9 @@
 			isa = PBXGroup;
 			children = (
 				0A76A8B318ABB67E008EB9A2 /* graph.xgmml */,
+				7D77BCE618BE0FBA001CA807 /* petersen.xgmml */,
+				7D77BCE818BE20C9001CA807 /* clique5.xgmml */,
+				7D77BCEA18BE22A4001CA807 /* clique10.xgmml */,
 				0A76A8B718ABBF6C008EB9A2 /* graph.gexf */,
 				0A76A8B918ABC078008EB9A2 /* graph.graphml */,
 			);
@@ -283,6 +289,8 @@
 				0A7F1E1818ACFBB500FDE5AC /* DumperProtocol.h */,
 				0A7F1E1918ACFCCA00FDE5AC /* DotDumper.h */,
 				0A7F1E1A18ACFCCA00FDE5AC /* DotDumper.m */,
+				0A7EFBAD18BE060E0019D4AC /* SVGDumper.h */,
+				0A7EFBAE18BE060E0019D4AC /* SVGDumper.m */,
 			);
 			name = dumper;
 			sourceTree = "<group>";
@@ -429,10 +437,13 @@
 				06320C4D14509DBB00C37973 /* InfoPlist.strings in Resources */,
 				06320C5614509DBB00C37973 /* MainStoryboard.storyboard in Resources */,
 				F9E49B7318A3D3C700FAB88D /* cercle.png in Resources */,
+				7D77BCE718BE0FBA001CA807 /* petersen.xgmml in Resources */,
 				0A76A8B418ABB67E008EB9A2 /* graph.xgmml in Resources */,
 				0A76A8B618ABBAB2008EB9A2 /* Default-568h@2x.png in Resources */,
 				0A76A8B818ABBF6C008EB9A2 /* graph.gexf in Resources */,
+				7D77BCE918BE20C9001CA807 /* clique5.xgmml in Resources */,
 				0A76A8BA18ABC078008EB9A2 /* graph.graphml in Resources */,
+				7D77BCEB18BE22A4001CA807 /* clique10.xgmml in Resources */,
 				245FFA3E18AD1C2600796C14 /* Storyboard.storyboard in Resources */,
 				2485AA4418BABBDE003F1B95 /* SquGridLandscape.png in Resources */,
 			);

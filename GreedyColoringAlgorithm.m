@@ -62,12 +62,17 @@ NSMutableDictionary *colorsMap;
         return (NSComparisonResult) NSOrderedSame;
     }];
 
+    NSLog(@"Select color for vertex %@", vertex.id);
+
     // and select the first color available
     // ie: the first "color gap" in the neighbours will be the selected color
     //     (Kevin's metaheuristic: select the first hole)
     for (Edge* edge in sortedNeighbours) {
         Vertex* target = edge.target;
         int targetColor = [[colorsMap objectForKey:target.id] intValue];
+
+
+        NSLog(@"    Neighbour %@ has color %d", target.id, targetColor);
 
         if (targetColor == -1) {
             continue;
@@ -85,6 +90,8 @@ NSMutableDictionary *colorsMap;
 
     [colorsMap setValue:[NSNumber numberWithInt:color] forKey:vertex.id];
     [self convertColorToHexa:vertex color:color];
+
+    NSLog(@"Assign color %d to vertex %@", color, vertex.id);
 }
 
 - (void) convertColorToHexa: (Vertex*) vertex color:(int) color

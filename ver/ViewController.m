@@ -20,13 +20,14 @@
 #import "DijkstraAlgorithm.h"
 #import "DijkstraInput.h"
 #import "GreedyColoringAlgorithm.h"
-#import "DotDumper.h"
+#import "SVGDumper.h"
 
 @implementation ViewController
 
 @synthesize vertexCountLabel;
 @synthesize vertexMenu;
 @synthesize edgeMenu;
+DrawableVertex *touchedVertex;
 BOOL dragging;
 float oldX, oldY;
 
@@ -42,31 +43,50 @@ float oldX, oldY;
 {
     UITouch *touch = [[event allTouches] anyObject];
     CGPoint location = [touch locationInView:self.view];
-    [self undisplayVertexMenu];
-    [self displayEdgeMenu];
-    DrawableVertex *retourHitTest=[drawableGraph drawableVertexAtLocation:location];
-    NSLog(@"touched vertex %@", touchedVertex.id);
-    NSLog(@"retour test  %@", retourHitTest.id);
 
-        touchedVertex=retourHitTest;
-        if(touchedVertex){
-            
+    [self undisplayVertexMenu];
+    [self undisplayEdgeMenu];
+
+    DrawableVertex *retourHitTest = [graph vertexAtLocation:location];
+
+    if (retourHitTest!=nil){
+        [graph switchSelectedEdge: nil];
+        //déselection d'un vertex
+        if([retourHitTest.id isEqualToString: touchedVertex.id]){
+            [graph switchSelectedVertex:nil];
+            touchedVertex=nil;
+            [self undisplayVertexMenu];
+        }else if(touchedVertex!=nil){
+            //add an edge between touchedVertx and retourHitTest
+            DrawableEdge* edge = [[DrawableEdge alloc] initWithVertices:touchedVertex target:retourHitTest];
+            [edge setPosition: self.view.frame.size.width y:self.view.frame.size.height];
+
+            [graph addEdge:edge];
+            [graph switchSelectedVertex:nil];
+
+            touchedVertex=nil;
+            [self undisplayVertexMenu];
+        }
+        else{
+            //selection d'un vertex
+            [graph switchSelectedVertex:retourHitTest];
+            touchedVertex=retourHitTest;
             [self displayVertexMenu];
             dragging = YES;
         }
-        else{
-            touchedEdge = [drawableGraph drawableEdgeAtLocation:location];
-            if(touchedEdge){
-                [self displayEdgeMenu];
-            }
-            else{
-                DrawableVertex* vertex = [[DrawableVertex alloc] initWithCoord:location.x y:location.y];
-                [drawableGraph addDrawableVertex:vertex];
-            }
+    }else{
+        touchedEdge = [graph edgeAtLocation:location];
+        if(touchedEdge){
+            [self displayEdgeMenu];
         }
-       
+        else{
+            DrawableVertex* vertex = [[DrawableVertex alloc] initWithCoord:location.x y:location.y];
+            [graph addVertex:vertex];
+            [graph switchSelectedVertex:nil];
+
+        }
+    }
         
-    
     [self.view setNeedsDisplay];
 }
 
@@ -74,17 +94,18 @@ float oldX, oldY;
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
     dragging = NO;
-    touchedVertex = nil;
+
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch *touch = [[event allTouches] anyObject];
     CGPoint touchLocation = [touch locationInView:self.view];
 
+    [self undisplayVertexMenu];
+
     if (dragging && touchedVertex!=nil) {
-        [self undisplayVertexMenu];
         [touchedVertex setPosition:touchLocation.x y:touchLocation.y];
-        [drawableGraph setNeedsDisplay];
+        [graph setNeedsDisplay];
         [self setNeedsDisplay];
     }
 }
@@ -97,20 +118,22 @@ float oldX, oldY;
     vertexMenu.frame= frame;
     vertexMenu.enabled=true;
     vertexMenu.hidden=false;
-    [self.view bringSubviewToFront:vertexMenu];
     [self setNeedsDisplay];
+
 }
 
 - (void) undisplayVertexMenu
 {
+    NSLog(@"In the undisplay;");
     vertexMenu.hidden = true;
     vertexMenu.enabled = false;
+    [self setNeedsDisplay];
+
 }
 - (void) displayEdgeMenu
 {
     CGRect frame = edgeMenu.frame;
     frame.origin.x = (touchedEdge.origin.coord.x+touchedEdge.target.coord.x)/2+15;
-    
     frame.origin.y = (touchedEdge.origin.coord.y+touchedEdge.target.coord.y)/2+15;
     edgeMenu.frame= frame;
     edgeMenu.enabled=true;
@@ -126,7 +149,7 @@ float oldX, oldY;
 
 
 //need to be refactor
--(void) addEdge
+/*-(void) addEdge
 {
     DrawableEdge* edge = [[DrawableEdge alloc] initWithVertices:origin target:destination];
     [edge setPosition: self.view.frame.size.width y:self.view.frame.size.height];
@@ -139,7 +162,7 @@ float oldX, oldY;
     vertexCountLabel.text = [NSString stringWithFormat: @"You add a edge"];
     origin = nil;
     destination = nil;
-}
+}*/
 
 
 - (void) viewDidLoad
@@ -148,7 +171,7 @@ float oldX, oldY;
 
     [self readSampleGraph];
     UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"SquGridLandscape.png"]] ;
-    
+    touchedVertex=nil;
     [self.view addSubview:imageView];
     [self.view sendSubviewToBack:imageView];
 }
@@ -156,29 +179,35 @@ float oldX, oldY;
 - (void) readSampleGraph{
     DrawableEntityFactory* factory = [[DrawableEntityFactory alloc] init];
     GraphParser *parser = [GraphParser create:factory];
-    NSString* path = [[NSBundle mainBundle] pathForResource:@"graph" ofType:@"xgmml"];
+    NSString* path = [[NSBundle mainBundle] pathForResource:@"petersen" ofType:@"xgmml"];
     
-    graph = [parser parse:path];
+    graph = (DrawableGraph*) [parser parse:path];
     if (graph == nil) {
-        graph = [[Graph alloc] init];
+        graph = [[DrawableGraph alloc] init];
     }
-    drawableGraph=[[DrawableGraph alloc]init];
-    [self.view addSubview:drawableGraph.graphView];
-    [self.view sendSubviewToBack:drawableGraph.graphView];
+
+    // render the graph view in the bigger one
+    [self.view addSubview:graph.graphView];
+    [self.view sendSubviewToBack:graph.graphView];
+
+    // setup the graph layout
     id<LayoutCreatorProtocol> layoutCreator = [[RandomLayoutCreator alloc] init];
     [layoutCreator createLayout:graph x:self.view.frame.size.width y:self.view.frame.size.height];
     
     // display the loaded vertices
-    for (NSString* id in graph.vertices) {
+    /*for (NSString* id in graph.vertices) {
         DrawableVertex* vertex = [graph.vertices objectForKey:id];
-        [drawableGraph addDrawableVertex:vertex];
-    }
+        [graph addVertex:vertex];
+    }*/
     
     // display the loaded edges
     for (DrawableEdge* edge in graph.edges) {
         [edge setPosition:self.view.frame.size.width y:self.view.frame.size.height];
-        [drawableGraph addDrawableEdge:edge];
+        //[graph addEdge:edge];
     }
+
+    //SVGDumper* dumper = [[SVGDumper alloc] init];
+    //NSLog([dumper dump:graph]);
     
     // and start a computation
     NSThread* thread = [[NSThread alloc] initWithTarget:self
@@ -191,8 +220,8 @@ float oldX, oldY;
 
 - (void) threadedComputation: (id) args	
 {
-    id<AlgorithmProtocol> algo = [[DijkstraAlgorithm alloc] init];
-    //id<AlgorithmProtocol> algo = [[GreedyColoringAlgorithm alloc] init];
+    //id<AlgorithmProtocol> algo = [[DijkstraAlgorithm alloc] init];
+    id<AlgorithmProtocol> algo = [[GreedyColoringAlgorithm alloc] init];
     [algo execute:graph input:[DijkstraInput createWithVertices:[graph getVertex:@"0"] target:[graph getVertex:@"1"]]];
 
     NSLog(@"End algorithm");
@@ -238,24 +267,24 @@ float oldX, oldY;
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
--(void) setNeedsDisplay {
-
+-(void) setNeedsDisplay
+{
     [self.view.subviews makeObjectsPerformSelector:@selector(setNeedsDisplay)];
     [super.view setNeedsDisplay];
 }
 
 
-- (IBAction)deleteEdge:(id)sender {
-    [drawableGraph removeDrawableEdge:(DrawableEdge*)touchedEdge];
+- (IBAction)deleteEdge:(id)sender
+{
+    [graph removeEdge:touchedEdge];
     touchedEdge = nil;
     [self undisplayEdgeMenu];
-
 }
 
 - (IBAction)deleteVertex:(id)sender {
-        [drawableGraph removeDrawableVertex:drawableGraph.selectedOrigin];
-        [self undisplayEdgeMenu];
-        touchedVertex = nil;
+    [graph removeVertex:((DrawableGraph*) graph).selectedOrigin];
+    [self undisplayEdgeMenu];
+    touchedVertex = nil;
     [self undisplayVertexMenu];
     
 }

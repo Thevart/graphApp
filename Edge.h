@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "Vertex.h"
 
+@class Vertex;
+
 @interface Edge : NSObject
 
 @property NSString* label;
