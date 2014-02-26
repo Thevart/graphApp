@@ -54,10 +54,12 @@
     [edge.origin addNeighbour:edge];
 
     if (!self.oriented) {
-        Edge* returnEdge = [[Edge alloc] initWithVertices:edge.target target:edge.origin];
+        Edge* returnEdge = [[[edge class] alloc] initWithVertices:edge.target target:edge.origin];
+        returnEdge.weight = edge.weight;
+        returnEdge.label = [NSString stringWithFormat:@"%@_%@", returnEdge.origin.id, returnEdge.target.id];
 
-        [edge.target addNeighbour:returnEdge];
         [self.edges addObject:returnEdge];
+        [returnEdge.origin addNeighbour:returnEdge];
     }
 }
 

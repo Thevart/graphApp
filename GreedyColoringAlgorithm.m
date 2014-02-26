@@ -27,6 +27,7 @@ NSMutableDictionary *colorsMap;
 
     // initialize colors
     for (NSString* id in graph.vertices) {
+        NSLog(@"Vertex %@ has %d neighbours", id, ((Vertex*)[graph.vertices objectForKey:id]).neighbours.count);
         [colorsMap setValue:[NSNumber numberWithInt:-1] forKey:id];
     }
 
@@ -37,6 +38,9 @@ NSMutableDictionary *colorsMap;
         [self selectColor:vertex];
     }
 
+
+    NSLog(@"K == %d", k);
+
     return nil;
 }
 
@@ -46,15 +50,15 @@ NSMutableDictionary *colorsMap;
 
     // order the neighbours by their color
     NSArray *sortedNeighbours = [vertex.neighbours sortedArrayUsingComparator:^(id obj1, id obj2){
-        if ([obj1 isKindOfClass:[Vertex class]] && [obj2 isKindOfClass:[Vertex class]]) {
-            Vertex* v1 = obj1;
-            Vertex* v2 = obj2;
-            int v1Color = [[colorsMap objectForKey:v1.id] intValue];
-            int v2Color = [[colorsMap objectForKey:v2.id] intValue];
+        if ([obj1 isKindOfClass:[Edge class]] && [obj2 isKindOfClass:[Edge class]]) {
+            Edge* v1 = obj1;
+            Edge* v2 = obj2;
+            int v1Color = [[colorsMap objectForKey:v1.target.id] intValue];
+            int v2Color = [[colorsMap objectForKey:v2.target.id] intValue];
 
-            if (v1Color > v2Color) {
+            if (v1Color < v2Color) {
                 return (NSComparisonResult) NSOrderedAscending;
-            } else if (v1Color < v2Color) {
+            } else if (v1Color > v2Color) {
                 return (NSComparisonResult) NSOrderedDescending;
             }
         }
@@ -62,7 +66,7 @@ NSMutableDictionary *colorsMap;
         return (NSComparisonResult) NSOrderedSame;
     }];
 
-    NSLog(@"Select color for vertex %@", vertex.id);
+    NSLog(@"Exploring vertex %@", vertex.id);
 
     // and select the first color available
     // ie: the first "color gap" in the neighbours will be the selected color
@@ -71,18 +75,18 @@ NSMutableDictionary *colorsMap;
         Vertex* target = edge.target;
         int targetColor = [[colorsMap objectForKey:target.id] intValue];
 
-
         NSLog(@"    Neighbour %@ has color %d", target.id, targetColor);
 
         if (targetColor == -1) {
             continue;
         }
 
-        if (targetColor == color) {
-            color += 1;
-        } else {
+        if (targetColor > color) {
+            NSLog(@" color    break   %d", targetColor);
             break;
         }
+
+        color += 1;
     }
 
     // color = 2 means 3 colors
