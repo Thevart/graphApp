@@ -27,6 +27,8 @@
 @synthesize vertexCountLabel;
 @synthesize vertexMenu;
 @synthesize edgeMenu;
+@synthesize scrollView = _scrollView;
+
 DrawableVertex *touchedVertex;
 BOOL dragging;
 float oldX, oldY;
@@ -106,7 +108,7 @@ float oldX, oldY;
     if (dragging && touchedVertex!=nil) {
         [touchedVertex setPosition:touchLocation.x y:touchLocation.y];
         [graph setNeedsDisplay];
-        [self setNeedsDisplay];
+        //[self setNeedsDisplay];
     }
 }
 
@@ -174,6 +176,8 @@ float oldX, oldY;
     touchedVertex=nil;
     [self.view addSubview:imageView];
     [self.view sendSubviewToBack:imageView];
+    UIPinchGestureRecognizer *twoFingerPinch =[[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(twoFingerPinch:)];
+    [[self view] addGestureRecognizer:twoFingerPinch];
 }
 
 - (void) readSampleGraph{
@@ -287,5 +291,21 @@ float oldX, oldY;
     touchedVertex = nil;
     [self undisplayVertexMenu];
     
+}
+- (void)twoFingerPinch:(UIPinchGestureRecognizer *)recognizer
+{
+    NSLog(@"Pinch scale: %f", recognizer.scale);
+    for (NSString *id in graph.vertices){
+        DrawableVertex* vertex = (DrawableVertex*)[graph getVertex:id];
+        int x=vertex.coord.x;
+        int y=vertex.coord.y;
+        x=recognizer.scale*x;
+        y=recognizer.scale*y;
+        if(recognizer.scale>0.5){
+            [vertex setPosition:x y:y];
+        }
+        
+    }
+    [graph setNeedsDisplay];
 }
 @end

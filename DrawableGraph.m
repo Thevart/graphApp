@@ -96,15 +96,11 @@
 - (DrawableEdge*) edgeAtLocation: (CGPoint) location
 {
     DrawableEdge *realEdge = nil;
-
     for (DrawableEdge* edge in self.edges) {
         if ([edge.edgeView containPoint:location]) {
-            // @todo: this shouldn't be here
-            [self switchSelectedEdge:edge];
             return edge;
         }
     }
-
     return realEdge;
 }
 
@@ -116,20 +112,20 @@
         vertex = [self.vertices objectForKey:id];
 
         if (CGRectContainsPoint(vertex.vertexView.frame,location)) {
-                /*
-                DrawableEdge* edge = [[DrawableEdge alloc] initWithVertices:self.selectedOrigin target:vertex];
-                [edge setPosition: self.graphView.frame.size.width y:self.graphView.frame.size.height];
-                [self addDrawableEdge:edge];
-                [self switchSelectedVertex:vertex];/*/
             return vertex;
         }
     }
-
     return nil;
 }
 
--(void) setNeedsDisplay
+-(void) setNeedsDisplay:(DrawableVertex*) vertex
 {
+    for (DrawableEdge *edge in vertex.neighbours) {
+        [edge.edgeView setNeedsDisplay];
+    }
+}
+
+-(void) setNeedsDisplay {
     [self.graphView.subviews makeObjectsPerformSelector:@selector(setNeedsDisplay)];
     [self.graphView setNeedsDisplay];
 }

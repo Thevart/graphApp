@@ -11,7 +11,7 @@
 #import "DrawableGraph.h"
 
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <UIScrollViewDelegate>
 {
     DrawableGraph* graph;
     Vertex* origin;
@@ -25,4 +25,6 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *vertexMenu;
 @property (weak, nonatomic) IBOutlet UILabel *vertexCountLabel;
+@property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
+
 @end

@@ -49,7 +49,7 @@
 
 - (void) setPosition: (int)x y:(int) y
 {
-    [self.edgeView setFrame:CGRectMake(0, 0, x, y)];
+    [self.edgeView setFrame:CGRectMake(0, 0, 3000, 3000)];
     [self.edgeView setNeedsDisplay];
 }
 

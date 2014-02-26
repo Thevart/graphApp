@@ -41,13 +41,38 @@
     self.pathref   = path;
     
     
-    CGContextRef context = [self createOffscreenContext];
-    CGContextSetLineWidth(context, self.pathWidth);
+    [self createOffscreenContext];
     
-    CGContextBeginPath(context);
-    CGContextAddPath(context, self.pathref);
+   // CGContextBeginPath(context);
 }
+- (CGMutablePathRef)createPathTriangle {
+    float x = (self.origin.x+self.destination.x)/2;
+    float y = (self.origin.y+self.destination.y)/2;
+    float pente;
+    if(self.origin.y!=self.destination.y){
+        pente = (self.origin.x-self.destination.x)/(self.origin.y - self.destination.y);
 
+    }
+    else{
+        pente = 0;
+    }
+    float pentePerpen = -pow(pente, -1);
+    float b=y-(x*pente);
+    float bPerpen=y-(x*pentePerpen);
+    
+    
+    CGMutablePathRef path = CGPathCreateMutable();
+    /*CGPathMoveToPoint(   path, nil, x,y);
+    CGPathAddLineToPoint(path, nil, x+2, pentePerpen*(x+2)+bPerpen);
+    CGPathAddLineToPoint(path, nil, x+4, pente*(x+4)+b);
+    CGPathAddLineToPoint(path, nil, x-2, pentePerpen*(x-2)+bPerpen);*/
+    CGPathMoveToPoint(path, NULL,x, y);
+    CGPathAddLineToPoint(path, NULL,-10+x,y);
+    CGPathAddLineToPoint(path, NULL,x,20+y);
+    CGPathAddLineToPoint(path, NULL,10+x,y);
+    CGPathCloseSubpath(path);
+    return path;
+}
 - (CGContextRef)createOffscreenContext {
     CFMutableDataRef empty = CFDataCreateMutable(NULL, 0);
     CGDataConsumerRef consumer = CGDataConsumerCreateWithCFData(empty);
@@ -61,7 +86,8 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetLineWidth(context, self.pathWidth);
     CGContextAddPath(context, self.pathref);
-    CGContextSetStrokeColorWithColor(context, self.color.CGColor);
+        CGContextSetStrokeColorWithColor(context, self.color.CGColor);
+    CGContextAddPath(context, [self createPathTriangle]);
     CGContextStrokePath(context);
 
 }
