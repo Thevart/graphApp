@@ -7,6 +7,7 @@
 //
 
 #import "GraphDisplayerViewController.h"
+#import "ViewController.h"
 
 @implementation GraphDisplayerViewController
 
@@ -38,6 +39,10 @@ NSString *file;
 - (IBAction) openAlgo:(id) sender
 {
     NSLog(@"Load %@", file);
+    ViewController* graphEditorController = [[ViewController alloc] init];
+    graphEditorController.initialGraphFile = file;
+
+    [self.navigationController pushViewController:graphEditorController animated:true];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

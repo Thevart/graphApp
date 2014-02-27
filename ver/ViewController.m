@@ -33,7 +33,7 @@ DrawableVertex *touchedVertex;
 BOOL dragging;
 float oldX, oldY;
 
-- (void)didReceiveMemoryWarning
+- (void) didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Release any cached data, images, etc that aren't in use.
@@ -155,7 +155,8 @@ float oldX, oldY;
 {
     [super viewDidLoad];
 
-    [self readSampleGraph];
+    [self readSampleGraph: self.initialGraphFile];
+
     UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"SquGridLandscape.png"]] ;
     touchedVertex=nil;
     [self.view addSubview:imageView];
@@ -164,11 +165,11 @@ float oldX, oldY;
     [[self view] addGestureRecognizer:twoFingerPinch];
 }
 
-- (void) readSampleGraph
+- (void) readSampleGraph: (NSString*) file
 {
     DrawableEntityFactory* factory = [[DrawableEntityFactory alloc] init];
     GraphParser *parser = [GraphParser create:factory];
-    NSString* path = [[NSBundle mainBundle] pathForResource:@"petersen" ofType:@"xgmml"];
+    NSString* path = [[NSBundle mainBundle] pathForResource:[[file lastPathComponent] stringByDeletingPathExtension] ofType:[file pathExtension]];
     
     graph = (DrawableGraph*) [parser parse:path];
     if (graph == nil) {
