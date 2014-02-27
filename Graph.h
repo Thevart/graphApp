@@ -24,4 +24,7 @@
 
 - (void) addEdge: (Edge*) edge;
 - (void) removeEdge : (Edge*) edge;
+
+- (void) _doAddEdge: (Edge*) edge;
+
 @end

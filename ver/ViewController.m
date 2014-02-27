@@ -179,7 +179,7 @@ float oldX, oldY;
 - (void) readSampleGraph{
     DrawableEntityFactory* factory = [[DrawableEntityFactory alloc] init];
     GraphParser *parser = [GraphParser create:factory];
-    NSString* path = [[NSBundle mainBundle] pathForResource:@"clique10" ofType:@"xgmml"];
+    NSString* path = [[NSBundle mainBundle] pathForResource:@"petersen" ofType:@"xgmml"];
     
     graph = (DrawableGraph*) [parser parse:path];
     if (graph == nil) {
