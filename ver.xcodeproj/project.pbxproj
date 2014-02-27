@@ -43,6 +43,7 @@
 		0AC277DC18A42A24004863C8 /* Vertex.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC277D818A42A24004863C8 /* Vertex.m */; };
 		245FFA3E18AD1C2600796C14 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 245FFA3D18AD1C2600796C14 /* Storyboard.storyboard */; };
 		247BDB1518B56E4C004FDF7B /* DrawableGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 247BDB1418B56E4B004FDF7B /* DrawableGraph.m */; };
+		247F4B2D18BF664900040BBF /* UIBezierPath+dqd_arrowhead.m in Sources */ = {isa = PBXBuildFile; fileRef = 247F4B2C18BF664900040BBF /* UIBezierPath+dqd_arrowhead.m */; };
 		248570FD18A97190000DAABD /* DrawableEdge.m in Sources */ = {isa = PBXBuildFile; fileRef = 248570FC18A97190000DAABD /* DrawableEdge.m */; };
 		2485AA4418BABBDE003F1B95 /* SquGridLandscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 2485AA4318BABBDE003F1B95 /* SquGridLandscape.png */; };
 		248CB68318ACF8BB00F11E43 /* VertexView.m in Sources */ = {isa = PBXBuildFile; fileRef = 248CB68218ACF8BB00F11E43 /* VertexView.m */; };
@@ -124,6 +125,8 @@
 		245FFA3D18AD1C2600796C14 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		247BDB1318B56E4B004FDF7B /* DrawableGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawableGraph.h; sourceTree = "<group>"; };
 		247BDB1418B56E4B004FDF7B /* DrawableGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawableGraph.m; sourceTree = "<group>"; };
+		247F4B2B18BF662900040BBF /* UIBezierPath+dqd_arrowhead.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBezierPath+dqd_arrowhead.h"; sourceTree = "<group>"; };
+		247F4B2C18BF664900040BBF /* UIBezierPath+dqd_arrowhead.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBezierPath+dqd_arrowhead.m"; sourceTree = "<group>"; };
 		248570FB18A97190000DAABD /* DrawableEdge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawableEdge.h; sourceTree = "<group>"; };
 		248570FC18A97190000DAABD /* DrawableEdge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawableEdge.m; sourceTree = "<group>"; };
 		2485AA4318BABBDE003F1B95 /* SquGridLandscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SquGridLandscape.png; sourceTree = "<group>"; };
@@ -154,6 +157,7 @@
 		06320C3314509DBB00C37973 = {
 			isa = PBXGroup;
 			children = (
+				247F4B2A18BF65E900040BBF /* path */,
 				0A84610618B4EE0200EB3FF0 /* data_structures */,
 				0A7FE23C18B2C00F004BA9DD /* algorithm */,
 				0A7EC5C418B2662100092297 /* layout */,
@@ -375,6 +379,15 @@
 			name = parser;
 			sourceTree = "<group>";
 		};
+		247F4B2A18BF65E900040BBF /* path */ = {
+			isa = PBXGroup;
+			children = (
+				247F4B2B18BF662900040BBF /* UIBezierPath+dqd_arrowhead.h */,
+				247F4B2C18BF664900040BBF /* UIBezierPath+dqd_arrowhead.m */,
+			);
+			name = path;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -481,6 +494,7 @@
 				0A823B9C18BA4AEB00B2D3BC /* Color.m in Sources */,
 				0A7E5E0818BBF331002E2451 /* DijkstraInput.m in Sources */,
 				0A7EFBAF18BE060E0019D4AC /* SVGDumper.m in Sources */,
+				247F4B2D18BF664900040BBF /* UIBezierPath+dqd_arrowhead.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

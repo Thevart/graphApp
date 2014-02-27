@@ -97,7 +97,8 @@
 {
     DrawableEdge *realEdge = nil;
     for (DrawableEdge* edge in self.edges) {
-        if ([edge.edgeView containPoint:location]) {
+        if([edge.edgeView containPoint: location]){
+            NSLog(@"We detetect that you touched a edge.");
             return edge;
         }
     }
@@ -126,6 +127,7 @@
 }
 
 -(void) setNeedsDisplay {
+
     [self.graphView.subviews makeObjectsPerformSelector:@selector(setNeedsDisplay)];
     [self.graphView setNeedsDisplay];
 }
