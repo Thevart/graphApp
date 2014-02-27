@@ -187,7 +187,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="btnOpen:" destination="dqQ-k8-nTZ" eventType="touchUpInside" id="lHO-Cv-dpG"/>
+                                    <action selector="openAlgo:" destination="dqQ-k8-nTZ" eventType="touchUpInside" id="EF6-gX-lzU"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -195,8 +195,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="eJp-ZM-Rus"/>
                     <connections>
-                        <outlet property="TVAlgoNames" destination="1np-aW-9JF" id="qaY-6r-1LF"/>
-                        <outlet property="lblGDName" destination="2Pm-xs-fat" id="5Gz-cL-mMl"/>
+                        <outlet property="algoTableView" destination="1np-aW-9JF" id="J2x-Al-iMu"/>
+                        <outlet property="graphDisplayerName" destination="2Pm-xs-fat" id="EJ8-nv-Phv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SPF-Kf-WaX" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -230,7 +230,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="dqQ-k8-nTZ" kind="push" id="qq6-c1-Tex"/>
+                                    <segue destination="dqQ-k8-nTZ" kind="push" id="qZ2-6v-gX3"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="twO-60-W32">
@@ -253,8 +253,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="Xjj-1j-IJX"/>
                     <connections>
-                        <outlet property="appName" destination="oge-zo-y0G" id="V7A-0u-7Cb"/>
-                        <outlet property="createGraph" destination="twO-60-W32" id="xy2-do-GVy"/>
+                        <outlet property="appName" destination="oge-zo-y0G" id="Mbz-G1-bKJ"/>
+                        <outlet property="createGraph" destination="twO-60-W32" id="sbN-gp-nfL"/>
+                        <outlet property="displayGraph" destination="cbc-ob-wRs" id="TMH-88-bCX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0GH-fo-Bp4" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -284,9 +285,9 @@
         <class className="GraphDisplayerViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/GraphDisplayerViewController.h"/>
             <relationships>
-                <relationship kind="action" name="btnOpen:"/>
-                <relationship kind="outlet" name="TVAlgoNames" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="lblGDName" candidateClass="UILabel"/>
+                <relationship kind="action" name="openAlgo:"/>
+                <relationship kind="outlet" name="algoTableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="graphDisplayerName" candidateClass="UILabel"/>
             </relationships>
         </class>
         <class className="MainMenuViewController" superclassName="UIViewController">

@@ -2,7 +2,7 @@
 //  GraphDisplayerViewController.m
 //  ver
 //
-//  Created by mrpacpac on 26/02/14.
+//  Created by mrpacpac on 27/02/14.
 //
 //
 
@@ -35,7 +35,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)btnOpen:(id)sender {
+- (IBAction)openAlgo:(id)sender {
 }
-
 @end

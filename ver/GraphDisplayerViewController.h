@@ -2,7 +2,7 @@
 //  GraphDisplayerViewController.h
 //  ver
 //
-//  Created by mrpacpac on 26/02/14.
+//  Created by mrpacpac on 27/02/14.
 //
 //
 
@@ -10,10 +10,7 @@
 
 @interface GraphDisplayerViewController : UIViewController
 
-@property (weak, nonatomic) IBOutlet UILabel *lblGDName;
-
-@property (weak, nonatomic) IBOutlet UITableView *TVAlgoNames;
-
-- (IBAction)btnOpen:(id)sender;
-
+@property (weak, nonatomic) IBOutlet UILabel *graphDisplayerName;
+@property (weak, nonatomic) IBOutlet UITableView *algoTableView;
+- (IBAction)openAlgo:(id)sender;
 @end
