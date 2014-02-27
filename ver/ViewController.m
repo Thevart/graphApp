@@ -46,18 +46,19 @@ float oldX, oldY;
     UITouch *touch = [[event allTouches] anyObject];
     CGPoint location = [touch locationInView:self.view];
 
-    [self undisplayVertexMenu];
-    [self undisplayEdgeMenu];
+    [self hideVertexMenu];
+    [self hideEdgeMenu];
 
     DrawableVertex *retourHitTest = [graph vertexAtLocation:location];
 
     if (retourHitTest!=nil){
         [graph switchSelectedEdge: nil];
-        //déselection d'un vertex
+        // déselection d'un vertex
         if([retourHitTest.id isEqualToString: touchedVertex.id]){
             [graph switchSelectedVertex:nil];
             touchedVertex=nil;
-            [self undisplayVertexMenu];
+            [self hideVertexMenu];
+            NSLog(@"unselect vertex");
         }else if(touchedVertex!=nil){
             //add an edge between touchedVertx and retourHitTest
             DrawableEdge* edge = [[DrawableEdge alloc] initWithVertices:touchedVertex target:retourHitTest];
@@ -67,25 +68,28 @@ float oldX, oldY;
             [graph switchSelectedVertex:nil];
 
             touchedVertex=nil;
-            [self undisplayVertexMenu];
+            [self hideVertexMenu];
+            NSLog(@"create edge");
         }
         else{
             //selection d'un vertex
             [graph switchSelectedVertex:retourHitTest];
             touchedVertex=retourHitTest;
             [self displayVertexMenu];
-            dragging = YES;
+            NSLog(@"select vertex");
         }
-    }else{
+    } else {
         touchedEdge = [graph edgeAtLocation:location];
-        if(touchedEdge){
+
+        if (touchedEdge) {
             [self displayEdgeMenu];
-        }
-        else{
+            NSLog(@"unselect edge");
+        } else {
             DrawableVertex* vertex = [[DrawableVertex alloc] initWithCoord:location.x y:location.y];
             [graph addVertex:vertex];
             [graph switchSelectedVertex:nil];
 
+            NSLog(@"create vertex");
         }
     }
         
@@ -95,20 +99,23 @@ float oldX, oldY;
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    dragging = NO;
+    if (dragging) {
+        touchedVertex = nil;
+    }
 
+    dragging = NO;
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch *touch = [[event allTouches] anyObject];
     CGPoint touchLocation = [touch locationInView:self.view];
 
-    [self undisplayVertexMenu];
+    [self hideVertexMenu];
 
-    if (dragging && touchedVertex!=nil) {
+    if (touchedVertex != nil) {
+        dragging = true;
         [touchedVertex setPosition:touchLocation.x y:touchLocation.y];
-        [graph setNeedsDisplay];
-        //[self setNeedsDisplay];
+        [graph setNeedsDisplay:touchedVertex];
     }
 }
 
@@ -120,18 +127,14 @@ float oldX, oldY;
     vertexMenu.frame= frame;
     vertexMenu.enabled=true;
     vertexMenu.hidden=false;
-    [self setNeedsDisplay];
-
 }
 
-- (void) undisplayVertexMenu
+- (void) hideVertexMenu
 {
-    NSLog(@"In the undisplay;");
     vertexMenu.hidden = true;
     vertexMenu.enabled = false;
-    [self setNeedsDisplay];
-
 }
+
 - (void) displayEdgeMenu
 {
     CGRect frame = edgeMenu.frame;
@@ -140,32 +143,13 @@ float oldX, oldY;
     edgeMenu.frame= frame;
     edgeMenu.enabled=true;
     edgeMenu.hidden=false;
-    [self setNeedsDisplay];
 }
-- (void) undisplayEdgeMenu
+
+- (void) hideEdgeMenu
 {
     edgeMenu.hidden = true;
     edgeMenu.enabled = false;
 }
-
-
-
-//need to be refactor
-/*-(void) addEdge
-{
-    DrawableEdge* edge = [[DrawableEdge alloc] initWithVertices:origin target:destination];
-    [edge setPosition: self.view.frame.size.width y:self.view.frame.size.height];
-
-    [graph addEdge:edge];
-
-    [self.view addSubview:edge.edgeView];
-    [edge.edgeView setNeedsDisplay];
-
-    vertexCountLabel.text = [NSString stringWithFormat: @"You add a edge"];
-    origin = nil;
-    destination = nil;
-}*/
-
 
 - (void) viewDidLoad
 {
@@ -180,7 +164,8 @@ float oldX, oldY;
     [[self view] addGestureRecognizer:twoFingerPinch];
 }
 
-- (void) readSampleGraph{
+- (void) readSampleGraph
+{
     DrawableEntityFactory* factory = [[DrawableEntityFactory alloc] init];
     GraphParser *parser = [GraphParser create:factory];
     NSString* path = [[NSBundle mainBundle] pathForResource:@"petersen" ofType:@"xgmml"];
@@ -282,14 +267,14 @@ float oldX, oldY;
 {
     [graph removeEdge:touchedEdge];
     touchedEdge = nil;
-    [self undisplayEdgeMenu];
+    [self hideEdgeMenu];
 }
 
 - (IBAction)deleteVertex:(id)sender {
     [graph removeVertex:((DrawableGraph*) graph).selectedOrigin];
-    [self undisplayEdgeMenu];
+    [self hideEdgeMenu];
     touchedVertex = nil;
-    [self undisplayVertexMenu];
+    [self hideVertexMenu];
     
 }
 - (void)twoFingerPinch:(UIPinchGestureRecognizer *)recognizer

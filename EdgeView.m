@@ -92,14 +92,14 @@
     CGPoint endPoint=CGPointMake(x2, y2);
     
     
-    
+    /*
     UIBezierPath *BezierPath = [UIBezierPath dqd_bezierPathWithArrowFromPoint:(CGPoint)startPoint
                                                                       toPoint:(CGPoint)endPoint
                                                                     tailWidth:(CGFloat)10
                                                                     headWidth:(CGFloat)50
                                                                    headLength:(CGFloat)10];
     [BezierPath setLineWidth:2.0];
-    [BezierPath stroke];
+    [BezierPath stroke];*/
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetLineWidth(context, self.pathWidth);
     CGContextAddPath(context, self.pathref);
@@ -112,11 +112,6 @@
 
 - (bool) containPoint: (CGPoint)location
 {
-    
-    if( CGContextPathContainsPoint(self.offscreenContext, location, kCGPathStroke)){
-        return true;
-    }
-    return false;
-    
+    return CGContextPathContainsPoint(self.offscreenContext, location, kCGPathStroke);
 }
 @end

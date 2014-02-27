@@ -21,6 +21,7 @@ Color *color;
     if (self = [super init]) {
         self.id = [NSString stringWithFormat:@"%d", nextVertexId];
         self.neighbours = [[NSMutableArray alloc] init];
+        self.incomingEdges = [[NSMutableArray alloc] init];
         self.label = [NSString stringWithFormat:@"%d", nextVertexId];
         self.coord = [[Coord alloc] init];
         self.color = [[Color alloc] init];
@@ -69,11 +70,16 @@ Color *color;
     if (![self.neighbours containsObject:neighbour]) {
         [self.neighbours addObject:neighbour];
     }
+
+    if (![neighbour.target.incomingEdges containsObject:neighbour]) {
+        [neighbour.target.incomingEdges addObject:neighbour];
+    }
 }
 
 - (void) removeNeighbour:(Edge *) neighbour
 {
     [self.neighbours removeObject:neighbour];
+    [neighbour.target.incomingEdges removeObject:neighbour];
 }
 
 - (Edge*) removeNeighbourVertex:(Vertex *) neighbour

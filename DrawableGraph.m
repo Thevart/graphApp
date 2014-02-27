@@ -121,7 +121,13 @@
 
 -(void) setNeedsDisplay:(DrawableVertex*) vertex
 {
+    // refresh "outgoing edges"
     for (DrawableEdge *edge in vertex.neighbours) {
+        [edge.edgeView setNeedsDisplay];
+    }
+
+    // and now refresh "incoming edges"
+    for (DrawableEdge *edge in vertex.incomingEdges) {
         [edge.edgeView setNeedsDisplay];
     }
 }
