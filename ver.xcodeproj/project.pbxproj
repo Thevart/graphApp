@@ -47,8 +47,9 @@
 		2485AA4418BABBDE003F1B95 /* SquGridLandscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 2485AA4318BABBDE003F1B95 /* SquGridLandscape.png */; };
 		248CB68318ACF8BB00F11E43 /* VertexView.m in Sources */ = {isa = PBXBuildFile; fileRef = 248CB68218ACF8BB00F11E43 /* VertexView.m */; };
 		24F49DE118ABCEAD00E28E8E /* EdgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F49DE018ABCEAD00E28E8E /* EdgeView.m */; };
-		3C63A4B618BE498200A8CE01 /* GraphDisplayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C63A4B518BE498200A8CE01 /* GraphDisplayerViewController.m */; };
-		3C63A4BC18BE4A5900A8CE01 /* MainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C63A4BB18BE4A5900A8CE01 /* MainMenuViewController.m */; };
+		7D77BCE718BE0FBA001CA807 /* petersen.xgmml in Resources */ = {isa = PBXBuildFile; fileRef = 7D77BCE618BE0FBA001CA807 /* petersen.xgmml */; };
+		7D77BCE918BE20C9001CA807 /* clique5.xgmml in Resources */ = {isa = PBXBuildFile; fileRef = 7D77BCE818BE20C9001CA807 /* clique5.xgmml */; };
+		7D77BCEB18BE22A4001CA807 /* clique10.xgmml in Resources */ = {isa = PBXBuildFile; fileRef = 7D77BCEA18BE22A4001CA807 /* clique10.xgmml */; };
 		F9E49B7318A3D3C700FAB88D /* cercle.png in Resources */ = {isa = PBXBuildFile; fileRef = F9E49B7218A3D3C700FAB88D /* cercle.png */; };
 /* End PBXBuildFile section */
 
@@ -130,10 +131,13 @@
 		248CB68218ACF8BB00F11E43 /* VertexView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VertexView.m; sourceTree = "<group>"; };
 		24F49DDF18ABCEAD00E28E8E /* EdgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EdgeView.h; sourceTree = "<group>"; };
 		24F49DE018ABCEAD00E28E8E /* EdgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EdgeView.m; sourceTree = "<group>"; };
-		3C63A4B418BE498200A8CE01 /* GraphDisplayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphDisplayerViewController.h; sourceTree = "<group>"; };
-		3C63A4B518BE498200A8CE01 /* GraphDisplayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphDisplayerViewController.m; sourceTree = "<group>"; };
-		3C63A4BA18BE4A5900A8CE01 /* MainMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuViewController.h; sourceTree = "<group>"; };
-		3C63A4BB18BE4A5900A8CE01 /* MainMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuViewController.m; sourceTree = "<group>"; };
+		3C63A4C318BE5B2700A8CE01 /* MainMenuViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainMenuViewController.h; sourceTree = SOURCE_ROOT; };
+		3C63A4C418BE5B2700A8CE01 /* MainMenuViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainMenuViewController.m; sourceTree = SOURCE_ROOT; };
+		3C63A4C518BE5BEF00A8CE01 /* GraphDisplayerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GraphDisplayerViewController.h; sourceTree = "<group>"; };
+		3C63A4C618BE5BEF00A8CE01 /* GraphDisplayerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GraphDisplayerViewController.m; sourceTree = "<group>"; };
+		7D77BCE618BE0FBA001CA807 /* petersen.xgmml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = petersen.xgmml; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.xml; };
+		7D77BCE818BE20C9001CA807 /* clique5.xgmml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = clique5.xgmml; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.xml; };
+		7D77BCEA18BE22A4001CA807 /* clique10.xgmml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = clique10.xgmml; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.xml; };
 		F9E49B7218A3D3C700FAB88D /* cercle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cercle.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -190,15 +194,15 @@
 		06320C4814509DBB00C37973 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				3C63A4C318BE5B2700A8CE01 /* MainMenuViewController.h */,
+				3C63A4C418BE5B2700A8CE01 /* MainMenuViewController.m */,
 				06320C5114509DBB00C37973 /* AppDelegate.h */,
 				06320C5214509DBB00C37973 /* AppDelegate.m */,
 				06320C5414509DBB00C37973 /* MainStoryboard.storyboard */,
+				3C63A4C518BE5BEF00A8CE01 /* GraphDisplayerViewController.h */,
+				3C63A4C618BE5BEF00A8CE01 /* GraphDisplayerViewController.m */,
 				06320C5714509DBB00C37973 /* ViewController.h */,
 				06320C5814509DBB00C37973 /* ViewController.m */,
-				3C63A4B418BE498200A8CE01 /* GraphDisplayerViewController.h */,
-				3C63A4BB18BE4A5900A8CE01 /* MainMenuViewController.m */,
-				3C63A4BA18BE4A5900A8CE01 /* MainMenuViewController.h */,
-				3C63A4B518BE498200A8CE01 /* GraphDisplayerViewController.m */,
 				06320C4914509DBB00C37973 /* Supporting Files */,
 			);
 			name = view;
@@ -484,8 +488,7 @@
 				0A83298818B62E9A008F1077 /* GreedyColoringAlgorithm.m in Sources */,
 				0A823B9C18BA4AEB00B2D3BC /* Color.m in Sources */,
 				0A7E5E0818BBF331002E2451 /* DijkstraInput.m in Sources */,
-				3C63A4B618BE498200A8CE01 /* GraphDisplayerViewController.m in Sources */,
-				3C63A4BC18BE4A5900A8CE01 /* MainMenuViewController.m in Sources */,
+				0A7EFBAF18BE060E0019D4AC /* SVGDumper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
