@@ -7,7 +7,6 @@
 //
 
 #import "MainMenuViewController.h"
-
 @interface MainMenuViewController ()
 
 @end
@@ -26,6 +25,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
 	// Do any additional setup after loading the view.
 }
 

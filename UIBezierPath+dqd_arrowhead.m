@@ -1,11 +1,3 @@
-//
-//  UIBezierPath+dqd_arrowhead.m
-//  ver
-//
-//  Created by Arthur Thevenet on 27/02/14.
-//
-//
-
 #import "UIBezierPath+dqd_arrowhead.h"
 
 #define kArrowPointCount 7

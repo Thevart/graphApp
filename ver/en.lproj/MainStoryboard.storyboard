@@ -125,6 +125,19 @@
     <resources>
         <image name="cercle.png" width="30" height="30"/>
     </resources>
+    <classes>
+        <class className="ViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="deleteEdge:"/>
+                <relationship kind="action" name="deleteVertex:"/>
+                <relationship kind="outlet" name="edgeMenu" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="vertexCountLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="vertexMenu" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

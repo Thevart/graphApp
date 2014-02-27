@@ -27,10 +27,13 @@
 @synthesize vertexCountLabel;
 @synthesize vertexMenu;
 @synthesize edgeMenu;
+
 @synthesize scrollView = _scrollView;
 
 DrawableVertex *touchedVertex;
 BOOL dragging;
+BOOL moving;
+
 float oldX, oldY;
 
 - (void)didReceiveMemoryWarning
@@ -80,11 +83,14 @@ float oldX, oldY;
         touchedEdge = [graph edgeAtLocation:location];
         if(touchedEdge){
             [self displayEdgeMenu];
+            [graph switchSelectedEdge:(DrawableEdge*)touchedEdge];
         }
         else{
             DrawableVertex* vertex = [[DrawableVertex alloc] initWithCoord:location.x y:location.y];
             [graph addVertex:vertex];
             [graph switchSelectedVertex:nil];
+            [graph switchSelectedEdge:nil];
+
 
         }
     }
@@ -107,8 +113,8 @@ float oldX, oldY;
 
     if (dragging && touchedVertex!=nil) {
         [touchedVertex setPosition:touchLocation.x y:touchLocation.y];
-        [graph setNeedsDisplay];
-        //[self setNeedsDisplay];
+        [graph setNeedsDisplay: touchedVertex];
+
     }
 }
 
@@ -183,7 +189,7 @@ float oldX, oldY;
 - (void) readSampleGraph{
     DrawableEntityFactory* factory = [[DrawableEntityFactory alloc] init];
     GraphParser *parser = [GraphParser create:factory];
-    NSString* path = [[NSBundle mainBundle] pathForResource:@"petersen" ofType:@"xgmml"];
+    NSString* path = [[NSBundle mainBundle] pathForResource:@"graph" ofType:@"xgmml"];
     
     graph = (DrawableGraph*) [parser parse:path];
     if (graph == nil) {
@@ -308,4 +314,5 @@ float oldX, oldY;
     }
     [graph setNeedsDisplay];
 }
+
 @end

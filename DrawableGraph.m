@@ -93,16 +93,16 @@
 }
 
 /*****Hit test Method of the DrawableGraph*******/
-- (DrawableEdge*) edgeAtLocation: (CGPoint) location
-{
-    DrawableEdge *realEdge = nil;
+
+- (DrawableEdge*) edgeAtLocation:(CGPoint) location{
     for (DrawableEdge* edge in self.edges) {
         if([edge.edgeView containPoint: location]){
             NSLog(@"We detetect that you touched a edge.");
             return edge;
         }
     }
-    return realEdge;
+    return nil;
+
 }
 
 - (DrawableVertex*) vertexAtLocation:(CGPoint) location
@@ -119,12 +119,13 @@
     return nil;
 }
 
--(void) setNeedsDisplay:(DrawableVertex*) vertex
-{
-    for (DrawableEdge *edge in vertex.neighbours) {
-        [edge.edgeView setNeedsDisplay];
+-(void) setNeedsDisplay:(DrawableVertex*)vertex{
+    for(DrawableEdge* edge in vertex.neighbours){
+        //[edge.edgeView setNeedsDisplay];
     }
+        [self.graphView setNeedsDisplay];
 }
+
 
 -(void) setNeedsDisplay {
 

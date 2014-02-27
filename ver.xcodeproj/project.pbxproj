@@ -43,7 +43,8 @@
 		0AC277DC18A42A24004863C8 /* Vertex.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC277D818A42A24004863C8 /* Vertex.m */; };
 		245FFA3E18AD1C2600796C14 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 245FFA3D18AD1C2600796C14 /* Storyboard.storyboard */; };
 		247BDB1518B56E4C004FDF7B /* DrawableGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 247BDB1418B56E4B004FDF7B /* DrawableGraph.m */; };
-		247F4B2D18BF664900040BBF /* UIBezierPath+dqd_arrowhead.m in Sources */ = {isa = PBXBuildFile; fileRef = 247F4B2C18BF664900040BBF /* UIBezierPath+dqd_arrowhead.m */; };
+		247F8CA118BFB96700A025E1 /* TouchReceptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 247F8CA018BFB96700A025E1 /* TouchReceptor.m */; };
+		247F8CA418BFC02600A025E1 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 247F8CA318BFC02600A025E1 /* TestViewController.m */; };
 		248570FD18A97190000DAABD /* DrawableEdge.m in Sources */ = {isa = PBXBuildFile; fileRef = 248570FC18A97190000DAABD /* DrawableEdge.m */; };
 		2485AA4418BABBDE003F1B95 /* SquGridLandscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 2485AA4318BABBDE003F1B95 /* SquGridLandscape.png */; };
 		248CB68318ACF8BB00F11E43 /* VertexView.m in Sources */ = {isa = PBXBuildFile; fileRef = 248CB68218ACF8BB00F11E43 /* VertexView.m */; };
@@ -129,6 +130,10 @@
 		247BDB1418B56E4B004FDF7B /* DrawableGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawableGraph.m; sourceTree = "<group>"; };
 		247F4B2B18BF662900040BBF /* UIBezierPath+dqd_arrowhead.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBezierPath+dqd_arrowhead.h"; sourceTree = "<group>"; };
 		247F4B2C18BF664900040BBF /* UIBezierPath+dqd_arrowhead.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBezierPath+dqd_arrowhead.m"; sourceTree = "<group>"; };
+		247F8CA018BFB96700A025E1 /* TouchReceptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchReceptor.m; sourceTree = "<group>"; };
+		247F8CA218BFC02600A025E1 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestViewController.h; path = ../TestViewController.h; sourceTree = "<group>"; };
+		247F8CA318BFC02600A025E1 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestViewController.m; path = ../TestViewController.m; sourceTree = "<group>"; };
+		247F8CA718BFC1C400A025E1 /* TouchReceptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchReceptor.h; sourceTree = "<group>"; };
 		248570FB18A97190000DAABD /* DrawableEdge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawableEdge.h; sourceTree = "<group>"; };
 		248570FC18A97190000DAABD /* DrawableEdge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawableEdge.m; sourceTree = "<group>"; };
 		2485AA4318BABBDE003F1B95 /* SquGridLandscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SquGridLandscape.png; sourceTree = "<group>"; };
@@ -200,6 +205,9 @@
 		06320C4814509DBB00C37973 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				242AB3E018BFF88500673F92 /* touch */,
+				247F8CA218BFC02600A025E1 /* TestViewController.h */,
+				247F8CA318BFC02600A025E1 /* TestViewController.m */,
 				3CC0AC0318BF8B2A0082FFED /* GraphDisplayerViewController.h */,
 				3CC0AC0418BF8B2A0082FFED /* GraphDisplayerViewController.m */,
 				3CC0AC0618BF8B430082FFED /* MainMenuViewController.h */,
@@ -269,6 +277,8 @@
 		0A7DFEE418A7F7900033D747 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				247F4B2B18BF662900040BBF /* UIBezierPath+dqd_arrowhead.h */,
+				247F4B2C18BF664900040BBF /* UIBezierPath+dqd_arrowhead.m */,
 				247BDB1318B56E4B004FDF7B /* DrawableGraph.h */,
 				247BDB1418B56E4B004FDF7B /* DrawableGraph.m */,
 				0A7DFEE518A7F7F60033D747 /* DrawableVertex.h */,
@@ -389,11 +399,18 @@
 			name = parser;
 			sourceTree = "<group>";
 		};
+		242AB3E018BFF88500673F92 /* touch */ = {
+			isa = PBXGroup;
+			children = (
+				247F8CA718BFC1C400A025E1 /* TouchReceptor.h */,
+				247F8CA018BFB96700A025E1 /* TouchReceptor.m */,
+			);
+			name = touch;
+			sourceTree = "<group>";
+		};
 		247F4B2A18BF65E900040BBF /* path */ = {
 			isa = PBXGroup;
 			children = (
-				247F4B2B18BF662900040BBF /* UIBezierPath+dqd_arrowhead.h */,
-				247F4B2C18BF664900040BBF /* UIBezierPath+dqd_arrowhead.m */,
 			);
 			name = path;
 			sourceTree = "<group>";
@@ -506,6 +523,8 @@
 				0A7EFBAF18BE060E0019D4AC /* SVGDumper.m in Sources */,
 				3CC0AC0518BF8B2A0082FFED /* GraphDisplayerViewController.m in Sources */,
 				3CC0AC0818BF8B440082FFED /* MainMenuViewController.m in Sources */,
+				247F8CA118BFB96700A025E1 /* TouchReceptor.m in Sources */,
+				247F8CA418BFC02600A025E1 /* TestViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
