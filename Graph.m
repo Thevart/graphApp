@@ -73,16 +73,23 @@
 - (void) removeEdge: (Edge*) edge
 {
     [edge.origin removeNeighbourVertex:edge.target];
+
     if (!self.oriented) {
-        [edge.target removeNeighbourVertex:edge.origin];
+        Edge* removedEdge = [edge.target removeNeighbourVertex:edge.origin];
+        [self _doRemoveEdge:removedEdge];
     }
 
+    [self _doRemoveEdge:edge];
+}
+
+- (void) _doRemoveEdge: (Edge*) edge
+{
     [self.edges removeObject:edge];
 }
 
 - (void) removeVertex: (Vertex*) vertex
 {
-    NSArray *neighboursToUpdate = [[NSArray alloc]initWithArray:vertex.neighbours];
+    NSArray *neighboursToUpdate = [[NSArray alloc] initWithArray:vertex.neighbours];
 
     for (Edge* edge in neighboursToUpdate) {
         [self removeEdge:edge];

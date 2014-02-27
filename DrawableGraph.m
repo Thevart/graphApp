@@ -57,9 +57,9 @@
     [dEdge.edgeView setNeedsDisplay];
 }
 
-- (void) removeEdge: (Edge*) edge
+- (void) _doRemoveEdge: (Edge*) edge
 {
-    [super removeEdge:edge];
+    [super _doRemoveEdge:edge];
 
     [((DrawableEdge*) edge).edgeView removeFromSuperview];
 }

@@ -76,14 +76,17 @@ Color *color;
     [self.neighbours removeObject:neighbour];
 }
 
-- (void) removeNeighbourVertex:(Vertex *) neighbour
+- (Edge*) removeNeighbourVertex:(Vertex *) neighbour
 {
     for (Edge* edge in self.neighbours) {
         if (edge.target == neighbour) {
             [self removeNeighbour:edge];
-            break;
+
+            return edge;
         }
     }
+
+    return nil;
 }
 
 @end
