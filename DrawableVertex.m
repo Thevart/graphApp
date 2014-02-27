@@ -29,11 +29,10 @@
     return self;
 }
 
-
 - (id) initWithId:(NSString *)id
 {
     if (self = [super initWithId:id]) {
-        self.vertexView.label=self.label;
+        self.vertexView.label = self.label;
     }
     
     return self;

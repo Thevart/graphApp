@@ -32,5 +32,5 @@
 
 - (void) addNeighbour:(Edge*) neighbour;
 - (void) removeNeighbour:(Edge *)neighbour;
-- (void) removeNeighbourVertex:(Vertex *) neighbour;
+- (Edge*) removeNeighbourVertex:(Vertex *) neighbour;
 @end

@@ -24,5 +24,6 @@
 - (DrawableVertex*) vertexAtLocation:(CGPoint) location;
 
 -(void) setNeedsDisplay;
+-(void) setNeedsDisplay:(DrawableVertex*) vertex;
 
 @end

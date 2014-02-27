@@ -50,30 +50,46 @@
 
 - (void) addEdge:(Edge*) edge
 {
-    [self.edges addObject:edge];
-    [edge.origin addNeighbour:edge];
+    [self _doAddEdge:edge];
 
     if (!self.oriented) {
-        Edge* returnEdge = [[Edge alloc] initWithVertices:edge.target target:edge.origin];
+        Edge* returnEdge = [[[edge class] alloc] initWithVertices:edge.target target:edge.origin];
+        returnEdge.weight = edge.weight;
+        returnEdge.label = [NSString stringWithFormat:@"%@_%@", returnEdge.origin.id, returnEdge.target.id];
 
-        [edge.target addNeighbour:returnEdge];
-        [self.edges addObject:returnEdge];
+        [self _doAddEdge:returnEdge];
     }
+}
+
+- (void) _doAddEdge: (Edge*) edge
+{
+    if (![self.edges containsObject:edge]) {
+        [self.edges addObject:edge];
+    }
+
+    [edge.origin addNeighbour:edge];
 }
 
 - (void) removeEdge: (Edge*) edge
 {
     [edge.origin removeNeighbourVertex:edge.target];
+
     if (!self.oriented) {
-        [edge.target removeNeighbourVertex:edge.origin];
+        Edge* removedEdge = [edge.target removeNeighbourVertex:edge.origin];
+        [self _doRemoveEdge:removedEdge];
     }
 
+    [self _doRemoveEdge:edge];
+}
+
+- (void) _doRemoveEdge: (Edge*) edge
+{
     [self.edges removeObject:edge];
 }
 
 - (void) removeVertex: (Vertex*) vertex
 {
-    NSArray *neighboursToUpdate = [[NSArray alloc]initWithArray:vertex.neighbours];
+    NSArray *neighboursToUpdate = [[NSArray alloc] initWithArray:vertex.neighbours];
 
     for (Edge* edge in neighboursToUpdate) {
         [self removeEdge:edge];
