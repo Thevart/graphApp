@@ -71,7 +71,7 @@
 		0A76A8B518ABBAB2008EB9A2 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		0A7CCCBA18BFC1CE009FF051 /* samples */ = {isa = PBXFileReference; lastKnownFileType = folder; path = samples; sourceTree = "<group>"; };
 		0A7DFEE518A7F7F60033D747 /* DrawableVertex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawableVertex.h; sourceTree = "<group>"; };
-		0A7DFEE618A7F7F60033D747 /* DrawableVertex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DrawableVertex.m; path = ../DrawableVertex.m; sourceTree = "<group>"; };
+		0A7DFEE618A7F7F60033D747 /* DrawableVertex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawableVertex.m; sourceTree = "<group>"; };
 		0A7E5E0618BBF331002E2451 /* DijkstraInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DijkstraInput.h; sourceTree = "<group>"; };
 		0A7E5E0718BBF331002E2451 /* DijkstraInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DijkstraInput.m; sourceTree = "<group>"; };
 		0A7E5E0918BBF342002E2451 /* AlgorithmInputProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlgorithmInputProtocol.h; sourceTree = "<group>"; };
@@ -206,7 +206,6 @@
 				06320C5214509DBB00C37973 /* AppDelegate.m */,
 				06320C5414509DBB00C37973 /* MainStoryboard.storyboard */,
 				06320C5714509DBB00C37973 /* ViewController.h */,
-				0A7DFEE618A7F7F60033D747 /* DrawableVertex.m */,
 				06320C5814509DBB00C37973 /* ViewController.m */,
 				06320C4914509DBB00C37973 /* Supporting Files */,
 			);
@@ -266,6 +265,7 @@
 				24F49DE018ABCEAD00E28E8E /* EdgeView.m */,
 				248570FB18A97190000DAABD /* DrawableEdge.h */,
 				248570FC18A97190000DAABD /* DrawableEdge.m */,
+				0A7DFEE618A7F7F60033D747 /* DrawableVertex.m */,
 			);
 			name = view;
 			sourceTree = "<group>";

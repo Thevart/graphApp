@@ -119,11 +119,17 @@
     return nil;
 }
 
--(void) setNeedsDisplay:(DrawableVertex*)vertex{
-    for(DrawableEdge* edge in vertex.neighbours){
-        //[edge.edgeView setNeedsDisplay];
+-(void) setNeedsDisplay:(DrawableVertex*) vertex
+{
+    // refresh "outgoing edges"
+    for (DrawableEdge *edge in vertex.neighbours) {
+        [edge.edgeView setNeedsDisplay];
     }
-        [self.graphView setNeedsDisplay];
+
+    // and now refresh "incoming edges"
+    for (DrawableEdge *edge in vertex.incomingEdges) {
+        [edge.edgeView setNeedsDisplay];
+    }
 }
 
 
