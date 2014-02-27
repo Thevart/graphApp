@@ -27,4 +27,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *vertexCountLabel;
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
 
+@property (weak, nonatomic) NSString *initialGraphFile;
+
 @end

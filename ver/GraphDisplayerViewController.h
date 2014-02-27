@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GraphDisplayerViewController : UIViewController
+@interface GraphDisplayerViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UILabel *graphDisplayerName;
 @property (weak, nonatomic) IBOutlet UITableView *algoTableView;
-- (IBAction)openAlgo:(id)sender;
+
+- (IBAction) openAlgo:(id) sender;
 @end

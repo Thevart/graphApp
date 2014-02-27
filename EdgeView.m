@@ -86,11 +86,6 @@
 
 - (bool) containPoint: (CGPoint)location
 {
-    
-    if( CGContextPathContainsPoint(self.offscreenContext, location, kCGPathStroke)){
-        return true;
-    }
-    return false;
-    
+    return CGContextPathContainsPoint(self.offscreenContext, location, kCGPathStroke);
 }
 @end
