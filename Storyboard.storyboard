@@ -48,11 +48,27 @@
                                     <action selector="deleteVertex:" destination="2" eventType="touchUpInside" id="Ufu-cA-UI8"/>
                                 </connections>
                             </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Lgh-Mk-L1j">
+                                <rect key="frame" x="262" y="554" width="140" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Supprimer Edge">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="deleteEdge:" destination="2" eventType="touchUpInside" id="WLc-5A-WAK"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="H2z-Ke-Vzk"/>
                     <connections>
+                        <outlet property="edgeMenu" destination="Lgh-Mk-L1j" id="F2k-Q0-Lwt"/>
                         <outlet property="vertexCountLabel" destination="UMV-9g-3Yv" id="ykS-x5-WQg"/>
                         <outlet property="vertexMenu" destination="ekW-6f-b0o" id="ze8-Ry-zfO"/>
                     </connections>
@@ -231,9 +247,6 @@
         </class>
         <class className="TestViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TestViewController.h"/>
-        </class>
-        <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
         </class>
         <class className="ViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>

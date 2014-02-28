@@ -87,13 +87,12 @@ float oldX, oldY;
         if (touchedEdge) {
             [self displayEdgeMenu];
             [graph switchSelectedEdge:(DrawableEdge*)touchedEdge];
-        }
-        else{
+            NSLog(@"select edge");
+        } else {
             DrawableVertex* vertex = [[DrawableVertex alloc] initWithCoord:location.x y:location.y];
             [graph addVertex:vertex];
             [graph switchSelectedVertex:nil];
             [graph switchSelectedEdge:nil];
-
 
             NSLog(@"create vertex");
         }
@@ -121,8 +120,7 @@ float oldX, oldY;
     if (touchedVertex != nil) {
         dragging = true;
         [touchedVertex setPosition:touchLocation.x y:touchLocation.y];
-        [graph setNeedsDisplay: touchedVertex];
-
+        [graph setNeedsDisplay:touchedVertex];
     }
 }
 
@@ -176,7 +174,7 @@ float oldX, oldY;
 {
     DrawableEntityFactory* factory = [[DrawableEntityFactory alloc] init];
     GraphParser *parser = [GraphParser create:factory];
-    NSString* path = [[NSBundle mainBundle] pathForResource:@"graph" ofType:@"xgmml"];
+    NSString* path = [[NSBundle mainBundle] pathForResource:[[file lastPathComponent] stringByDeletingPathExtension] ofType:[file pathExtension]];
     
     graph = (DrawableGraph*) [parser parse:path];
     if (graph == nil) {
