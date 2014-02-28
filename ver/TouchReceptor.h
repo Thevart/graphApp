@@ -12,5 +12,8 @@
 
 @property UIBezierPath* currentPath;
 @property DrawableGraph* graph;
-
+@property NSMutableArray* selectedVertices;
+@property DrawableVertex* touchedVertex;
+@property CGPoint firstPoint;
+-(void) delete;
 @end

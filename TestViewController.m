@@ -42,29 +42,11 @@
 {
     
     [super viewDidLoad];
-     [self readSampleGraph];
+    [self readSampleGraph];
     tr=[[TouchReceptor alloc]initWithFrame:CGRectMake(0, 0,1000,1000)];
     [self.view addSubview:tr];
     tr.graph=graph;
     
-	// Do any additional setup after loading the view.
-}
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    [self patatteContains];
-    
-}
--(NSMutableArray*) patatteContains
-{
-    NSMutableArray* vertices = [[NSMutableArray alloc]init];
-    for (DrawableVertex* vertex in graph.vertices){
-        if ([tr.currentPath containsPoint:CGPointMake(vertex.coord.x, vertex.coord.y)])
-        {
-            [vertices addObject:vertex.id];
-        }
-    }
-    NSLog(@"%d",vertices.count);
-    return vertices;
 }
 - (void)didReceiveMemoryWarning
 {
@@ -93,10 +75,6 @@
     // display the loaded edges
     for (DrawableEdge* edge in graph.edges) {
         [edge setPosition:self.view.frame.size.width y:self.view.frame.size.height];
-        //[graph addEdge:edge];
     }
-    
-
-    
 }
 @end

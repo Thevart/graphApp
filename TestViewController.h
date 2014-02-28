@@ -14,4 +14,6 @@
     DrawableGraph* graph;
     TouchReceptor* tr;
 }
+
+
 @end
