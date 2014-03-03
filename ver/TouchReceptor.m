@@ -71,27 +71,21 @@ DrawableGraph* graph;
     return newLoc;
 }
 
--(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-    
+-(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *) event
+{
     UITouch *touch = [[event allTouches] anyObject];
     CGPoint location = [touch locationInView:self];
     
-    //dragNDrop
-    if (self.isDragging)
-    {
-        for (DrawableVertex* vertex in self.selectedVertices)
-        {
+    // dragNDrop
+    if (self.isDragging) {
+        for (DrawableVertex* vertex in self.selectedVertices) {
             [vertex setPosition:location.x y:location.y];
-            [graph setNeedsDisplay:vertex];
+
             NSLog(@"in the dragndrop");
-
         }
-        [self.touchedVertex setPosition:location.x y:location.y];
-        [graph setNeedsDisplay:self.touchedVertex];
 
-    }
-    else
-    {
+        [self.touchedVertex setPosition:location.x y:location.y];
+    } else {
         //affichage patate ou edgeCreator
         [vertexSelector updateWithLocation:location];
     }

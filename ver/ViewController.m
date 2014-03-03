@@ -55,10 +55,10 @@ float oldX, oldY;
     DrawableVertex *retourHitTest = [graph vertexAtLocation:location];
 
     if (retourHitTest!=nil){
-        [graph switchSelectedEdge: nil];
+        //[graph switchSelectedEdge: nil];
         // déselection d'un vertex
         if([retourHitTest.id isEqualToString: touchedVertex.id]){
-            [graph switchSelectedVertex:nil];
+            //[graph switchSelectedVertex:nil];
             touchedVertex=nil;
             [self hideVertexMenu];
             NSLog(@"unselect vertex");
@@ -68,7 +68,7 @@ float oldX, oldY;
             [edge setPosition: self.view.frame.size.width y:self.view.frame.size.height];
 
             [graph addEdge:edge];
-            [graph switchSelectedVertex:nil];
+            //[graph switchSelectedVertex:nil];
 
             touchedVertex=nil;
             [self hideVertexMenu];
@@ -76,7 +76,7 @@ float oldX, oldY;
         }
         else{
             //selection d'un vertex
-            [graph switchSelectedVertex:retourHitTest];
+            //[graph switchSelectedVertex:retourHitTest];
             touchedVertex=retourHitTest;
             [self displayVertexMenu];
             NSLog(@"select vertex");
@@ -86,13 +86,13 @@ float oldX, oldY;
 
         if (touchedEdge) {
             [self displayEdgeMenu];
-            [graph switchSelectedEdge:(DrawableEdge*)touchedEdge];
+            //[graph switchSelectedEdge:(DrawableEdge*)touchedEdge];
             NSLog(@"select edge");
         } else {
             DrawableVertex* vertex = [[DrawableVertex alloc] initWithCoord:location.x y:location.y];
             [graph addVertex:vertex];
-            [graph switchSelectedVertex:nil];
-            [graph switchSelectedEdge:nil];
+            //[graph switchSelectedVertex:nil];
+            //[graph switchSelectedEdge:nil];
 
             NSLog(@"create vertex");
         }
@@ -120,7 +120,7 @@ float oldX, oldY;
     if (touchedVertex != nil) {
         dragging = true;
         [touchedVertex setPosition:touchLocation.x y:touchLocation.y];
-        [graph setNeedsDisplay:touchedVertex];
+        //[graph setNeedsDisplay:touchedVertex];
     }
 }
 
@@ -277,7 +277,7 @@ float oldX, oldY;
 }
 
 - (IBAction)deleteVertex:(id)sender {
-    [graph removeVertex:((DrawableGraph*) graph).selectedOrigin];
+    //[graph removeVertex:((DrawableGraph*) graph).selectedOrigin];
     [self hideEdgeMenu];
     touchedVertex = nil;
     [self hideVertexMenu];

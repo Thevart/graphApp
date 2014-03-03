@@ -11,19 +11,12 @@
 #import "DrawableVertex.h"
 
 @interface DrawableGraph : Graph
-@property (readonly) DrawableEdge* selectedEdge;
-@property (readonly) DrawableVertex* selectedOrigin;
-@property (readonly) DrawableVertex* selectedTarget;
+
 @property (readonly) UIView *graphView;
-
-
--(void) switchSelectedEdge: (DrawableEdge*) newOrigin;
--(void) switchSelectedVertex: (DrawableVertex*) newOrigin;
 
 - (DrawableEdge*) edgeAtLocation:(CGPoint) location;
 - (DrawableVertex*) vertexAtLocation:(CGPoint) location;
 
 -(void) setNeedsDisplay;
--(void) setNeedsDisplay:(DrawableVertex*) vertex;
 
 @end

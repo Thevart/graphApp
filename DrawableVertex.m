@@ -8,6 +8,8 @@
 
 #import "DrawableVertex.h"
 #import "VertexView.h"
+#import "DrawableEdge.h"
+
 @interface DrawableVertex ()
 
 @property (readwrite)VertexView* vertexView;
@@ -55,7 +57,7 @@
 
     [self.vertexView setFrame:CGRectMake(x-15, y-15, 30, 30)];
     self.vertexView.center = CGPointMake(x, y);
-    [self.vertexView setNeedsDisplay];
+    [self setNeedsDisplay];
 }
 
 - (void) setColor: (Color *) color
@@ -63,7 +65,22 @@
     [super setColor:color];
 
     self.vertexView.color = [UIColor colorWithRed:[color r] green:[color g] blue:[color b] alpha:1];
+    [self setNeedsDisplay];
+}
+
+-(void) setNeedsDisplay
+{
     [self.vertexView setNeedsDisplay];
+
+    // refresh "outgoing edges"
+    for (DrawableEdge *edge in self.neighbours) {
+        [edge.edgeView setNeedsDisplay];
+    }
+
+    // and now refresh "incoming edges"
+    for (DrawableEdge *edge in self.incomingEdges) {
+        [edge.edgeView setNeedsDisplay];
+    }
 }
 
 @end

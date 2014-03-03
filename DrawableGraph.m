@@ -10,8 +10,6 @@
 
 @interface DrawableGraph()
 
-@property (readwrite) DrawableVertex* selectedOrigin;
-@property (readwrite) DrawableEdge* selectedEdge;
 @property (readwrite) UIView* graphView;
 
 @end
@@ -22,8 +20,6 @@
 {
     if (self = [super init]) {
         self.graphView = [[UIView alloc] init];
-        self.selectedOrigin = [[DrawableVertex alloc] init];
-        self.selectedEdge = [[DrawableEdge alloc] init];
     }
 
     return self;
@@ -64,45 +60,17 @@
     [((DrawableEdge*) edge).edgeView removeFromSuperview];
 }
 
-
-/******Color changing Method*******/
--(void) switchSelectedVertex: (DrawableVertex*) newOrigin
-{
-    if (newOrigin != nil) {
-        [newOrigin setColor:[Color initFromRGB:0 g:0 b:255]];
-        [self switchSelectedEdge:nil];
-    }
-
-    [self.selectedOrigin setColor:[Color initFromRGB:255 g:0 b:0]];
-    self.selectedOrigin = newOrigin;
-    [self.graphView setNeedsDisplay];
-}
-
--(void) switchSelectedEdge: (DrawableEdge*) drawEdge
-{
-    if (drawEdge != nil) {
-        drawEdge.edgeView.color = [UIColor colorWithRed:255.0/255.0 green: 0.0/255.0 blue: 0.0/255.0 alpha: 1.0];
-
-        [drawEdge.edgeView setNeedsDisplay];
-        [self switchSelectedVertex:nil];
-    }
-
-    self.selectedEdge.edgeView.color = [UIColor colorWithRed:0.0/255.0 green: 0.0/255.0 blue: 255.0/255.0 alpha: 1.0];
-    [self.selectedEdge.edgeView setNeedsDisplay];
-    self.selectedEdge = drawEdge;
-}
-
 /*****Hit test Method of the DrawableGraph*******/
 
-- (DrawableEdge*) edgeAtLocation:(CGPoint) location{
+- (DrawableEdge*) edgeAtLocation:(CGPoint) location
+{
     for (DrawableEdge* edge in self.edges) {
-        if([edge.edgeView containPoint: location]){
-            NSLog(@"We detetect that you touched a edge.");
+        if ([edge.edgeView containPoint:location]) {
             return edge;
         }
     }
-    return nil;
 
+    return nil;
 }
 
 - (DrawableVertex*) vertexAtLocation:(CGPoint) location
@@ -119,22 +87,9 @@
     return nil;
 }
 
--(void) setNeedsDisplay:(DrawableVertex*) vertex
+
+-(void) setNeedsDisplay
 {
-    // refresh "outgoing edges"
-    for (DrawableEdge *edge in vertex.neighbours) {
-        [edge.edgeView setNeedsDisplay];
-    }
-
-    // and now refresh "incoming edges"
-    for (DrawableEdge *edge in vertex.incomingEdges) {
-        [edge.edgeView setNeedsDisplay];
-    }
-}
-
-
--(void) setNeedsDisplay {
-
     [self.graphView.subviews makeObjectsPerformSelector:@selector(setNeedsDisplay)];
     [self.graphView setNeedsDisplay];
 }
