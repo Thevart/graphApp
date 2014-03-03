@@ -32,15 +32,18 @@ BOOL Dragging;
     self.currentPath.lineWidth = 3.0;
     [self.currentPath moveToPoint:location];
     
-    //
+    
     DrawableVertex *vertex = [self.graph vertexAtLocation:location];
-    if ([self.selectedVertices containsObject:vertex])
-    {
-        Dragging=YES;
-    }
-    else{
-        self.touchedVertex=vertex;
-        
+    self.touchedVertex=vertex;
+    if(self.touchedVertex !=nil){
+        if (self.selectedVertices.count==1)
+        {
+            Dragging=NO;
+        }
+        else
+        {
+            Dragging=YES;
+        }
     }
     self.firstPoint=location;
 }
@@ -66,14 +69,21 @@ BOOL Dragging;
     CGPoint location = [touch locationInView:self];
     
     //dragNDrop
-    if (Dragging == YES){
+    if (Dragging == YES)
+    {
         for (DrawableVertex* vertex in self.selectedVertices)
         {
             [vertex setPosition:location.x y:location.y];
             [self.graph setNeedsDisplay:vertex];
+            NSLog(@"in the dragndrop");
 
         }
-    } else{
+        [self.touchedVertex setPosition:location.x y:location.y];
+        [self.graph setNeedsDisplay:self.touchedVertex];
+
+    }
+    else
+    {
         //affichage patate ou edgeCreator
         [self.currentPath addLineToPoint:location];
     }
@@ -135,7 +145,7 @@ BOOL Dragging;
             [self.selectedVertices removeAllObjects];
         }
     }
-    else if(self.touchedVertex!=nil){
+    else if(self.touchedVertex!=nil && Dragging == NO){
         DrawableVertex* vertex = [self.graph vertexAtLocation:location];
         //le trait fini sur un vertex, ajouter un edge
         if(vertex!=nil){
