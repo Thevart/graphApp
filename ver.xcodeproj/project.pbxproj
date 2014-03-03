@@ -16,6 +16,17 @@
 		0648C577147155A500CEB38F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06320C4614509DBB00C37973 /* CoreGraphics.framework */; };
 		0A76A8B618ABBAB2008EB9A2 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A76A8B518ABBAB2008EB9A2 /* Default-568h@2x.png */; };
 		0A7CCCBB18BFC1CE009FF051 /* samples in Resources */ = {isa = PBXBuildFile; fileRef = 0A7CCCBA18BFC1CE009FF051 /* samples */; };
+		0A7D884B18C4A33F004474E6 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A7D884A18C4A33F004474E6 /* SenTestingKit.framework */; };
+		0A7D885218C4A43B004474E6 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A7D884A18C4A33F004474E6 /* SenTestingKit.framework */; };
+		0A7D885318C4A43B004474E6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06320C4214509DBB00C37973 /* UIKit.framework */; };
+		0A7D885418C4A43B004474E6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06320C4414509DBB00C37973 /* Foundation.framework */; };
+		0A7D885A18C4A43B004474E6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A7D885818C4A43B004474E6 /* InfoPlist.strings */; };
+		0A7D885D18C4A43B004474E6 /* GraphAppModelTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7D885C18C4A43B004474E6 /* GraphAppModelTest.m */; };
+		0A7D886318C4A5C9004474E6 /* Coord.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC277D218A42A23004863C8 /* Coord.m */; };
+		0A7D886518C4A5C9004474E6 /* Edge.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC277D418A42A24004863C8 /* Edge.m */; };
+		0A7D886718C4A5C9004474E6 /* Graph.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC277D618A42A24004863C8 /* Graph.m */; };
+		0A7D886918C4A5C9004474E6 /* Vertex.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC277D818A42A24004863C8 /* Vertex.m */; };
+		0A7D886B18C4A5C9004474E6 /* Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A823B9B18BA4AEB00B2D3BC /* Color.m */; };
 		0A7DFEE718A7F7F60033D747 /* DrawableVertex.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7DFEE618A7F7F60033D747 /* DrawableVertex.m */; };
 		0A7E5E0818BBF331002E2451 /* DijkstraInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7E5E0718BBF331002E2451 /* DijkstraInput.m */; };
 		0A7EC5C918B266C100092297 /* RandomLayoutCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7EC5C818B266C100092297 /* RandomLayoutCreator.m */; };
@@ -68,6 +79,13 @@
 		0A76A8B018ABA99D008EB9A2 /* GraphParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphParser.m; sourceTree = "<group>"; };
 		0A76A8B518ABBAB2008EB9A2 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		0A7CCCBA18BFC1CE009FF051 /* samples */ = {isa = PBXFileReference; lastKnownFileType = folder; path = samples; sourceTree = "<group>"; };
+		0A7D884A18C4A33F004474E6 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		0A7D885118C4A43B004474E6 /* GraphAppModelTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GraphAppModelTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A7D885718C4A43B004474E6 /* GraphAppModelTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GraphAppModelTest-Info.plist"; sourceTree = "<group>"; };
+		0A7D885918C4A43B004474E6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		0A7D885B18C4A43B004474E6 /* GraphAppModelTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GraphAppModelTest.h; sourceTree = "<group>"; };
+		0A7D885C18C4A43B004474E6 /* GraphAppModelTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GraphAppModelTest.m; sourceTree = "<group>"; };
+		0A7D885E18C4A43B004474E6 /* GraphAppModelTest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GraphAppModelTest-Prefix.pch"; sourceTree = "<group>"; };
 		0A7DFEE518A7F7F60033D747 /* DrawableVertex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawableVertex.h; sourceTree = "<group>"; };
 		0A7DFEE618A7F7F60033D747 /* DrawableVertex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawableVertex.m; sourceTree = "<group>"; };
 		0A7E5E0618BBF331002E2451 /* DijkstraInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DijkstraInput.h; sourceTree = "<group>"; };
@@ -144,9 +162,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A7D884B18C4A33F004474E6 /* SenTestingKit.framework in Frameworks */,
 				0648C577147155A500CEB38F /* CoreGraphics.framework in Frameworks */,
 				0648C5761471559E00CEB38F /* Foundation.framework in Frameworks */,
 				06320C4314509DBB00C37973 /* UIKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0A7D884D18C4A43B004474E6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A7D885218C4A43B004474E6 /* SenTestingKit.framework in Frameworks */,
+				0A7D885318C4A43B004474E6 /* UIKit.framework in Frameworks */,
+				0A7D885418C4A43B004474E6 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -167,6 +196,7 @@
 				0AC277BD18A42924004863C8 /* model */,
 				06320C5F14509DC000C37973 /* Resources */,
 				06320C4814509DBB00C37973 /* view */,
+				0A7D885518C4A43B004474E6 /* GraphAppModelTest */,
 				06320C4114509DBB00C37973 /* Frameworks */,
 				06320C3F14509DBB00C37973 /* Products */,
 			);
@@ -176,6 +206,7 @@
 			isa = PBXGroup;
 			children = (
 				06320C3E14509DBB00C37973 /* graphApp.app */,
+				0A7D885118C4A43B004474E6 /* GraphAppModelTest.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -183,6 +214,7 @@
 		06320C4114509DBB00C37973 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0A7D884A18C4A33F004474E6 /* SenTestingKit.framework */,
 				06320C4214509DBB00C37973 /* UIKit.framework */,
 				06320C4414509DBB00C37973 /* Foundation.framework */,
 				06320C4614509DBB00C37973 /* CoreGraphics.framework */,
@@ -229,6 +261,26 @@
 				2485AA4318BABBDE003F1B95 /* SquGridLandscape.png */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		0A7D885518C4A43B004474E6 /* GraphAppModelTest */ = {
+			isa = PBXGroup;
+			children = (
+				0A7D885B18C4A43B004474E6 /* GraphAppModelTest.h */,
+				0A7D885C18C4A43B004474E6 /* GraphAppModelTest.m */,
+				0A7D885618C4A43B004474E6 /* Supporting Files */,
+			);
+			path = GraphAppModelTest;
+			sourceTree = "<group>";
+		};
+		0A7D885618C4A43B004474E6 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				0A7D885718C4A43B004474E6 /* GraphAppModelTest-Info.plist */,
+				0A7D885818C4A43B004474E6 /* InfoPlist.strings */,
+				0A7D885E18C4A43B004474E6 /* GraphAppModelTest-Prefix.pch */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		0A7DFEE318A7F7860033D747 /* domain */ = {
@@ -409,6 +461,24 @@
 			productReference = 06320C3E14509DBB00C37973 /* graphApp.app */;
 			productType = "com.apple.product-type.application";
 		};
+		0A7D885018C4A43B004474E6 /* GraphAppModelTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0A7D885F18C4A43B004474E6 /* Build configuration list for PBXNativeTarget "GraphAppModelTest" */;
+			buildPhases = (
+				0A7D884C18C4A43B004474E6 /* Sources */,
+				0A7D884D18C4A43B004474E6 /* Frameworks */,
+				0A7D884E18C4A43B004474E6 /* Resources */,
+				0A7D884F18C4A43B004474E6 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GraphAppModelTest;
+			productName = GraphAppModelTest;
+			productReference = 0A7D885118C4A43B004474E6 /* GraphAppModelTest.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -435,6 +505,7 @@
 			projectRoot = "";
 			targets = (
 				06320C3D14509DBB00C37973 /* ver */,
+				0A7D885018C4A43B004474E6 /* GraphAppModelTest */,
 			);
 		};
 /* End PBXProject section */
@@ -453,7 +524,31 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		0A7D884E18C4A43B004474E6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A7D885A18C4A43B004474E6 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0A7D884F18C4A43B004474E6 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		06320C3A14509DBB00C37973 /* Sources */ = {
@@ -496,6 +591,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		0A7D884C18C4A43B004474E6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A7D886318C4A5C9004474E6 /* Coord.m in Sources */,
+				0A7D886518C4A5C9004474E6 /* Edge.m in Sources */,
+				0A7D886718C4A5C9004474E6 /* Graph.m in Sources */,
+				0A7D886918C4A5C9004474E6 /* Vertex.m in Sources */,
+				0A7D886B18C4A5C9004474E6 /* Color.m in Sources */,
+				0A7D885D18C4A43B004474E6 /* GraphAppModelTest.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
@@ -503,6 +611,14 @@
 			isa = PBXVariantGroup;
 			children = (
 				06320C4C14509DBB00C37973 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		0A7D885818C4A43B004474E6 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0A7D885918C4A43B004474E6 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -570,6 +686,10 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ver/ver-Prefix.pch";
 				INFOPLIST_FILE = "ver/ver-Info.plist";
@@ -586,6 +706,10 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ver/ver-Prefix.pch";
 				INFOPLIST_FILE = "ver/ver-Info.plist";
@@ -594,6 +718,45 @@
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		0A7D886018C4A43B004474E6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GraphAppModelTest/GraphAppModelTest-Prefix.pch";
+				INFOPLIST_FILE = "GraphAppModelTest/GraphAppModelTest-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		0A7D886118C4A43B004474E6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GraphAppModelTest/GraphAppModelTest-Prefix.pch";
+				INFOPLIST_FILE = "GraphAppModelTest/GraphAppModelTest-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
 		};
@@ -617,6 +780,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		0A7D885F18C4A43B004474E6 /* Build configuration list for PBXNativeTarget "GraphAppModelTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0A7D886018C4A43B004474E6 /* Debug */,
+				0A7D886118C4A43B004474E6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
