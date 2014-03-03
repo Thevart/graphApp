@@ -13,13 +13,13 @@
 - (id) initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
-        UIColor *color = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.0];
-        self.backgroundColor=color;
-        self.uilabel=[[UILabel alloc]initWithFrame:frame];
+        self.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.0];
+        self.uilabel = [[UILabel alloc]initWithFrame:frame];
     }
 
     return self;
 }
+
 -(void) drawLabel
 {
     self.uilabel = [[UILabel alloc]initWithFrame:CGRectMake(-30, 0, 30, 15)];
@@ -42,8 +42,8 @@
     self.center = CGPointMake(x,y);
 }
 
-
-- (void)drawRect:(CGRect)rect {
+- (void)drawRect:(CGRect)rect
+{
     [super drawRect:rect];
 
     CGContextRef context = UIGraphicsGetCurrentContext();

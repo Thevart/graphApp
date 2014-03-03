@@ -41,7 +41,7 @@ int hexColor;
 
 + (Color *) initFromRGB: (int) r g:(int) g b:(int) b
 {
-    NSString* hexString = [NSString stringWithFormat:@"%02x%02x%02x", r, g, b];
+    NSString* hexString = [NSString stringWithFormat:@"%02x%02x%02x", b, g, r];
 
     return [Color initFromHexString:hexString];
 }

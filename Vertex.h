@@ -21,7 +21,6 @@
 @property NSMutableArray* neighbours;
 @property NSMutableArray* incomingEdges;
 
-@property (getter = getColor, setter = setColor:) Color *color;
 @property id userData;
 
 - (id) initWithId:(NSString *) id;

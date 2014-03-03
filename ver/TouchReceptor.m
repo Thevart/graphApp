@@ -46,6 +46,7 @@ DrawableGraph* graph;
     [vertexSelector startSelectionAtLocation:location];
     
     DrawableVertex *vertex = [graph vertexAtLocation:location];
+    
     self.touchedVertex = vertex;
     if (vertex) {
         self.isDragging = self.selectedVertices.count != 1;
@@ -101,101 +102,54 @@ DrawableGraph* graph;
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
     UITouch *touch = [[event allTouches] anyObject];
-    CGPoint location=[touch locationInView:self];
+    CGPoint location = [touch locationInView:self];
 
     //simple touch
-    if(self.firstPoint.x == location.x && self.firstPoint.y==location.y){
-        if (self.touchedVertex!=nil)
-        {
-            //un vertex touché, ajouter le vertex selectionné a la liste des vertex
-            [self.selectedVertices addObject:self.touchedVertex];
-            [self.selectedEdges removeAllObjects];
-        }
-        else
-        {
+    if (self.firstPoint.x == location.x && self.firstPoint.y==location.y) {
+        // vertex clicked
+        if (self.touchedVertex != nil) {
+            [self onUnselectEdges];
+            [self onVertexClicked:self.touchedVertex];
+        } else {
             DrawableEdge* edge = [graph edgeAtLocation:location];
-            //un edge a été touché
-            if (edge != nil)
-            {
-                //edge déja dans la liste
-                if ([self.selectedEdges containsObject:edge])
-                {
-                    edge.edgeView.color = [UIColor colorWithRed:0.0/255.0 green: 0.0/255.0 blue: 0.0/255.0 alpha: 1.0];
-                    [self.selectedEdges removeObject:edge];
-                }
-                //ajouter dans la liste
-                else
-                {
-                    edge.edgeView.color = [UIColor colorWithRed:255.0/255.0 green: 0.0/255.0 blue: 0.0/0.0 alpha: 1.0];
-                    [self.selectedEdges addObject:edge];
-                }
+
+            // un edge a été touché
+            if (edge != nil) {
+                [self onUnselectVertices];
+                [self onEdgeClicked:edge];
             }
             //on a touché dans le vide
             else
             {
-                //on déselectionne tout
-                if (self.selectedVertices.count>0 || self.selectedEdges.count>0)
-                {
-                    [self.selectedVertices removeAllObjects];
-                    [self.selectedEdges removeAllObjects];
-
+                // on déselectionne tout
+                if (self.selectedVertices.count > 0) {
+                    [self onUnselectVertices];
+                } else if (self.selectedEdges.count > 0) {
+                    [self onUnselectEdges];
+                } else {
+                    // ajouter un vertex, vide touché, pas de dragging
+                    [self onVertexCreated:location];
                 }
-                //ajouter un vertex,vide touché, pas de dragging
-                else
-                {
-                    DrawableVertex* vertex = [[DrawableVertex alloc] initWithCoord:location.x y:location.y];
-                    [graph addVertex:vertex];
-                }
-                //remove every edges of the list
             }
-            [self recolorEdges];
-            [self.selectedVertices removeAllObjects];
         }
-    } else if (self.touchedVertex!=nil && !self.isDragging) {
+    } else if (self.touchedVertex != nil && !self.isDragging) {
         DrawableVertex* vertex = [graph vertexAtLocation:location];
-        //le trait fini sur un vertex, ajouter un edge
-        if(vertex!=nil){
-            DrawableEdge* edge = [[DrawableEdge alloc] initWithVertices:self.touchedVertex target:vertex];
-            [edge setPosition: self.frame.size.width y:self.frame.size.height];
-            [graph addEdge:edge];
+
+        // le trait fini sur un vertex, ajouter un edge
+        if (vertex != nil) {
+            [self onEdgeCreated:self.touchedVertex target:vertex];
         }
     }
     //selection patate
-    else{
-        self.selectedVertices = [NSMutableArray arrayWithArray:[vertexSelector getSelectedVertices]];
+    else {
+        [self onSelectVertices:[vertexSelector getSelectedVertices]];
     }
 
-    [self recolorVertices];
     [vertexSelector clear];
-    [graph setNeedsDisplay];
-    [self setNeedsDisplay];
 
     self.isDragging = NO;
 }
 
-- (void) recolorVertices
-{
-    for (NSString *id in graph.vertices) {
-        DrawableVertex *vertex=[graph.vertices objectForKey:id];
-        if ([self.selectedVertices containsObject:vertex]) {
-            [vertex setColor:[Color initFromRGB:0 g:0 b:255]];
-        } else {
-            [vertex setColor:[Color initFromRGB:255 g:0 b:0]];
-        }
-    }
-}
-
--(void) recolorEdges
-{
-    for (DrawableEdge* edge in graph.edges)
-    {
-        if([self.selectedEdges containsObject:edge]) {
-            edge.edgeView.color = [UIColor colorWithRed:255.0/255.0 green: 0.0/255.0 blue: 0.0/255.0 alpha: 1.0];
-        } else {
-            edge.edgeView.color = [UIColor colorWithRed:0.0/255.0 green: 0.0/255.0 blue: 255.0/255.0 alpha: 1.0];
-        }
-    }
-}
 
 - (void) drawRect:(CGRect)rect
 {
@@ -205,10 +159,91 @@ DrawableGraph* graph;
 
 -(void) delete
 {
-    if(self.selectedVertices.count>0){
+    if (self.selectedVertices.count>0){
         [self.selectedVertices removeAllObjects];
     }
+
     [self setNeedsDisplay];
+}
+
+-(void) onVertexClicked: (Vertex*) vertex
+{
+    Color *color;
+
+    // toggle de l'état du vertex : (dé)sélectionné
+    if ([self.selectedVertices containsObject:vertex]) {
+        color = [Color initFromRGB:0 g:0 b:255];
+        [self.selectedVertices removeObject:vertex];
+    } else {
+        color = [Color initFromRGB:255 g:0 b:0];
+        [self.selectedVertices addObject:vertex];
+    }
+
+    [vertex setColor:color];
+}
+
+-(void) onEdgeClicked: (DrawableEdge*) edge
+{
+    UIColor *color;
+
+    // toggle de l'état de l'edge : (dé)sélectionné
+    if ([self.selectedEdges containsObject:edge]) {
+        color = [UIColor colorWithRed:0.0/255.0 green: 0.0/255.0 blue: 255.0/255.0 alpha: 1.0];
+        [self.selectedEdges removeObject:edge];
+    } else {
+        color = [UIColor colorWithRed:255.0/255.0 green: 0.0/255.0 blue: 0.0/0.0 alpha: 1.0];
+        [self.selectedEdges addObject:edge];
+    }
+
+    edge.edgeView.color = color;
+    [edge.edgeView setNeedsDisplay];
+}
+
+-(void) onEdgeCreated: (Vertex*) origin target:(Vertex*) target
+{
+    DrawableEdge* edge = [[DrawableEdge alloc] initWithVertices:origin target:target];
+    [edge setPosition:self.frame.size.width y:self.frame.size.height];
+
+    [graph addEdge:edge];
+}
+
+-(void) onVertexCreated: (CGPoint) location
+{
+    DrawableVertex* vertex = [[DrawableVertex alloc] initWithCoord:location.x y:location.y];
+    [graph addVertex:vertex];
+}
+
+-(void) onUnselectEdges
+{
+    for (DrawableEdge* edge in self.selectedEdges) {
+        edge.edgeView.color = [UIColor colorWithRed:0.0/255.0 green: 0.0/255.0 blue: 0.0/255.0 alpha: 1.0];
+        [edge.edgeView setNeedsDisplay];
+    }
+
+    [self.selectedEdges removeAllObjects];
+}
+
+-(void) onUnselectVertices
+{
+    for (DrawableVertex* vertex in self.selectedVertices) {
+        [vertex setColor:[Color initFromRGB:0 g:0 b:255]];
+    }
+
+    [self.selectedVertices removeAllObjects];
+}
+
+-(void) onSelectVertices: (NSArray*) vertices
+{
+    // suppression de la précédente sélection
+    [self onUnselectVertices];
+
+    // création de la nouvelle
+    self.selectedVertices = [NSMutableArray arrayWithArray:vertices];
+
+    // et mise à jour des couleurs
+    for (DrawableVertex* vertex in self.selectedVertices) {
+        [vertex setColor:[Color initFromRGB:255 g:0 b:0]];
+    }
 }
 
 @end

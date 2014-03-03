@@ -24,7 +24,7 @@ Color *color;
         self.incomingEdges = [[NSMutableArray alloc] init];
         self.label = [NSString stringWithFormat:@"%d", nextVertexId];
         self.coord = [[Coord alloc] init];
-        self.color = [[Color alloc] init];
+        color = [Color initFromRGB:0 g:0 b:255];
 
         nextVertexId += 1;
     }
