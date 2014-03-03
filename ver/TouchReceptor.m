@@ -8,45 +8,52 @@
 
 #import "TouchReceptor.h"
 #import "DrawableVertex.h"
+#import "FingerVertexSelector.h"
+
+@interface TouchReceptor ()
+
+@property (readwrite) BOOL isDragging;
+
+@end
+
 @implementation TouchReceptor
-BOOL Dragging;
-- (id)initWithFrame:(CGRect)frame
+
+FingerVertexSelector *vertexSelector;
+DrawableGraph* graph;
+
+- (id) initWithFrameAndGraph:(CGRect)frame graph:(DrawableGraph*) g
 {
-    self = [super initWithFrame:frame];
-    if (self)
-    {
-        UIColor *color = [ UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.0];
+    if (self = [super initWithFrame:frame]) {
+        UIColor *color = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.0];
         self.backgroundColor = color;
-        self.selectedVertices=[[NSMutableArray alloc]init];
-        self.selectedEdges=[[NSMutableArray alloc]init];
+        self.selectedVertices = [[NSMutableArray alloc] init];
+        self.selectedEdges = [[NSMutableArray alloc] init];
+
+        vertexSelector = [[FingerVertexSelector alloc] initWithGraph:graph];
+        graph = g;
     }
+
     return self;
 }	
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+- (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *) event
+{
     UITouch *touch = [[event allTouches] anyObject];
     CGPoint location = [touch locationInView:self];
     
-    //init du bezier path
-    self.currentPath = [UIBezierPath bezierPath];
-    self.currentPath.lineWidth = 3.0;
-    [self.currentPath moveToPoint:location];
+    // init de la patate de sélection de vertex
+    [vertexSelector clear];
+    [vertexSelector startSelectionAtLocation:location];
     
-    
-    DrawableVertex *vertex = [self.graph vertexAtLocation:location];
-    self.touchedVertex=vertex;
-    if(self.touchedVertex !=nil){
-        if (self.selectedVertices.count==1)
-        {
-            Dragging=NO;
-        }
-        else
-        {
-            Dragging=YES;
-        }
+    DrawableVertex *vertex = [graph vertexAtLocation:location];
+    self.touchedVertex = vertex;
+    if (vertex) {
+        self.isDragging = self.selectedVertices.count != 1;
     }
-    self.firstPoint=location;
+
+    self.firstPoint = location;
 }
+
 -(CGPoint) translatePoint:(CGPoint)location
 {
     CGPoint newLoc = CGPointZero;
@@ -69,23 +76,23 @@ BOOL Dragging;
     CGPoint location = [touch locationInView:self];
     
     //dragNDrop
-    if (Dragging == YES)
+    if (self.isDragging)
     {
         for (DrawableVertex* vertex in self.selectedVertices)
         {
             [vertex setPosition:location.x y:location.y];
-            [self.graph setNeedsDisplay:vertex];
+            [graph setNeedsDisplay:vertex];
             NSLog(@"in the dragndrop");
 
         }
         [self.touchedVertex setPosition:location.x y:location.y];
-        [self.graph setNeedsDisplay:self.touchedVertex];
+        [graph setNeedsDisplay:self.touchedVertex];
 
     }
     else
     {
         //affichage patate ou edgeCreator
-        [self.currentPath addLineToPoint:location];
+        [vertexSelector updateWithLocation:location];
     }
    
     [self setNeedsDisplay];
@@ -106,7 +113,7 @@ BOOL Dragging;
         }
         else
         {
-            DrawableEdge* edge = [self.graph edgeAtLocation:location];
+            DrawableEdge* edge = [graph edgeAtLocation:location];
             //un edge a été touché
             if (edge != nil)
             {
@@ -137,43 +144,42 @@ BOOL Dragging;
                 else
                 {
                     DrawableVertex* vertex = [[DrawableVertex alloc] initWithCoord:location.x y:location.y];
-                    [self.graph addVertex:vertex];
+                    [graph addVertex:vertex];
                 }
                 //remove every edges of the list
             }
             [self recolorEdges];
             [self.selectedVertices removeAllObjects];
         }
-    }
-    else if(self.touchedVertex!=nil && Dragging == NO){
-        DrawableVertex* vertex = [self.graph vertexAtLocation:location];
+    } else if (self.touchedVertex!=nil && !self.isDragging) {
+        DrawableVertex* vertex = [graph vertexAtLocation:location];
         //le trait fini sur un vertex, ajouter un edge
         if(vertex!=nil){
             DrawableEdge* edge = [[DrawableEdge alloc] initWithVertices:self.touchedVertex target:vertex];
             [edge setPosition: self.frame.size.width y:self.frame.size.height];
-            [self.graph addEdge:edge];
+            [graph addEdge:edge];
         }
     }
     //selection patate
     else{
-        self.selectedVertices = [self patateContainsPoint];
+        self.selectedVertices = [NSMutableArray arrayWithArray:[vertexSelector getSelectedVertices]];
     }
+
     [self recolorVertices];
-    [self.currentPath removeAllPoints];
-    [self.graph setNeedsDisplay];
+    [vertexSelector clear];
+    [graph setNeedsDisplay];
     [self setNeedsDisplay];
-    Dragging=NO;
+
+    self.isDragging = NO;
 }
-- (void)recolorVertices
+
+- (void) recolorVertices
 {
-    for(NSString *id in self.graph.vertices)
-    {
-        DrawableVertex *vertex=[self.graph.vertices objectForKey:id];
-        if ([self.selectedVertices containsObject:vertex])
-        {
+    for (NSString *id in graph.vertices) {
+        DrawableVertex *vertex=[graph.vertices objectForKey:id];
+        if ([self.selectedVertices containsObject:vertex]) {
             [vertex setColor:[Color initFromRGB:0 g:0 b:255]];
-        }
-        else{
+        } else {
             [vertex setColor:[Color initFromRGB:255 g:0 b:0]];
         }
     }
@@ -181,36 +187,22 @@ BOOL Dragging;
 
 -(void) recolorEdges
 {
-    for(DrawableEdge* edge in self.graph.edges)
+    for (DrawableEdge* edge in graph.edges)
     {
-        if([self.selectedEdges containsObject:edge])
-        {
+        if([self.selectedEdges containsObject:edge]) {
             edge.edgeView.color = [UIColor colorWithRed:255.0/255.0 green: 0.0/255.0 blue: 0.0/255.0 alpha: 1.0];
-        }else{
+        } else {
             edge.edgeView.color = [UIColor colorWithRed:0.0/255.0 green: 0.0/255.0 blue: 255.0/255.0 alpha: 1.0];
         }
     }
 }
 
-- (void)drawRect:(CGRect)rect {		
-    [[UIColor redColor] set];
-    [self.currentPath stroke];
+- (void) drawRect:(CGRect)rect
+{
+    // update the vertex selection drawing
+    [vertexSelector draw];
 }
 
--(NSMutableArray*) patateContainsPoint
-{
-    //ajout des vertexs contenues dans la patate
-    NSMutableArray *vertices = [[NSMutableArray alloc] init];
-    for( NSString* id in self.graph.vertices)
-    {
-        DrawableVertex *vertex = [self.graph.vertices objectForKey:id];
-        if([self.currentPath containsPoint:CGPointMake(vertex.coord.x, vertex.coord.y)])
-        {
-            [vertices addObject:vertex];
-        }
-    }
-    return vertices;
-}
 -(void) delete
 {
     if(self.selectedVertices.count>0){
@@ -218,4 +210,5 @@ BOOL Dragging;
     }
     [self setNeedsDisplay];
 }
+
 @end

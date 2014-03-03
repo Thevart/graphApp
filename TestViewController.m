@@ -29,31 +29,19 @@
 
 @implementation TestViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     
     [super viewDidLoad];
     [self readSampleGraph];
-    tr=[[TouchReceptor alloc]initWithFrame:CGRectMake(0, 0,1000,1000)];
+
+    tr = [[TouchReceptor alloc] initWithFrameAndGraph:CGRectMake(0, 0, 1000, 1000) graph:graph];
+
     [self.view addSubview:tr];
-    tr.graph=graph;
-    
 }
-- (void)didReceiveMemoryWarning
+
+- (void) readSampleGraph
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-- (void) readSampleGraph{
     DrawableEntityFactory* factory = [[DrawableEntityFactory alloc] init];
     GraphParser *parser = [GraphParser create:factory];
     NSString* path = [[NSBundle mainBundle] pathForResource:@"graph" ofType:@"xgmml"];

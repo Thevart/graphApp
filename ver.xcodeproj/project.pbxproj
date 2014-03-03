@@ -26,6 +26,7 @@
 		0A7D886918C4A5C9004474E6 /* Vertex.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC277D818A42A24004863C8 /* Vertex.m */; };
 		0A7D886B18C4A5C9004474E6 /* Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A823B9B18BA4AEB00B2D3BC /* Color.m */; };
 		0A7D886D18C4C0BE004474E6 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A7D886C18C4C0BE004474E6 /* SenTestingKit.framework */; };
+		0A7D887018C4C50D004474E6 /* FingerVertexSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7D886F18C4C50D004474E6 /* FingerVertexSelector.m */; };
 		0A7DFEE718A7F7F60033D747 /* DrawableVertex.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7DFEE618A7F7F60033D747 /* DrawableVertex.m */; };
 		0A7E5E0818BBF331002E2451 /* DijkstraInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7E5E0718BBF331002E2451 /* DijkstraInput.m */; };
 		0A7EC5C918B266C100092297 /* RandomLayoutCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7EC5C818B266C100092297 /* RandomLayoutCreator.m */; };
@@ -85,6 +86,8 @@
 		0A7D885C18C4A43B004474E6 /* GraphAppModelTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GraphAppModelTest.m; sourceTree = "<group>"; };
 		0A7D885E18C4A43B004474E6 /* GraphAppModelTest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GraphAppModelTest-Prefix.pch"; sourceTree = "<group>"; };
 		0A7D886C18C4C0BE004474E6 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		0A7D886E18C4C50D004474E6 /* FingerVertexSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FingerVertexSelector.h; sourceTree = "<group>"; };
+		0A7D886F18C4C50D004474E6 /* FingerVertexSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FingerVertexSelector.m; sourceTree = "<group>"; };
 		0A7DFEE518A7F7F60033D747 /* DrawableVertex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawableVertex.h; sourceTree = "<group>"; };
 		0A7DFEE618A7F7F60033D747 /* DrawableVertex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawableVertex.m; sourceTree = "<group>"; };
 		0A7E5E0618BBF331002E2451 /* DijkstraInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DijkstraInput.h; sourceTree = "<group>"; };
@@ -428,6 +431,8 @@
 			children = (
 				247F8CA718BFC1C400A025E1 /* TouchReceptor.h */,
 				247F8CA018BFB96700A025E1 /* TouchReceptor.m */,
+				0A7D886E18C4C50D004474E6 /* FingerVertexSelector.h */,
+				0A7D886F18C4C50D004474E6 /* FingerVertexSelector.m */,
 			);
 			name = touch;
 			sourceTree = "<group>";
@@ -586,6 +591,7 @@
 				3CC0AC0818BF8B440082FFED /* MainMenuViewController.m in Sources */,
 				247F8CA118BFB96700A025E1 /* TouchReceptor.m in Sources */,
 				247F8CA418BFC02600A025E1 /* TestViewController.m in Sources */,
+				0A7D887018C4C50D004474E6 /* FingerVertexSelector.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
